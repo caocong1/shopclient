@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="sidebar" class="sidebar responsive ace-save-state">
+</div>
+<script src="json/navjson.js"></script>
+<script>
+    var l = nav.length;
+    var navbar = $("#sidebar");
+    function createnav(){
+        navbar.append("<ul class=\"nav nav-list\"></ul>");
+        for(var i=0;i<l;i++){
+            $(".nav-list").append("<li class=\"\"><a herf=\"#\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">" + nav[i].name + "</span><b class=\"arrow\"></b></a></li>");
+
+        }
+    }
+    function createsubnav(){
+
+    }
+    console.log(createnav());
+
+</script>
+</body>
+</html>
