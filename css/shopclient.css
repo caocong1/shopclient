@@ -1,0 +1,33 @@
+.navbar {
+    background: #2E8965;
+}
+
+.nav-list>li.active:hover>a, .nav-list>li.active>a {
+    color: #689F38;
+}
+
+.nav-list>li.active:before,
+.nav-list>li:hover:before {
+    background-color: #8BC34A;
+}
+
+.nav-list>li>a.dropdown-toggle,
+.nav-list>li.open>a,
+.nav-list>li.open>a:focus {
+    color: #bac2c8;
+    background-color: #222A2D;
+}
+
+.nav-list>li:hover>a,
+.nav-list>li.open:hover>a {
+    color: #bac2c8;
+    background-color: #414B51;
+}
+
+.nav-list>li>.submenu>li.active>a {
+    color: #689F38;
+}
+
+.nav-list>li>.submenu>li:hover>a {
+    color: #8BC34A;;
+}

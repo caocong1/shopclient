@@ -18,13 +18,13 @@ function createnav() {
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
         navlist.append("<li><a href =\"javascript:void(0);\"><i class=\"menu-icon fa " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
-        if (typeof (nav[i].subnav) !== "undefined") {
+        if (jQuery.isEmptyObject(nav[i].subnav)) {
+            navbar.find("li:last").attr("id", nav[i].page);
+            navbar.find("a:last").attr("onclick", "navjump('" + nav[i].page + "','" + nav[i].navname + "')");
+        } else {
             navbar.find("a:last").addClass("dropdown-toggle");
             $(".nav-list b:last").addClass("fa fa-angle-down");
             createsubnav(nav[i].subnav);
-        } else {
-            navbar.find("li:last").attr("id", nav[i].page);
-            navbar.find("a:last").attr("onclick", "navjump('" + nav[i].page + "','" + nav[i].navname + "')");
         }
     }
 }
