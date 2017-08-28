@@ -5,14 +5,16 @@ nav =
             "navname": "通知公告",
             "status": 1,
             "icon": "fa-envelope-open",
-            "page": "notice"
+            "page": "notice",
+			"subnav": []
         },
         {
             "id": 2,
             "navname": "通知单",
             "status": 1,
             "icon": "fa-newspaper-o",
-            "page": "statement"
+            "page": "statement",
+			"subnav": []
         },
         {
             "id": 3,
@@ -25,14 +27,16 @@ nav =
                     "navname": "销售报表",
                     "status": 1,
                     "icon": "fa-bar-chart",
-                    "page": "chart"
+                    "page": "chart",
+					"subnav": []
                 },
                 {
                     "id": 5,
                     "navname": "销售补录",
                     "status": 1,
                     "icon": "fa-jpy",
-                    "page": "adjust"
+                    "page": "adjust",
+					"subnav": []
                 }
             ]
         },
@@ -47,14 +51,16 @@ nav =
                     "navname": "店铺人员管理",
                     "status": 1,
                     "icon": "fa-users",
-                    "page": "person"
+                    "page": "person",
+					"subnav": []
                 },
                 {
                     "id": 8,
                     "navname": "系统设置",
                     "status": 1,
                     "icon": "fa-cog",
-                    "page": "system"
+                    "page": "system",
+					"subnav": []
                 }
             ]
         }

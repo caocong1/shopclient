@@ -7,19 +7,20 @@
     <title>商户端 Admin</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-table.min.css"/>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <!-- ace styles -->
-    <!--<link rel="stylesheet" href="css/ace1.css" class="ace-main-stylesheet" id="main-ace-style"/>-->
-    <!--<link rel="stylesheet" href="css/ace-skins1.css"/>-->
-    <link rel="stylesheet" href="css/shopclient1.css" id="main-ace-style"/>
+    <link rel="stylesheet" href="css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="css/ace-skins1.css"/>
+    <!-- my styles -->
+    <link rel="stylesheet" href="css/shopclient.css"/>
     <script src="js/ace-extra.min.js"></script>
 
 </head>
 
-<body class="skin-1">
+<body>
 <div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -81,17 +82,15 @@
 </div>
 
 <div class="main-container ace-save-state" id="main-container">
-    <div id="sidebar" class="sidebar responsive ace-save-state">
-        <!-- /.nav-list -->
-    </div>
-
+    <div id="sidebar" class="sidebar responsive ace-save-state"></div>
+    <!-- 导航菜单 -->
     <div class="main-content">
         <div class="main-content-inner">
             <div class="page-content">
+                <div class="page-header"><h1></h1></div>
                 <div class="row">
-                    <div class="col-xs-12" id="main">
-                    </div>
-                    <!-- /.col -->
+                    <div class="col-sm-12" id="main"></div>
+                    <!-- .load /views下的页面 -->
                 </div>
                 <!-- /.row -->
             </div>
@@ -109,62 +108,26 @@
             </div>
         </div>
     </div>
-
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 </div>
 <!-- /.main-container -->
 
-<!-- basic scripts -->
-
 <script src="js/jquery-2.1.4.min.js"></script>
-
-<script type="text/javascript">
+<!--script type="text/javascript">
     if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-</script>
+</script>-->
 <script src="js/bootstrap.min.js"></script>
-
-<!-- page specific plugin scripts -->
-
-<!-- ace scripts -->
+<script src="js/bootstrap-table.min.js"></script>
+<!-- json数据 -->
+<script src="json/navjson.js"></script>
+<!-- ace js -->
 <script src="js/ace-elements1.js"></script>
 <script src="js/ace1.js"></script>
-<script src="json/navjson.js"></script>
-<!-- inline scripts related to this page -->
+<!-- my js -->
+<script src="js/shopclient.js"></script>
 <script>
-    function navjump(page){
-        $("#main").load("views/" + page + ".html");
-        navbar.find("li").removeClass("active");
-        $("#"+ page).addClass("active");
-    }
-    var navlength = nav.length;
-    var navbar = $("#sidebar");
-    function createnav(){
-        navbar.append("<ul class=\"nav-list nav\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
-        var navlist = $(".nav-list");
-        for(var i=0;i<navlength;i++){
-            navlist.append("<li><a href =\"javascript:void(0);\"><i class=\"menu-icon fa "+ nav[i].icon +"\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
-            if(typeof (nav[i].subnav) !== "undefined"){
-                navbar.find("a:last").addClass("dropdown-toggle");
-                $(".nav-list b:last").addClass("fa fa-angle-down");
-                createsubnav(nav[i].subnav);
-            }else{
-                navbar.find("li:last").attr("id",nav[i].page);
-                navbar.find("a:last").attr("onclick","navjump('"+ nav[i].page +"')");
-            }
-        }
-    }
-    function createsubnav(subnav){
-        navbar.find("li:last").append("<ul class=\"submenu\"></ul>");
-        var sublength = subnav.length;
-        var ul = $(".submenu:last");
-        for(var i=0;i<sublength;i++){
-            ul.append("<li id = \"" + subnav[i].page + "\"><a href =\"javascript:void(0);\" onclick=\"navjump('" + subnav[i].page + "')\"><i class=\"menu-icon fa "+ subnav[i].icon +"\"></i>" + subnav[i].navname + "<b class=\"arrow\"></b></a></li>");
-        }
-    }
-    createnav();
-    navjump("widget");
 
 </script>
 </body>
