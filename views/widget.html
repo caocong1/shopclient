@@ -7,8 +7,8 @@
      <button class="btn btn-sm btn-warning">点击查看</button>
      <br/>
  </div> -->
-<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-notice">
-    <div class="widget-box widget-color-dark" id="widget-box-1">
+<div class="col-xs-12 col-sm-4 widget-container-col" id="widget-container-notice">
+    <div class="widget-box widget-color-dark" id="widget-box-notice">
         <div class="widget-header">
             <h5 class="widget-title">通知公告</h5>
             <div class="widget-toolbar">
@@ -21,16 +21,12 @@
             </div>
         </div>
         <div class="widget-body">
-            <div class="widget-main">
-                <p class="alert alert-info">
-                    9月11日全体店长会
-                </p>
-            </div>
+            <!--加载未读的通知-->
         </div>
     </div>
 </div>
 
-<div class="col-xs-12 col-sm-6 widget-container-col">
+<div class="col-xs-12 col-sm-4 widget-container-col">
     <div class="widget-box widget-color-dark">
         <div class="widget-header">
             <h5 class="widget-title">调帐申请</h5>
@@ -82,4 +78,47 @@
     </div>
 </div>
 
-<!-- PAGE CONTENT ENDS -->
+<span class="badge badge-primary"></span>
+<script>
+    var unreadhtml = "<span class=\"hide badge badge-primary\"></span>";
+    var widgetnoticehtml = "<div class=\"widget-main\"><a href=\"#\"><p class=\"alert alert-info\"></p></a></div>";
+    var widgetnotice = $("#widget-box-notice");
+    var navnotice = $("#notice");
+    navnotice.find(".menu-text").append(unreadhtml);
+    //加载未读通知
+    $.ajax({
+        url: "json/notice.json",
+        success: function (data) {
+            widgetloadnotice(data);
+            updatenavnoticeunread()
+        }
+    });
+    function widgetloadnotice(data){
+        var l = data.length;
+        for(var i=0;i<l;i++){
+            if(!data[i].status){
+                widgetnotice.find(".widget-body").append(widgetnoticehtml);
+                widgetnotice.find(".widget-main:last").attr("id","notice-"+data[i].id);
+                widgetnotice.find("p:last").text(data[i].title)
+            }
+        }
+    }
+    //更新未读提示
+    function updatenavnoticeunread(){
+        var unread = widgetnotice.find(".widget-main").length;
+        if(unread) {
+            navnotice.find(".badge").removeClass("hide");
+            navnotice.find(".badge").text(unread)
+        }else{
+            navnotice.find(".badge").addClass("hide");
+        }
+    }
+    widgetnotice.on("click","a",function () {
+        var unreadnotice = $(this).closest(".widget-main");
+        var id = unreadnotice.attr("id");
+        navjump("notice","通知公告");
+        var i = id.substr(id.lastIndexOf('-')+1);
+        sessionStorage.setItem("noticeid",i);
+    })
+
+</script>

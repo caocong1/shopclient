@@ -1,10 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="col-sm-offset-1 col-sm-8 col-xs-12">
+    <span><h2>店铺人员列表</h2></span>
+    <table id="persontable"></table>
+</div>
+<div id="toolbar">
+    <button class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="新增">
+        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
+    </button>
+    <button class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="编辑">
+        <i class="ace-icon fa fa-pencil-square-o icon-only"></i>编辑
+    </button>
+    <button class="btn btn-app btn-primary btn-xs" title="删除">
+        <i class="ace-icon fa fa-trash icon-only"></i>删除
+    </button>
+    <button class="btn btn-app btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
+        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
+    </button>
+</div>
 
-</body>
-</html>
+<!-- 编辑模态框 -->
+<div class="modal fade" id="personinfoedit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">人员信息编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>姓名</label><input class="form-control" id="cname" placeholder="请输入姓名">
+                        <label>登录用户名</label><input class="form-control" id="cname" placeholder="请输入姓名">
+                        <label>证件类型</label><select class="form-control" id="form-field-select-1">
+                            <option value="身份证">身份证</option>
+                            <option value="护照">护照</option>
+                            <option value="其他">其他</option>
+                        </select>
+                        <label>证件号码</label><input class="form-control" id="cname" placeholder="请输入姓名">
+                        <label>
+                            是否编辑人员权限
+                            <input name="switch-field-1" class="ace ace-switch ace-switch-5" type="checkbox">
+                            <span class="lbl"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal"
+                            onclick="newclass()">确定新增
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var searchhtml = "<form class=\"form-search\"><span class=\"input-icon\"><input type=\"text\" autocomplete=\"off\" class=\"nav-search-input\" placeholder=\"Search inbox ...\"><i class=\"ace-icon fa fa-search nav-search-icon\"></i></span></form>"
+    $("#persontable").bootstrapTable("destroy").bootstrapTable({
+        url: "json/person.json",
+        striped: true,
+        iconsPrefix: 'fa', // glyphicon of fa (font awesome)
+        icons: {
+            refresh: '',
+        },
+        pagination: true,
+//        onlyInfoPagination:true,
+//        search: true,
+//        searchOnEnterKey: true,
+        showRefresh: true,
+        toolbar: '#toolbar',
+        searchAlign: "right",
+        toolbarAlign: "right",
+        clickToSelect: true,
+        columns: [{
+            field: 'checkbox',
+            checkbox: true
+        },{
+            field: "byname",
+            title: "姓名"
+        }, {
+            field: "username",
+            title: "登录用户名"
+        }, {
+            field: "cardtype",
+            title: "证件类型"
+        }, {
+            field: "cardnumber",
+            title: "证件号码"
+        }]
+    })
+    //    $(".search").html(searchhtml).addClass("nav-search minimized");
+    $(".columns-right").remove();
+
+</script>

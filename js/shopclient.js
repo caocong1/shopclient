@@ -42,19 +42,16 @@ function createsubnav(subnav) {
 createnav();
 navjump("widget", "首页");
 
-//加载通知公告表格
-// function makenoticetable() {
-//     noticetable.bootstrapTable('destroy').bootstrapTable({
-//         url: "json/notice.json",
-//         columns: [{
-//             field: 'type',
-//             title: '类型'
-//         }, {
-//             field: 'sendtime',
-//             title: '时间'
-//         }, {
-//             field: 'title',
-//             title: '时间'
-//         }]
-//     })
-// }
+//        判断后缀名返回图标
+function attachmentsuffix(filename){
+    var suffix = filename.substr(filename.lastIndexOf('.')+1);
+    if(suffix === "doc"||suffix === "docx"){
+        return "fa fa-file-word-o"
+    }else if(suffix === "xls"||suffix === "xlsx"){
+        return "fa fa-file-excel-o"
+    }else if(suffix === "jpg"||suffix === "png"||suffix === "bmp"||suffix === "gif"){
+        return "fa fa-file-image-o"
+    }else if(suffix === "pdf"){
+        return "fa fa-file-pdf-o"
+    }
+}

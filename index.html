@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>商户端 Admin</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <title>商户端 Admin</title>
+    <link rel="icon" href="img/logo.ico" type="image/x-icon">
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-table.min.css"/>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <!-- ace styles -->
     <link rel="stylesheet" href="css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style"/>
-    <link rel="stylesheet" href="css/ace-skins1.css"/>
+    <link rel="stylesheet" href="css/ace-skins.min.css"/>
     <!-- my styles -->
     <link rel="stylesheet" href="css/shopclient.css"/>
-    <script src="js/ace-extra.min.js"></script>
-
 </head>
 
-<body>
+<body class="skin-1">
 <div id="navbar" class="navbar navbar-default ace-save-state navbar-fixed-top">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -29,7 +26,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-
         <div class="navbar-header pull-left">
             <a href="#" class="navbar-brand">
                 <small>
@@ -38,12 +34,11 @@
                 </small>
             </a>
         </div>
-
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="green dropdown-modal">
+                <li class="blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="img/icon.png" alt="XX店铺"/>
+                        <img class="nav-user-photo" src="img/1F0101.png" alt="XX店铺"/>
                         <span class="user-info">
 									1F0101店铺
 									<small>管理员</small>
@@ -76,7 +71,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
     <!-- /.navbar-container -->
 </div>
@@ -120,11 +114,13 @@
 </script>-->
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootstrap-table.min.js"></script>
+<script src="js/bootstrap-table-zh-CN.min.js"></script>
 <!-- json数据 -->
 <script src="json/navjson.js"></script>
 <!-- ace js -->
-<script src="js/ace-elements1.js"></script>
-<script src="js/ace1.js"></script>
+<script src="js/ace.min.js"></script>
+<script src="js/ace-elements.min.js"></script>
+<script src="js/ace-extra.min.js"></script>
 <!-- my js -->
 <script src="js/shopclient.js"></script>
 <script>

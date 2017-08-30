@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin",
+    "byname": "管理员",
+    "cardtype":"身份证",
+    "cardnumber":"110100201709016666",
+    "rights": 1111111,
+    "storecode": "1F0101",
+    "status": 1
+  },
+  {
+    "id": 2,
+    "username": "dongli",
+    "password": "admin",
+    "byname": "董立",
+    "cardtype":"身份证",
+    "cardnumber":"555555198704115555",
+    "rights": 101010,
+    "storecode": "1F0101",
+    "status": 1
+  }
+]

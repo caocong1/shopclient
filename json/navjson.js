@@ -13,7 +13,7 @@ nav =
             "navname": "通知单",
             "status": 1,
             "icon": "fa-newspaper-o",
-            "page": "statement",
+            "page": "settlement",
 			"subnav": []
         },
         {
