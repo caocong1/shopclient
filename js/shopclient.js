@@ -1,21 +1,42 @@
 /*!
  * 商户端js
  */
-//导航跳转
+$(function () {
+	if(sessionStorage.getItem("loginstatus")){
+		loadindex();
+	}else{
+		$("body").load("views/login.html");
+		$("body").addClass("login-layout");
+	}
+	
+});
+
+function loginout(){
+	sessionStorage.setItem("loginstatus",0);
+	window.location.reload()
+}
+function loadindex(){
+		var username = sessionStorage.getItem("username");
+		var storecode = sessionStorage.getItem("storecode");
+		$("body").removeClass("login-layout");
+		$("body").prepend(heads);
+		var navbar = $("#sidebar");
+		$(".user-info").append(storecode+"店铺<small>"+ username +"</small>");
+		loadnav();
+		navjump("widget", "首页");
+
+}
+		//导航跳转
 function navjump(page, navname) {
     $("#main").load("views/" + page + ".html");
-    navbar.find("li").removeClass("active");
+    $("#sidebar").find("li").removeClass("active");
     $("#" + page).addClass("active");
     $(".page-header").find("h1").text(navname);
 }
-
 //创建导航目录
-var navbar = $("#sidebar");
-
-// var navlength = nav.length;
-$(function () {
+function loadnav(){
+	var navbar = $("#sidebar");
     var navlength = nav.length;
-
     navbar.append("<ul class=\"nav-list nav\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget','首页')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
@@ -29,9 +50,8 @@ $(function () {
             createsubnav(nav[i].subnav);
         }
     }
-});
-
 function createsubnav(subnav) {
+	var navbar = $("#sidebar");
     navbar.find("li:last").append("<ul class=\"submenu\"></ul>");
     var sublength = subnav.length;
     var ul = $(".submenu:last");
@@ -39,9 +59,13 @@ function createsubnav(subnav) {
         ul.append("<li id = \"" + subnav[i].page + "\"><a href =\"javascript:void(0);\" onclick=\"navjump('" + subnav[i].page + "','" + subnav[i].navname + "')\"><i class=\"menu-icon fa " + subnav[i].icon + "\"></i>" + subnav[i].navname + "<b class=\"arrow\"></b></a></li>");
     }
 }
+}
+
+
+
 
 //初始化导航
-navjump("widget", "首页");
+
 
 //        判断后缀名返回图标
 function attachmentsuffix(filename){

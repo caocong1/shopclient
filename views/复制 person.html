@@ -1,0 +1,289 @@
+<div class="col-sm-offset-1 col-sm-8 col-xs-12" xmlns:data="http://www.w3.org/1999/xhtml">
+    <span><h2>店铺人员列表</h2></span>
+    <table id="persontable"></table>
+</div>
+<div id="toolbar">
+    <button id="new" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit"
+            title="新增">
+        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
+    </button>
+    <button id="edit" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit"
+            title="编辑">
+        <i class="ace-icon fa fa-pencil-square-o icon-only"></i>编辑
+    </button>
+    <button id="delete" class="btn btn-app btn-primary btn-xs" title="删除">
+        <i class="ace-icon fa fa-trash icon-only"></i>删除
+    </button>
+    <button class="btn btn-app btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
+        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
+    </button>
+</div>
+
+<!-- 编辑模态框 -->
+<div class="modal fade" id="personinfoedit" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">姓名：</label>
+                        <div class="col-sm-4">
+                            <input id="byname" class="form-control" placeholder="请填入姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">用户名：</label>
+                        <div class="col-sm-4">
+                            <input id="username" class="form-control col-sm-4" placeholder="请填入用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">密码：</label>
+                        <div class="col-sm-4">
+                            <input id="password" type="password" placeholder="请填入密码" class="form-control col-sm-4"
+                                   style="background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=');">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">证件类型:</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="cardtype1" title="证件类型">
+                                <option value="身份证">身份证</option>
+                                <option value="护照">护照</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="hide col-sm-4">
+                            <input id="cardtype2" class="form-control" placeholder="请填入其他证件类型">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">证件号码:</label>
+                        <div class="col-sm-5">
+                            <input id="cardnumber" class="form-control" placeholder="请输入证件号码">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-5 col-sm-offset-1">
+                            <div class="widget-box widget-color-white no-border" id="widget-box-7">
+                                <div class="widget-header">
+                                    <h6 class="widget-title smaller">是否编辑人员权限:</h6>
+                                    <div class="widget-toolbar no-border">
+                                        <label>
+                                            <input id="checkboxrights" type="checkbox"
+                                                   class="ace ace-switch ace-switch-3"/>
+                                            <span class="lbl middle"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="widget-body collapse">
+                                    <div class="widget-main">
+                                        <div class="alert alert-warning">
+                                            <ul id="tree1" class="tree">
+                                                <li class="tree-branch">
+                                                    <div id="r1" class="tree-item">
+                                                        <span class="tree-item-name">
+                                                            <i class="icon-item ace-icon fa fa-times"></i>
+                                                            <span class="tree-label">通知公告</span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="tree-branch">
+                                                    <div id="r2" class="tree-item">
+                                                        <span class="tree-item-name">
+                                                            <i class="icon-item ace-icon fa fa-times"></i>
+                                                            <span class="tree-label">通知单</span>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                                <li class="tree-branch">
+                                                    <div id="r3" class="tree-item">
+                                                        <span class="tree-item-name">
+                                                            <i class="icon-item ace-icon fa fa-times"></i>
+                                                            <span class="tree-label">店铺销售</span>
+                                                        </span>
+                                                    </div>
+                                                    <ul class="tree-branch-children" role="group">
+                                                        <li id="r4" class="tree-item">
+                                                            <span class="tree-item-name">
+                                                                <i class="icon-item ace-icon fa fa-times"></i>
+                                                                <span class="tree-label">销售报表</span>
+                                                            </span>
+                                                        </li>
+                                                        <li id="r5" class="tree-item">
+                                                            <span class="tree-item-name">
+                                                                <i class="icon-item ace-icon fa fa-times"></i>
+                                                                <span class="tree-label">销售补录</span>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="tree-branch">
+                                                    <div id="r6" class="tree-item">
+                                                        <span class="tree-item-name">
+                                                            <i class="icon-item ace-icon fa fa-times"></i>
+                                                            <span class="tree-label">系统管理</span>
+                                                        </span>
+                                                    </div>
+                                                    <ul class="tree-branch-children" role="group">
+                                                        <li id="r7" class="tree-item">
+                                                            <span class="tree-item-name">
+                                                                <i class="icon-item ace-icon fa fa-times"></i>
+                                                                <span class="tree-label">店铺人员管理</span>
+                                                            </span>
+                                                        </li>
+                                                        <li id="r8" class="tree-item">
+                                                            <span class="tree-item-name">
+                                                                <i class="icon-item ace-icon fa fa-times"></i>
+                                                                <span class="tree-label">系统设置</span>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-dismiss="modal">确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var persontable = $("#persontable");
+    persontable.bootstrapTable("destroy").bootstrapTable({
+        url: "json/person.json",
+        striped: true,
+        iconsPrefix: 'fa', // glyphicon of fa (font awesome)
+        pagination: true,
+//        onlyInfoPagination:true,
+//        search: true,
+//        searchOnEnterKey: true,
+        showRefresh: true,
+        toolbar: '#toolbar',
+        searchAlign: "right",
+        toolbarAlign: "right",
+        clickToSelect: true,
+        columns: [{
+            field: 'checkbox',
+            checkbox: true
+        }, {
+            field: "byname",
+            title: "姓名"
+        }, {
+            field: "username",
+            title: "登录用户名"
+        }, {
+            field: "cardtype",
+            title: "证件类型"
+        }, {
+            field: "cardnumber",
+            title: "证件号码"
+        }]
+    });
+    $(".columns-right").remove();
+    $("#checkboxrights").click(function () {
+        var ischecked = $("#checkboxrights").prop("checked");
+        if (ischecked) {
+            $(".widget-body").collapse("show");
+        } else {
+            $(".widget-body").collapse("hide")
+        }
+    });
+    $("#personinfoedit").on('hide.bs.modal', function () {
+        $("#checkboxrights").prop("checked",false)
+        $(':input','.form-horizontal').val("").removeAttr('checked');
+        $(".collapse").removeClass("in");
+        $(".tree-item").removeClass("tree-selected")
+    });
+    $("#new").on("click", function () {
+        $(".modal-title").text("新增人物");
+        $(".widget-body").collapse("show");
+        $("#checkboxrights").prop("checked",true)
+    });
+    $("#edit").on("click", function () {
+        $(".modal-title").text("编辑人物");
+        /**
+         * @param select.byname         姓名
+         * @param select.username       用户名
+         * @param select.cardnumber     证件号码
+         * @param select.cardtype       证件类型
+         * @param select.rights         人员权限
+         */
+        var select = persontable.bootstrapTable("getSelections");
+        if (select.length !== 0) {
+            $("#byname").val(select[0].byname);
+            $("#username").val(select[0].username);
+            $("#password").val("*************************");
+            $("#cardnumber").val(select[0].cardnumber);
+            if (select[0].cardtype === "身份证" || select[0].cardtype === "护照") {
+                $("#cardtype1").val(select[0].cardtype);
+            } else {
+                $("#cardtype1").val("其他");
+                $("#cardtype2").val(select[0].cardtype);
+            }
+            var rights = select[0].rights;
+            var right = rights.split("");
+            for (var i = 0; i < 8; i++) {
+                if (right[i] === "1") {
+                    $("#r"+i).addClass("tree-selected")
+                }
+            }
+        }
+    })
+    $("#tree1").on("click",".tree-item",function () {
+        var b = $(this).hasClass("tree-selected");
+//        ($(this).hasClass("tree-selected"))?$(this).removeClass("tree-selected"):$(this).addClass("tree-selected");
+        if(b) {
+            $(this).removeClass("tree-selected")
+        } else {
+            $(this).addClass("tree-selected")
+        }
+        var id = $(this).attr("id").split("")[1];
+        console.log(id)
+        if(id==="3"){
+            if(b){
+                $("#r4").removeClass("tree-selected");
+                $("#r5").removeClass("tree-selected")
+            }else{
+                $("#r4").addClass("tree-selected");
+                $("#r5").addClass("tree-selected")
+            }
+        }
+        if(id==="6"){
+            if(b){
+                $("#r7").removeClass("tree-selected");
+                $("#r8").removeClass("tree-selected")
+            }else{
+                $("#r7").addClass("tree-selected");
+                $("#r8").addClass("tree-selected")
+            }
+        }
+        if(id==="4"||id==="5"){
+            if(b){
+                $("#r3").removeClass("tree-selected")
+            }else{
+                $("#r3").addClass("tree-selected")
+            }
+        }
+        if(id==="7"||id==="8"){
+            if(b){
+                $("#r4").removeClass("tree-selected")
+            }else{
+                $("#r5").addClass("tree-selected")
+            }
+        }
+
+    })
+</script>
