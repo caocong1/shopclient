@@ -108,7 +108,7 @@ div>span>h2{
 
 .bootstrap-table .btn.btn-app.btn-xs {
     width: 31px;
-    font-size: 0px;
+    font-size: 0;
     padding-bottom: 3px;
     padding-top: 4px;
 }
@@ -132,3 +132,29 @@ div>span>h2{
     margin-bottom:0;
     line-height: 0;
 }
+
+.widget-color-white {
+    background-color: #ffffff
+}
+
+.widget-color-white>.widget-header{
+    color: #000000;
+    background: #ffffff none;
+
+}
+.widget-box[class*=widget-color-white]>.widget-header{
+    color: #000000;
+    padding-left:0;
+    border: 0
+}
+
+.widget-color-white>.widget-header>.widget-title {
+    font-size: 15px;
+}
+/*.ztree * {*/
+    /*font-size: 20px;*/
+/*}*/
+
+/*.ztree li span {*/
+    /*padding-left: 10px;*/
+/*}*/

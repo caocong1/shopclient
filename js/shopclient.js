@@ -10,10 +10,12 @@ function navjump(page, navname) {
 }
 
 //创建导航目录
-var navlength = nav.length;
 var navbar = $("#sidebar");
 
-function createnav() {
+// var navlength = nav.length;
+$(function () {
+    var navlength = nav.length;
+
     navbar.append("<ul class=\"nav-list nav\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget','首页')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
@@ -27,7 +29,7 @@ function createnav() {
             createsubnav(nav[i].subnav);
         }
     }
-}
+});
 
 function createsubnav(subnav) {
     navbar.find("li:last").append("<ul class=\"submenu\"></ul>");
@@ -39,7 +41,6 @@ function createsubnav(subnav) {
 }
 
 //初始化导航
-createnav();
 navjump("widget", "首页");
 
 //        判断后缀名返回图标

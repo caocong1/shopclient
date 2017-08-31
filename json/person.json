@@ -6,7 +6,7 @@
     "byname": "管理员",
     "cardtype":"身份证",
     "cardnumber":"110100201709016666",
-    "rights": 1111111,
+    "rights": "11111111",
     "storecode": "1F0101",
     "status": 1
   },
@@ -17,7 +17,7 @@
     "byname": "董立",
     "cardtype":"身份证",
     "cardnumber":"555555198704115555",
-    "rights": 101010,
+    "rights": "11111111",
     "storecode": "1F0101",
     "status": 1
   }
