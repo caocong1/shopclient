@@ -1,239 +1,242 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<meta charset="utf-8" />
-		<title>Noah商户系统</title>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>Noah商户系统</title>
+	<link rel="icon" href="../img/logo.ico" type="image/x-icon">
+	<meta name="description" content="User login page" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
-		<meta name="description" content="User login page" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<!-- bootstrap & fontawesome -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css" />
 
-		<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<!-- ace styles -->
+	<link rel="stylesheet" href="../css/ace.min.css" />
+</head>
 
-		<!-- ace styles -->
-		<link rel="stylesheet" href="css/ace.min.css" />
-	</head>
+<body class="login-layout">
+	<div class="main-container">
+		<div class="main-content">
+			<div class="row">
+				<div class="col-sm-10 col-sm-offset-1">
+					<div class="login-container">
+						<div class="center">
+							<h1>
+								<i class="ace-icon fa fa-leaf green"></i>
+								<span class="red">Noah</span>
+								<span class="white" id="id-text2">商户系统</span>
+							</h1>
+						</div>
 
-	<body class="login-layout">
-		<div class="main-container">
-			<div class="main-content">
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<div class="login-container">
-							<div class="center">
-								<h1>
-									<i class="ace-icon fa fa-leaf green"></i>
-									<span class="red">Noah</span>
-									<span class="white" id="id-text2">商户系统</span>
-								</h1>
-							</div>
+						<div class="space-6"></div>
 
-							<div class="space-6"></div>
+						<div class="position-relative">
+							<div id="login-box" class="login-box visible widget-box no-border">
+								<div class="widget-body">
+									<div class="widget-main">
+										<h4 class="header blue lighter bigger">
+											<i class="ace-icon fa fa-coffee green"></i>
+											请填入你的信息进行登录
+										</h4>
 
-							<div class="position-relative">
-								<div id="login-box" class="login-box visible widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header blue lighter bigger">
-												<i class="ace-icon fa fa-coffee green"></i>
-												请填入你的信息进行登录
-											</h4>
+										<div class="space-6"></div>
 
-											<div class="space-6"></div>
+										<form id="loginform">
+											<fieldset>
+												<label class="block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input id="storecode" type="text" class="form-control" placeholder="店铺号" />
+														<i class="ace-icon fa fa-home"></i>
+													</span>
+												</label>
+												<label class="block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input id="username" type="text" class="form-control" placeholder="登录用户名" />
+														<i class="ace-icon fa fa-user"></i>
+													</span>
+												</label>
 
-											<form>
-												<fieldset>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input id="storecode" type="text" class="form-control" placeholder="店铺号" />
-															<i class="ace-icon fa fa-home"></i>
-														</span>
-													</label>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input id="username" type="text" class="form-control" placeholder="登录用户名" />
-															<i class="ace-icon fa fa-user"></i>
-														</span>
-													</label>
+												<label class="block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input id="passwords" type="password" class="form-control" placeholder="密码" onkeydown='if(event.keyCode===13){login();}' />
+														<i class="ace-icon fa fa-lock"></i>
+													</span>
+												</label>
 
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input id="passwords" class="form-control" placeholder="密码" />
-															<i class="ace-icon fa fa-lock"></i>
-														</span>
-													</label>
+												<div class="space"></div>
 
-													<div class="space"></div>
+												<div class="clearfix">
+													<!--<label class="inline">
+														<input type="checkbox" class="ace" />
+														<span class="lbl"> Remember Me</span>
+													</label>-->
 
-													<div class="clearfix">
-														<!--<label class="inline">
-															<input type="checkbox" class="ace" />
-															<span class="lbl"> Remember Me</span>
-														</label>-->
+													<button type="button" onclick="login()" class="width-35 pull-right btn btn-sm btn-primary">
+														<i class="ace-icon fa fa-key"></i>
+														<span class="bigger-110">登录</span>
+													</button>
+												</div>
 
-														<button type="button" onclick="login()" class="width-35 pull-right btn btn-sm btn-primary">
-															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110">登录</span>
-														</button>
-													</div>
+												<div class="space-4"></div>
+											</fieldset>
+										</form>
 
-													<div class="space-4"></div>
-												</fieldset>
-											</form>
-
-											<div class="social-or-login center">
-												<!--<span class="bigger-110"></span>-->
-											</div>
-
-											<div class="space-6"></div>
-
-										</div><!-- /.widget-main -->
-
-										<div class="toolbar clearfix">
-											<div>
-												<a href="#" data-target="#forgot-box" class="forgot-password-link">
-													<i class="ace-icon fa fa-arrow-left"></i>
-													忘记密码
-												</a>
-											</div>
-
-											<div>
-												<a href="#" data-target="#signup-box" class="user-signup-link">
-													联系运营
-													<i class="ace-icon fa fa-arrow-right"></i>
-												</a>
-											</div>
+										<div class="social-or-login center">
+											<span class="bigger-110">
+												<!-- alertcontent -->
+											</span>
 										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.login-box -->
 
-								<div id="forgot-box" class="forgot-box widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header red lighter bigger">
-												<i class="ace-icon fa fa-key"></i>
-												找回密码
-											</h4>
+										<div class="space-6"></div>
 
-											<div class="space-6"></div>
-											<p>
-												输入你的手机号
-											</p>
+									</div><!-- /.widget-main -->
 
-											<form>
-												<fieldset>
-													<label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="email" class="form-control" placeholder="手机号码" />
-															<i class="ace-icon fa fa-mobile"></i>
-														</span>
-													</label>
+									<div class="toolbar clearfix">
+										<div>
+											<a href="#" data-target="#forgot-box" class="forgot-password-link">
+												<i class="ace-icon fa fa-arrow-left"></i>
+												忘记密码
+											</a>
+										</div>
 
-													<div class="clearfix">
-														<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
-															<i class="ace-icon fa fa-lightbulb-o"></i>
-															<span class="bigger-110">发送验证码</span>
-														</button>
-													</div>
-												</fieldset>
-											</form>
-										</div><!-- /.widget-main -->
-
-										<div class="toolbar center">
-											<a href="#" data-target="#login-box" class="back-to-login-link">
-												回到登录页
+										<div>
+											<a href="#" data-target="#signup-box" class="user-signup-link">
+												联系运营
 												<i class="ace-icon fa fa-arrow-right"></i>
 											</a>
 										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.forgot-box -->
+									</div>
+								</div><!-- /.widget-body -->
+							</div><!-- /.login-box -->
 
-								<div id="signup-box" class="signup-box widget-box no-border">
-									<div class="widget-body">
-										<div class="widget-main">
-											<h4 class="header green lighter bigger">
-												<i class="ace-icon fa fa-users blue"></i>
-												
-											</h4>
+							<div id="forgot-box" class="forgot-box widget-box no-border">
+								<div class="widget-body">
+									<div class="widget-main">
+										<h4 class="header red lighter bigger">
+											<i class="ace-icon fa fa-key"></i>
+											找回密码
+										</h4>
 
-											<div class="space-6"></div>
+										<div class="space-6"></div>
+										<p>
+											输入你的手机号
+										</p>
 
-										</div>
+										<form>
+											<fieldset>
+												<label class="block clearfix">
+													<span class="block input-icon input-icon-right">
+														<input type="email" class="form-control" placeholder="手机号码" />
+														<i class="ace-icon fa fa-mobile"></i>
+													</span>
+												</label>
 
-										<div class="toolbar center">
-											<a href="#" data-target="#login-box" class="back-to-login-link">
-												<i class="ace-icon fa fa-arrow-left"></i>
-												回到登录页
-											</a>
-										</div>
-									</div><!-- /.widget-body -->
-								</div><!-- /.signup-box -->
-							</div><!-- /.position-relative -->
+												<div class="clearfix">
+													<button type="button" class="width-35 pull-right btn btn-sm btn-danger">
+														<i class="ace-icon fa fa-lightbulb-o"></i>
+														<span class="bigger-110">发送验证码</span>
+													</button>
+												</div>
+											</fieldset>
+										</form>
+									</div><!-- /.widget-main -->
 
-						</div>
-					</div><!-- /.col -->
-				</div><!-- /.row -->
-			</div><!-- /.main-content -->
-		</div><!-- /.main-container -->
+									<div class="toolbar center">
+										<a href="#" data-target="#login-box" class="back-to-login-link">
+											回到登录页
+											<i class="ace-icon fa fa-arrow-right"></i>
+										</a>
+									</div>
+								</div><!-- /.widget-body -->
+							</div><!-- /.forgot-box -->
 
-		<!-- basic scripts -->
+							<div id="signup-box" class="signup-box widget-box no-border">
+								<div class="widget-body">
+									<div class="widget-main">
+										<h4 class="header green lighter bigger">
+											<i class="ace-icon fa fa-users blue"></i>
 
-		<!--[if !IE]> -->
-		<script src="js/jquery-2.1.4.min.js"></script>
+										</h4>
 
-		<!-- <![endif]-->
+										<div class="space-6"></div>
 
-		<!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
+									</div>
 
-		<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			$("#storecode").val("1F0101");
-			$("#username").val("admin");
-			$("#passwords").val("admin");
-			
-			jQuery(function($) {
-			 $(document).on('click', '.toolbar a[data-target]', function(e) {
-				e.preventDefault();
-				var target = $(this).data('target');
-				$('.widget-box.visible').removeClass('visible');//hide others
-				$(target).addClass('visible');//show target
-			 });
-			});
-			function login(){
-				var storecode = $("#storecode").val();
-				var username = $("#username").val();
-				var passwords = $("#passwords").val();
-				console.log(storecode);
-				console.log(username);
-				console.log(passwords);
-				$.ajax({
-					url:"json/person.json",
-					success:function(data){
-						console.log(data);
-						var l=data.length;
-						for(var i=0;i<l;i++){
-							if(data[i].storecode===storecode&&data[i].username===username&&data[i].password===passwords){
-								sessionStorage.setItem("username",username);
-								sessionStorage.setItem("storecode",storecode);
-								sessionStorage.setItem("password",passwords);
-								sessionStorage.setItem("rights",data[i].rights);
-								sessionStorage.setItem("loginstatus",1);
-								window.location.href="index.html"
-							}
+									<div class="toolbar center">
+										<a href="#" data-target="#login-box" class="back-to-login-link">
+											<i class="ace-icon fa fa-arrow-left"></i>
+											回到登录页
+										</a>
+									</div>
+								</div><!-- /.widget-body -->
+							</div><!-- /.signup-box -->
+						</div><!-- /.position-relative -->
+
+					</div>
+				</div><!-- /.col -->
+			</div><!-- /.row -->
+		</div><!-- /.main-content -->
+	</div><!-- /.main-container -->
+
+	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+		if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+	</script>
+
+	<!-- inline scripts related to this page -->
+	<script type="text/javascript">
+		$("#storecode").val("1F0101");
+		$("#username").val("admin");
+		$("#passwords").val("admin");
+
+		jQuery(function($) {
+		 $(document).on('click', '.toolbar a[data-target]', function(e) {
+			e.preventDefault();
+			var target = $(this).data('target');
+			$('.widget-box.visible').removeClass('visible');//hide others
+			$(target).addClass('visible');//show target
+		 });
+		});
+		function login(){
+			var storecode = $("#storecode").val();
+			var username = $("#username").val();
+			var passwords = $("#passwords").val();
+			{if(!alertincomplete())return}
+			$.ajax({
+				url:"../json/person.json",
+				success:function(data){
+					var l=data.length;
+					for(var i=0;i<l;i++){
+						if(data[i].storecode===storecode&&data[i].username===username&&data[i].password===passwords){
+							sessionStorage.setItem("username",username);
+							sessionStorage.setItem("storecode",storecode);
+							sessionStorage.setItem("password",passwords);
+							sessionStorage.setItem("rights",data[i].rights);
+							sessionStorage.setItem("loginstatus",1);
+							window.location.href="../index.html"
 						}
-					},
-					error:function(){
-						console.log("error")
 					}
-				});
-			}
-		</script>
-	</body>
+				},
+				error:function(){
+					console.log("error")
+				}
+			});
+		}
+		function alertincomplete(){
+			var status = true;
+			$("#loginform").find("input").each(function () {
+				if ($(this).val() === "") {
+					alertcontent($(this).attr("placeholder")+"为空！");
+					status = false
+				}
+			});
+			return status
+		}
+		function alertcontent(value) {
+			alert(value);
+		}
+	</script>
+</body>
 </html>

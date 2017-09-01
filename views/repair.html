@@ -1,0 +1,237 @@
+<div class="col-sm-offset-1 col-sm-8 col-xs-12">
+	<span>
+		<h2>
+			报修列表
+		</h2>
+	</span>
+    <table id="repairtable"></table>
+</div>
+<div id="toolbar">
+    <button id="new" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#newrepair" title="新增">
+        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
+    </button>
+    <button class="btn btn-app btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
+        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
+    </button>
+</div>
+
+<div id="repairtimeline" class="hide">
+    <div class="row">
+        <div class="col-sm-2">
+            <span class="text-primary">报修详情：</span>
+        </div>
+        <div class="col-sm-10">
+            <div class="timeline-container timeline-style2">
+                <div class="timeline-items">
+                    <div class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <span id="startime" class="timeline-date"></span>
+                            <i class="timeline-indicator btn btn-info no-hover"></i>
+                        </div>
+                        <div class="widget-box transparent">
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <span class="red bolder">
+                                        发起报修
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    报修内容：
+                                    <span id="repaircontent" class="text-warning"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="accept" class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <span id="acceptime" class="timeline-date"></span>
+                            <i class="timeline-indicator btn btn-info no-hover"></i>
+                        </div>
+                        <div class="widget-box transparent">
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <span class="orange bolder">
+                                        接受处理
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    接受处理内容：
+                                    <span id="acceptcontent" class="text-warning"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="end" class="timeline-item clearfix">
+                        <div class="timeline-info">
+                            <span id="endtime" class="timeline-date"></span>
+                            <i class="timeline-indicator btn btn-info no-hover"></i>
+                        </div>
+                        <div class="widget-box transparent">
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <span class="green bolder">
+                                        处理完成
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-box">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    处理意见：
+                                    <span id="endcontent" class="text-warning"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.timeline-items -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newrepair" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-sm-offset-1">报修类型:</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="cardtype1" title="报修类型">
+                                    <option value="水电气">水电气</option>
+                                    <option value="设备设施">设备设施</option>
+                                    <option value="网络">网络</option>
+                                    <option value="POS">POS</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        <label class="col-sm-2 col-sm-offset-1">报修内容：</label>
+                        <div class="col-sm-4">
+                            <input id="byname" class="form-control" placeholder="请填入报修内容">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-sm-6 col-sm-offset-1 ace-file-input">
+                        <input type="file" id="id-input-file-2">
+                        <span class="ace-file-container" data-title="Choose">
+                            <span class="ace-file-name" data-title="点击上传文件">
+                                <i class=" ace-icon fa fa-upload"></i>
+                            </span>
+                        </span>
+                        <a class="remove" href="#">
+                            <i class=" ace-icon fa fa-times">
+                            </i>
+                        </a>
+                    </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="addperson()">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var repairtable = $("#repairtable");
+    repairtable.bootstrapTable("destroy").bootstrapTable({
+        url: "json/repair.json",
+        striped: true,
+        pagination: true,
+        uniqueId: "id",
+        showRefresh: true,
+        toolbar: '#toolbar',
+        searchAlign: "right",
+        toolbarAlign: "right",
+        detailView:true,
+        detailFormatter:repairdetail,
+        iconsPrefix: 'fa',
+        icons:{
+            detailOpen: 'fa-plus-square-o',
+            detailClose: 'fa-minus-square-o'
+        },
+        columns: [{
+            field: "startime",
+            title: "报修时间",
+            width:"20%"
+        }, {
+            field: "repairtype",
+            title: "报修类型",
+            width:"15%"
+        }, {
+            field: "repaircontent",
+            title: "报修内容"
+        }, {
+            field: "status",
+            title: "状态",
+            width:"10%",
+            formatter:function (value) {
+                var label,status;
+                if(value==="1"){
+                    label = "label-danger";
+                    status = "发起报修"
+                }else if(value==="2"){
+                    label = "label-warning";
+                    status = "接受处理"
+                }else if(value==="3"){
+                    label = "label-success";
+                    status = "处理完成"
+                }
+                return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
+            }
+        }],
+        onClickRow:function (row,$element) {
+            if($element.find("i").hasClass("fa-plus-square-o")){
+                repairtable.bootstrapTable("expandRow",$element.attr("data-index"))
+            }else{
+                repairtable.bootstrapTable("collapseRow",$element.attr("data-index"))
+            }
+        }
+    });
+    $(".columns-right").remove();
+    function repairdetail(index,row){
+        console.log(index);
+        /**
+         * @param row.startime        报修时间
+         * @param row.acceptime       接受时间
+         * @param row.endtime         结束时间
+         * @param row.acceptcontent   接受内容
+         * @param row.endcontent      处理内容
+         * @param row.repaircontent   报修内容
+         */
+        var repairtimeline = $("#repairtimeline");
+        repairtimeline.find("#startime").text(row.startime);
+        repairtimeline.find("#repaircontent").text(row.repaircontent);
+        if(row.acceptime!==""){
+            repairtimeline.find("#acceptime").text(row.acceptime);
+            repairtimeline.find("#accept").removeClass("hide");
+            repairtimeline.find("#acceptcontent").text(row.acceptcontent);
+            if(row.endtime!==""){
+                repairtimeline.find("#endtime").text(row.endtime);
+                repairtimeline.find("#end").removeClass("hide");
+                repairtimeline.find("#endcontent").text(row.endcontent)
+            }else{
+                repairtimeline.find("#end").addClass("hide")
+            }
+        }else{
+            repairtimeline.find("#accept").addClass("hide");
+            repairtimeline.find("#end").addClass("hide")
+        }
+        return repairtimeline.html();
+    }
+</script>

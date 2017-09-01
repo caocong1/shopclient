@@ -1,5 +1,9 @@
-<div class="col-sm-offset-1 col-sm-8 col-xs-12" xmlns:data="http://www.w3.org/1999/xhtml">
-	<span><h2>店铺人员列表</h2></span>
+<div class="col-sm-offset-1 col-sm-8 col-xs-12">
+	<span>
+		<h2>
+			店铺人员列表
+		</h2>
+	</span>
 	<table id="persontable"></table>
 </div>
 <div id="toolbar">
@@ -140,10 +144,10 @@
 		}
 	});
 	$("#personinfoedit").on('hide.bs.modal', function() {
-		$("#checkboxrights").prop("checked", false)
+		$("#checkboxrights").prop("checked", false);
 		$(':input', '.form-horizontal').val("").removeAttr('checked');
 		$(".collapse").removeClass("in");
-		$("#tree1").jstree().uncheck_all()
+		$("#tree1").jstree().uncheck_all();
 		newp = 0;
 		editp = 0;
 	});
@@ -181,7 +185,7 @@
 				$("#tree1").jstree("check_node", right[i]);
 			}
 		}
-	})
+	});
 	$("#delete").on("click", function() {
 		var select = persontable.bootstrapTable("getSelections");
 		console.log(select);
@@ -190,14 +194,14 @@
 			persontable.bootstrapTable("removeByUniqueId", select[i].id)
 		}
 
-	})
+	});
 
 	$("#tree1").jstree({
 		"core": {
 			"data": navright
 		},
 		"plugins": ["wholerow", "checkbox"]
-	})
+	});
 
 	function addperson() {
 //		if($(""))
@@ -213,5 +217,5 @@
 			cardtype: cardtype,
 			cardnumber: $("#cardnumber").val()
 		})
-	};
+	}
 </script>

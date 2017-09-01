@@ -1,43 +1,46 @@
 /*!
  * 商户端js
  */
+var body = $("body");
+//判断是否登录
 $(function () {
-	if(sessionStorage.getItem("loginstatus")){
-		loadindex();
-	}else{
-		$("body").load("views/login.html");
-		$("body").addClass("login-layout");
-	}
-	
+    if (sessionStorage.getItem("loginstatus")==="1") {
+    // if (true) {
+        loadwidget();
+    } else {
+        // body.load("views/login.html");
+        // body.addClass("login-layout");
+        location.href="views/login.html";
+    }
 });
 
-function loginout(){
-	sessionStorage.setItem("loginstatus",0);
-	window.location.reload()
+//登出
+function loginout() {
+    sessionStorage.setItem("loginstatus", 0);
+    window.location.href="views/login.html";
 }
-function loadindex(){
-		var username = sessionStorage.getItem("username");
-		var storecode = sessionStorage.getItem("storecode");
-		$("body").removeClass("login-layout");
-		$("body").prepend(heads);
-		var navbar = $("#sidebar");
-		$(".user-info").append(storecode+"店铺<small>"+ username +"</small>");
-		loadnav();
-		navjump("widget", "首页");
 
+//加载首页
+function loadwidget() {
+    body.addClass("skin-1");
+    var username = sessionStorage.getItem("username");
+    var storecode = sessionStorage.getItem("storecode");
+    $(".user-info").append(storecode + "店铺<small>" + username + "</small>");
+    loadnav();
+    navjump("widget", "首页");
 }
-		//导航跳转
+//导航跳转
 function navjump(page, navname) {
     $("#main").load("views/" + page + ".html");
     $("#sidebar").find("li").removeClass("active");
     $("#" + page).addClass("active");
     $(".page-header").find("h1").text(navname);
 }
-//创建导航目录
-function loadnav(){
-	var navbar = $("#sidebar");
+//加载导航菜单
+function loadnav() {
+    var navbar = $("#sidebar");
     var navlength = nav.length;
-    navbar.append("<ul class=\"nav-list nav\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget','首页')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
+    navbar.append("<ul class=\"nav nav-list\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget','首页')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
         navlist.append("<li><a href =\"javascript:void(0);\"><i class=\"menu-icon fa " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
@@ -50,33 +53,37 @@ function loadnav(){
             createsubnav(nav[i].subnav);
         }
     }
+}
 function createsubnav(subnav) {
-	var navbar = $("#sidebar");
-    navbar.find("li:last").append("<ul class=\"submenu\"></ul>");
+    $("#sidebar").find("li:last").append("<ul class=\"submenu\"></ul>");
     var sublength = subnav.length;
     var ul = $(".submenu:last");
     for (var i = 0; i < sublength; i++) {
         ul.append("<li id = \"" + subnav[i].page + "\"><a href =\"javascript:void(0);\" onclick=\"navjump('" + subnav[i].page + "','" + subnav[i].navname + "')\"><i class=\"menu-icon fa " + subnav[i].icon + "\"></i>" + subnav[i].navname + "<b class=\"arrow\"></b></a></li>");
     }
 }
-}
 
-
-
-
-//初始化导航
-
-
-//        判断后缀名返回图标
-function attachmentsuffix(filename){
-    var suffix = filename.substr(filename.lastIndexOf('.')+1);
-    if(suffix === "doc"||suffix === "docx"){
+//判断后缀名返回图标
+function attachmentsuffix(filename) {
+    var suffix = filename.substr(filename.lastIndexOf('.') + 1);
+    if (suffix === "doc" || suffix === "docx") {
         return "fa fa-file-word-o"
-    }else if(suffix === "xls"||suffix === "xlsx"){
+    } else if (suffix === "xls" || suffix === "xlsx") {
         return "fa fa-file-excel-o"
-    }else if(suffix === "jpg"||suffix === "png"||suffix === "bmp"||suffix === "gif"){
+    } else if (suffix === "jpg" || suffix === "png" || suffix === "bmp" || suffix === "gif") {
         return "fa fa-file-image-o"
-    }else if(suffix === "pdf"){
+    } else if (suffix === "pdf") {
         return "fa fa-file-pdf-o"
     }
 }
+
+//鼠标悬停下拉菜单
+$(".dropdown-modal").on("mouseover",function () {
+    $(this).addClass("open")}).on("mouseout",function () {
+        $(this).removeClass("open")
+    });
+// $(".dropdown-modal").mouseover(function () {
+//     $(this).addClass("open");
+// }).mouseout(function () {
+//     $(this).removeClass("open");
+// });

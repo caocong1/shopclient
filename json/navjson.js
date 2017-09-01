@@ -17,6 +17,14 @@ nav =
 			"subnav": []
         },
         {
+            "id": 9,
+            "navname": "工程报修",
+            "status": 1,
+            "icon": "fa-wrench",
+            "page": "repair",
+            "subnav": []
+        },
+        {
             "id": 3,
             "navname": "店铺销售",
             "status": 1,
@@ -90,6 +98,14 @@ var navright =
         ]
     },
     {
+        "id": 9,
+        "text": "工程报修",
+        "status": 1,
+        "icon": "fa-newspaper-o",
+        "page": "repair",
+        "children": []
+    },
+    {
         "id":3,
         "text":"店铺销售",
         "status":1,
@@ -153,6 +169,3 @@ var navright =
     }
 ]
 ;
-
-var heads = "";
-    heads += "<div id=\"navbar\" class=\"navbar navbar-default ace-save-state navbar-fixed-top\"><div class=\"navbar-container ace-save-state\" id=\"navbar-container\"><button type=\"button\" class=\"navbar-toggle menu-toggler pull-left\" id=\"menu-toggler\" data-target=\"#sidebar\"><span class=\"sr-only\">Toggle sidebar<\/span> <span class=\"icon-bar\"><\/span> <span class=\"icon-bar\"><\/span> <span class=\"icon-bar\"><\/span><\/button><div class=\"navbar-header pull-left\"><a href=\"#\" class=\"navbar-brand\"><small><i class=\"fa fa-leaf\"><\/i> Noah商户系统<\/small><\/a><\/div><div class=\"navbar-buttons navbar-header pull-right\" role=\"navigation\"><ul class=\"nav ace-nav\"><li class=\"blue dropdown-modal\"><a data-toggle=\"dropdown\" href=\"#\" class=\"dropdown-toggle\"><img class=\"nav-user-photo\" src=\"img/1F0101.png\" alt=\"XX店铺\"> <span class=\"user-info\"><\/span> <i class=\"ace-icon fa fa-caret-down\"><\/i><\/a><ul class=\"user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close\"><li><a href=\"#\"><i class=\"ace-icon fa fa-cog\"><\/i> 设置<\/a><\/li><li><a href=\"#\"><i class=\"ace-icon fa fa-user\"><\/i> 个人信息<\/a><\/li><li><a href=\"#\"><i class=\"ace-icon fa fa-briefcase\"><\/i> 店铺信息<\/a><\/li><li class=\"divider\"><\/li><li><a href=\"javascript:loginout()\"><i class=\"ace-icon fa fa-power-off\"><\/i> 登出<\/a><\/li><\/ul><\/li><\/ul><\/div><\/div><\/div><div id=\"main-container\" class=\"main-container ace-save-state\"><div id=\"sidebar\" class=\"sidebar responsive ace-save-state\"><\/div><div class=\"main-content\"><div class=\"main-content-inner\"><div class=\"page-content\"><div class=\"page-header\"><h1><\/h1><\/div><div class=\"row\"><div class=\"col-sm-12\" id=\"main\"><\/div><\/div><\/div><\/div><\/div><div class=\"footer\"><div class=\"footer-inner\"><div class=\"footer-content\"><span class=\"bigger-120\"><span class=\"green bolder\">Noah<\/span> Application &copy; 2017-2017<\/span><\/div><\/div><\/div><a href=\"#\" id=\"btn-scroll-up\" class=\"btn-scroll-up btn btn-sm btn-inverse\"><i class=\"ace-icon fa fa-angle-double-up icon-only bigger-110\"><\/i><\/a><\/div>\n";
