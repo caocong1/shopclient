@@ -99,38 +99,43 @@ div>span>h2{
     text-align:center
 }
 
-.bootstrap-table .nav-search {
-    right: auto;
-    left: 5px;
-    top: auto;
-    bottom: 11px;
+/*.bootstrap-table .btn.btn-app.btn-xs {*/
+    /*width: 31px;*/
+    /*font-size: 0;*/
+    /*padding-bottom: 3px;*/
+    /*padding-top: 4px;*/
+/*}*/
+/*.bootstrap-table .btn.btn-app.btn-xs>.ace-icon {*/
+    /*font-size: 17px;*/
+/*}*/
+/*.bootstrap-table .btn.btn-app.btn-xs:hover {*/
+    /*width: 40px;*/
+    /*font-size: 1px;*/
+    /*padding-bottom: 3px;*/
+    /*padding-top: 4px;*/
+/*}*/
+/*.bootstrap-table .btn.btn-app.btn-xs>.ace-icon:hover {*/
+    /*font-size: 17px;*/
+/*}*/
+/*.bootstrap-table .fixed-table-toolbar .bs-bars{*/
+    /*margin-top:auto;*/
+    /*margin-bottom:0;*/
+    /*line-height: 0;*/
+/*}*/
+
+.bootstrap-table .fixed-table-toolbar{
+    /*height: 52px;*/
+    border: 1px solid #ddd;
+    border-bottom: none;
+    font-size: 16px;
+    background: rgba(249, 249, 249, 0.57);
+    -webkit-border-radius: 4px 4px 0 0;
 }
 
-.bootstrap-table .btn.btn-app.btn-xs {
-    width: 31px;
-    font-size: 0;
-    padding-bottom: 3px;
-    padding-top: 4px;
-}
-.bootstrap-table .btn.btn-app.btn-xs>.ace-icon {
-    font-size: 17px;
-}
-.bootstrap-table .btn.btn-app.btn-xs:hover {
-    width: 40px;
-    font-size: 1px;
-    padding-bottom: 3px;
-    padding-top: 4px;
-}
-.bootstrap-table .btn.btn-app.btn-xs>.ace-icon:hover {
-    font-size: 17px;
-}
-.bootstrap-table .fixed-table-toolbar{
-    height: 52px;
-}
-.bootstrap-table .fixed-table-toolbar .bs-bars{
-    margin-top:auto;
-    margin-bottom:0;
-    line-height: 0;
+.bootstrap-table .bootstraptable-title{
+    position: absolute;
+    left: 30px;
+    padding-top:17px;
 }
 
 .widget-color-white {
@@ -140,7 +145,6 @@ div>span>h2{
 .widget-color-white>.widget-header{
     color: #000000;
     background: #ffffff none;
-
 }
 .widget-box[class*=widget-color-white]>.widget-header{
     color: #000000;
@@ -150,4 +154,10 @@ div>span>h2{
 
 .widget-color-white>.widget-header>.widget-title {
     font-size: 15px;
+}
+
+@media only screen and (min-width: 992px){
+    .page-header{
+        display:none;
+    }
 }

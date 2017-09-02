@@ -1,73 +1,75 @@
-<div class="tabbable">
-    <div class="tab-content no-border no-padding">
-        <div id="inbox" class="tab-pane in active">
-            <div class="message-container">
-                <div id="" class="message-navbar clearfix">
-                    <div class="message-bar">
-                        <div class="message-infobar" id="id-message-infobar">
-                            <span class="blue bigger-150">通知公告</span>
-                            <span class="grey bigger-110">(</span>
-                            <span class="grey bigger-110 unread"></span>
-                            <span class="grey bigger-110"> 件未读 )</span>
+<div class="col-md-offset-2 col-md-8 mdcol-sm-offset-1 col-sm-10 col-xs-12">
+    <div class="tabbable">
+        <div class="tab-content no-border no-padding">
+            <div id="inbox" class="tab-pane in active">
+                <div class="message-container">
+                    <div id="" class="message-navbar clearfix">
+                        <div class="message-bar">
+                            <div class="message-infobar" id="id-message-infobar">
+                                <span class="blue bigger-150">通知公告</span>
+                                <span class="grey bigger-110">(</span>
+                                <span class="grey bigger-110 unread"></span>
+                                <span class="grey bigger-110"> 件未读 )</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="message-list-container">
-                    <div class="message-list">
-                        <div class="message-head">
-                            <span class="sender" title="">发送人</span>
-                            <span class="time">时间</span>
-                            <span class="summary"><span class="text">标题</span></span></div>
+                    <div class="message-list-container">
+                        <div class="message-list">
+                            <div class="message-head">
+                                <span class="sender" title="">发送人</span>
+                                <span class="time">时间</span>
+                                <span class="summary"><span class="text">标题</span></span></div>
+                        </div>
+                        <div class="hr-double"></div>
+                        <div class="message-list" id="id-message-list">
+                            <!-- 自动生成通知内容 -->
+                        </div>
                     </div>
-                    <div class="hr-double"></div>
-                    <div class="message-list" id="id-message-list">
-                        <!-- 自动生成通知内容 -->
-                    </div>
-                </div>
 
-                <div class="message-footer clearfix">
-                    <div class="pull-left"></div>
-                    <div class="pull-right">
-                        <div class="inline middle">1 / 1</div>
+                    <div class="message-footer clearfix">
+                        <div class="pull-left"></div>
+                        <div class="pull-right">
+                            <div class="inline middle">1 / 1</div>
 
-                        &nbsp; &nbsp;
-                        <ul class="pagination middle">
-                            <li class="disabled">
+                            &nbsp; &nbsp;
+                            <ul class="pagination middle">
+                                <li class="disabled">
                                 <span>
                                     <i class="ace-icon fa fa-step-backward middle"></i>
                                 </span>
-                            </li>
-                            <li class="disabled">
+                                </li>
+                                <li class="disabled">
                                 <span>
                                     <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
                                 </span>
-                            </li>
-                            <li>
+                                </li>
+                                <li>
                                 <span>
                                     <input value="1" maxlength="3" title="页码"/>
                                 </span>
-                            </li>
+                                </li>
 
-                            <li>
-                                <a href="#">
-                                    <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
+                                    </a>
+                                </li>
 
-                            <li>
-                                <a href="#">
-                                    <i class="ace-icon fa fa-step-forward middle"></i>
-                                </a>
-                            </li>
-                        </ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-step-forward middle"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
-        </div>
-    </div><!-- /.tab-content -->
-</div><!-- /.tabbable -->
+        </div><!-- /.tab-content -->
+    </div><!-- /.tabbable -->
+</div>
 
 <div class="hide message-content" id="id-message-content">
     <div class="message-header clearfix">

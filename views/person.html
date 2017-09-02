@@ -1,26 +1,24 @@
-<div class="col-sm-offset-1 col-sm-8 col-xs-12">
-	<span>
-		<h2>
-			店铺人员列表
-		</h2>
-	</span>
-	<table id="persontable"></table>
-</div>
 <div id="toolbar">
-	<button id="new" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="新增">
+	<span id="tabletitle" class="bootstraptable-title bigger-120">
+        <i class="fa fa-table"></i>
+        人员列表
+    </span>
+	<button id="new" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="新增">
         <i class="ace-icon fa fa-plus-square icon-only"></i>新增
     </button>
-	<button id="edit" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="编辑">
+	<button id="edit" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#personinfoedit" title="编辑">
         <i class="ace-icon fa fa-pencil-square-o icon-only"></i>编辑
     </button>
-	<button id="delete" class="btn btn-app btn-primary btn-xs" title="删除">
+	<button id="delete" class="btn btn-danger btn-xs" title="删除">
         <i class="ace-icon fa fa-trash icon-only"></i>删除
     </button>
-	<button class="btn btn-app btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
+	<button class="btn btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
         <i class="ace-icon fa fa-refresh icon-only"></i>刷新
     </button>
 </div>
-
+<div class="col-md-offset-2 col-md-8 mdcol-sm-offset-1 col-sm-10 col-xs-12">
+	<table id="persontable"></table>
+</div>
 <!-- 编辑模态框 -->
 <div class="modal fade" id="personinfoedit" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
@@ -109,9 +107,6 @@
 		iconsPrefix: 'fa', // glyphicon of fa (font awesome)
 		pagination: true,
 		uniqueId: "id",
-		//        onlyInfoPagination:true,
-		//        search: true,
-		//        searchOnEnterKey: true,
 		showRefresh: true,
 		toolbar: '#toolbar',
 		searchAlign: "right",
@@ -134,6 +129,7 @@
 			title: "证件号码"
 		}]
 	});
+    $(".fixed-table-toolbar").append($("#tabletitle"));
 	$(".columns-right").remove();
 	$("#checkboxrights").click(function() {
 		var ischecked = $("#checkboxrights").prop("checked");

@@ -33,6 +33,7 @@ function loadwidget() {
 function navjump(page, navname) {
     $("#main").load("views/" + page + ".html");
     $("#sidebar").find("li").removeClass("active");
+    $("#sidebar").removeClass("display");
     $("#" + page).addClass("active");
     $(".page-header").find("h1").text(navname);
 }
@@ -40,13 +41,13 @@ function navjump(page, navname) {
 function loadnav() {
     var navbar = $("#sidebar");
     var navlength = nav.length;
-    navbar.append("<ul class=\"nav nav-list\"><li id =\"widget\" class=\"active\"><a href=\"javascript:void(0);\" onclick=\"navjump('widget','首页')\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
+    navbar.append("<ul class=\"nav nav-list\"><li id =\"widget\" class=\"active\"><a href=\"javascript:navjump('widget','首页');\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
-        navlist.append("<li><a href =\"javascript:void(0);\"><i class=\"menu-icon fa " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
+        navlist.append("<li><a><i class=\"menu-icon fa " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
         if (jQuery.isEmptyObject(nav[i].subnav)) {
             navbar.find("li:last").attr("id", nav[i].page);
-            navbar.find("a:last").attr("onclick", "navjump('" + nav[i].page + "','" + nav[i].navname + "')");
+            navbar.find("a:last").attr("href", "javascript:navjump('" + nav[i].page + "','" + nav[i].navname + "');");
         } else {
             navbar.find("a:last").addClass("dropdown-toggle");
             $(".nav-list b:last").addClass("fa fa-angle-down");

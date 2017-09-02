@@ -1,20 +1,18 @@
-<div class="col-sm-offset-1 col-sm-8 col-xs-12">
-	<span>
-		<h2>
-			报修列表
-		</h2>
-	</span>
+<div class="col-md-offset-2 col-md-8 mdcol-sm-offset-1 col-sm-10 col-xs-12">
     <table id="repairtable"></table>
 </div>
 <div id="toolbar">
-    <button id="new" class="btn btn-app btn-primary btn-xs" data-toggle="modal" data-target="#newrepair" title="新增">
+    <span id="tabletitle" class="bootstraptable-title bigger-120">
+        <i class="fa fa-table"></i>
+        报修列表
+    </span>
+    <button id="new" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#newrepair" title="新增">
         <i class="ace-icon fa fa-plus-square icon-only"></i>新增
     </button>
-    <button class="btn btn-app btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
+    <button class="btn btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
         <i class="ace-icon fa fa-refresh icon-only"></i>刷新
     </button>
 </div>
-
 <div id="repairtimeline" class="hide">
     <div class="row">
         <div class="col-sm-2">
@@ -153,10 +151,13 @@
         url: "json/repair.json",
         striped: true,
         pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
         toolbar: '#toolbar',
-        searchAlign: "right",
         toolbarAlign: "right",
         detailView:true,
         detailFormatter:repairdetail,
@@ -168,7 +169,7 @@
         columns: [{
             field: "startime",
             title: "报修时间",
-            width:"20%"
+            width:"160px"
         }, {
             field: "repairtype",
             title: "报修类型",
@@ -203,6 +204,7 @@
             }
         }
     });
+    $(".fixed-table-toolbar").append($("#tabletitle"));
     $(".columns-right").remove();
     function repairdetail(index,row){
         console.log(index);
