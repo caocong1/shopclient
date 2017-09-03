@@ -1,67 +1,141 @@
 <div class="col-md-offset-1 col-md-9 col-sm-offset-1 col-sm-10 col-xs-12">
     <div class="tabbable">
-            <div class="tab-content no-padding no-border">
-            <div id="a" class="tab-pane fade active in">
-                <table id="adjustable"></table>
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" href="#dayadjust">
+                    <i class="blue ace-icon fa fa-calendar-check-o bigger-120"></i>
+                    日调帐
+                    <span class="badge badge-warning">3</span>
+                </a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#monthadjust">
+                    <i class="blue ace-icon fa fa-calendar bigger-120"></i>
+                    月调帐
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content no-padding no-border">
+            <div id="dayadjust" class="tab-pane fade active in">
+                <table id="dayadjustable"></table>
             </div>
-            <div id="newadjust" class="tab-pane fade">
+            <div id="monthadjust" class="tab-pane fade">
+                <table id="monthadjustable"></table>
+            </div>
+            <!--新增日调帐-->
+            <div id="newdayadjust" class="tab-pane fade">
                 <div class="widget-box">
                     <div class="widget-header">
                         <h5 class="widget-title">新增调帐</h5>
                     </div>
                     <div id="adjustbody" class="widget-body">
                         <div class="widget-main">
-                            <div class="col-sm-12">
-                                <p class="alert alert-info">添加一条调帐记录，选择调帐类型、日期，然后点击添加，日调帐可以添加多条记录。</p>
-                            </div>
-                            <div class="col-sm-12"><br></div>
-                            <div class="col-sm-3">
-                                <select class="form-control" onchange="changedatepicker(this.options[this.options.selectedIndex].value)" title="调帐类型">
-                                    <option value="日调帐">日调帐</option>
-                                    <option value="月调帐">月调帐</option>
-                                    <option value="日期段">其他</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="input-group date">
-                                    <input class="form-control formdate" type="text" />
-                                    <span class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </span>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>调帐时间:</label>
+                                    <div class="input-group date">
+                                        <input class="form-control daypicker" type="text" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐前金额：</label>
+                                    <input class="form-control" value="2333" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐后金额：</label>
+                                    <input class="form-control" placeholder="请填入调帐后金额">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐原因：</label>
+                                    <input class="form-control" placeholder="请填入调帐原因">
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <button class="btn btn-white btn-default btn-round">
-                                    <i class="ace-icon fa fa-plus-square-o"></i>
-                                    添加
-                                </button>
+                        </div>
+                        <div class="widget-toolbox transparent clearfix">
+                            <a class="btn btn-success pull-right" data-toggle="tab" href="#dayadjust">
+                                <span class="bigger-120">
+                                    <i class="fa fa-thumbs-o-up"></i>&nbsp;确定
+                                </span>
+                            </a>
+                            <a class="btn btn-grey pull-left" data-toggle="tab" href="#dayadjust">
+                                <span class="bigger-120">
+                                    <i class="fa fa-hand-o-left"></i>&nbsp;返回
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--新增月调帐-->
+            <div id="newmonthadjust" class="tab-pane fade">
+                <div class="widget-box">
+                    <div class="widget-header">
+                        <h5 class="widget-title">新增调帐</h5>
+                    </div>
+                    <div class="widget-body">
+                        <div class="widget-main">
+                            <!--<div class="col-sm-12">-->
+                                <!--<p class="alert alert-info">添加一条调帐记录，选择调帐类型、日期，然后点击添加，日调帐可以添加多条记录。</p>-->
+                            <!--</div>-->
+                            <!--<div class="col-sm-12"><br></div>-->
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="input-group date">
+                                        <input class="form-control monthpicker" type="text" />
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="widget-main">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <label>调帐时间:</label>
-                                        <input class="form-control formdate" type="text" />
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>调帐原金额：</label>
-                                        <input class="form-control">
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <label>调帐金额：</label>
-                                        <input class="form-control" placeholder="请填入调帐金额">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <label>调帐原因：</label>
-                                        <input class="form-control" placeholder="请填入调帐原因">
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <button class="btn btn-white btn-default btn-round">
-                                            <i class="ace-icon fa fa-minus-square-o"></i>
-                                        </button>
-                                    </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>调帐时间:</label>
+                                    <input class="form-control daypicker" type="text" />
                                 </div>
-
+                                <div class="col-sm-3">
+                                    <label>调帐前金额：</label>
+                                    <input class="form-control" value="2333" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐后金额：</label>
+                                    <input class="form-control" placeholder="请填入调帐后金额">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>调帐时间:</label>
+                                    <input class="form-control daypicker" type="text" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐前金额：</label>
+                                    <input class="form-control" value="2333" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐后金额：</label>
+                                    <input class="form-control" placeholder="请填入调帐后金额">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>调帐时间:</label>
+                                    <input class="form-control daypicker" type="text" />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐前金额：</label>
+                                    <input class="form-control" value="2333" readonly>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>调帐后金额：</label>
+                                    <input class="form-control" placeholder="请填入调帐后金额">
+                                </div>
+                            </div>
 
                         </div>
                         <div class="widget-toolbox transparent clearfix">
@@ -83,20 +157,34 @@
         </div>
     </div>
 </div>
-
-<div id="toolbar">
-    <span id="tabletitle" class="bootstraptable-title bigger-120">
+<!--日调帐表格抬头-->
+<div id="daytoolbar">
+    <span id="daytabletitle" class="bootstraptable-title bigger-120">
         <i class="fa fa-table"></i>
-            调帐列表
+            日调帐列表
     </span>
-    <a id="new" class="btn btn-primary btn-xs" data-toggle="tab" href="#newadjust">
+    <a class="btn btn-primary btn-xs" data-toggle="tab" href="#newdayadjust">
         <i class="ace-icon fa fa-plus-square icon-only"></i>新增
     </a>
     <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
         <i class="ace-icon fa fa-refresh icon-only"></i>刷新
     </button>
 </div>
-<div id="adjustdetail" class="hide">
+<!--日调帐表格抬头-->
+<div id="monthtoolbar">
+    <span id="monthtabletitle" class="bootstraptable-title bigger-120">
+        <i class="fa fa-table"></i>
+            月调帐列表
+    </span>
+    <a class="btn btn-primary btn-xs" data-toggle="tab" href="#newmonthadjust">
+        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
+    </a>
+    <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
+        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
+    </button>
+</div>
+<!--日调帐详情-->
+<div id="dayadjustdetail" class="hide">
     <span  class="text-primary bigger-120">
         <i class="fa fa-bookmark-o"></i>
         调帐详情：
@@ -104,48 +192,46 @@
     <div class="widget-box">
         <div class="widget-body">
             <div class="widget-main no-padding">
-                <span class="red bolder">
+                <span class="bolder">
                     <table id="detailtable"></table>
                 </span>
+            </div>
+            <div class="widget-main">
+                <ul class="steps" style="margin-left: 0">
+                    <li data-step="1" class="active">
+                        <span class="step">审核</span>
+                        <span class="title"></span>
+                    </li>
+                    <li data-step="2">
+                        <span class="step">成功</span>
+                        <span class="title"></span>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    var adjustable = $("#adjustable");
-    var formdatepicker = $(".formdate");
-    formdatepicker.datetimepicker({
+    var dayadjustable = $("#dayadjustable");
+    var monthadjustable = $("#monthadjustable");
+    $(".daypicker").datetimepicker({
         language:"zh-CN",
         format:"yyyy-mm-dd",
         startView: "month",
         minView:"month",
         autoclose:true
     });
-    function changedatepicker(type) {
-        console.log(type);
-        if(type==="日调帐"){
-            formdatepicker.datetimepicker("remove");
-            formdatepicker.datetimepicker({
-                language:"zh-CN",
-                format:"yyyy-mm-dd",
-                startView: "month",
-                minView:"month",
-                autoclose:true
-            });
-        }else if(type==="月调帐") {
-            formdatepicker.datetimepicker("remove");
-            formdatepicker.datetimepicker({
-                language:"zh-CN",
-                format:"yyyy-mm",
-                startView: "year",
-                minView:"year",
-                autoclose:true
-            });
-        }
-    }
-    adjustable.bootstrapTable("destroy").bootstrapTable({
-        url: "json/adjustlist.json",
+    $(".monthpicker").datetimepicker({
+        language:"zh-CN",
+        format:"yyyy-mm",
+        startView: "year",
+        minView:"year",
+        autoclose:true
+    });
+    //日调帐
+    dayadjustable.bootstrapTable("destroy").bootstrapTable({
+        url: "json/dayadjust.json",
         striped: true,
         pagination: true,
         paginationLoop: true,
@@ -154,10 +240,10 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
-        toolbar: '#toolbar',
+        toolbar: '#daytoolbar',
         toolbarAlign: "right",
         detailView:true,
-        detailFormatter:repairdetail,
+        detailFormatter:dayadjustdetail,
         iconsPrefix: 'fa',
         icons:{
             detailOpen: 'fa-plus-square-o',
@@ -172,44 +258,163 @@
             title: "调帐人",
             width:"15%"
         }, {
+            field: "beforedayamount",
+            title: "调帐前总金额"
+        }, {
+            field: "afterdayamount",
+            title: "调帐后总金额"
+        }, {
+            field: "adjustdayamount",
+            title: "调帐金额"
+        }, {
             field: "adjustcontent",
-            title: "调帐内容"
+            title: "调帐理由"
         }, {
             field: "status",
             title: "调帐状态",
             formatter:function (value,row,index) {
-                var label = "label-success", status="调帐成功";
-                var detail = row.adjustdetail;
-                var l = detail.length;
-                for(var i=0;i<l;i++){
-                    if(detail[i].status===1){
-                        status = "调帐审核中";
-                        label = "label-warning";
-                        break
-                    }
+                var label,status;
+                if(value===1){
+                    label = "label-warning";
+                    status = "调帐审核中"
+                }else if(value===2){
+                    label = "label-success";
+                    status = "调帐成功"
                 }
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
         onClickRow:function (row,$element) {
             if($element.find("i").hasClass("fa-plus-square-o")){
-                adjustable.bootstrapTable("collapseAllRows");
-                adjustable.bootstrapTable("expandRow",$element.attr("data-index"))
+                dayadjustable.bootstrapTable("collapseAllRows");
+                dayadjustable.bootstrapTable("expandRow",$element.attr("data-index"))
             }else{
-                adjustable.bootstrapTable("collapseRow",$element.attr("data-index"))
+                dayadjustable.bootstrapTable("collapseRow",$element.attr("data-index"))
             }
+        },
+//        onPreBody:tabletoolbar("daytoolbar","日调帐列表"),
+        onLoadSuccess:function () {
+            $("#dayadjust").find(".fixed-table-toolbar").append($("#daytabletitle"));
+            $("#dayadjust").find(".columns-right").remove();
         }
     });
-    $(".fixed-table-toolbar").append($("#tabletitle"));
-    $(".columns-right").remove();
-    function repairdetail(index,row){
-        console.log(index);
+    function dayadjustdetail(index,row){
+//        console.log(index);
         /**
          * @param row.adjustdetail        调帐详情
-         * @param row.afteramount         调帐后金额
+         * @param row.createtime
          * @param row.beforeamount        调帐前金额
          */
-        var adjustdetail = $("#adjustdetail");
+        var dayadjustdetail = $("#dayadjustdetail");
+        $("#detailtable").bootstrapTable("destroy").bootstrapTable({
+            data:row.adjustdetail,
+            columns: [{
+                field: "paytype",
+                title: "付款方式"
+            }, {
+                field: "beforeamount",
+                title: "调帐前金额",
+                formatter:function (value,row,index){
+                    return "<i class=\"fa fa-jpy\"></i><span>"+value+"</span>"
+                }
+            }, {
+                field: "afteramount",
+                title: "调帐后金额",
+                formatter:function (value,row,index){
+                    return "<i class=\"fa fa-jpy\"></i><span>"+value+"</span>"
+                }
+            }, {
+                field: "adjustamount",
+                title: "调帐金额",
+                formatter:function (value,row,index){
+                    return "<i class=\"fa fa-jpy\"></i><span>"+(row.afteramount-row.beforeamount)+"</span>"
+                }
+            }]
+        });
+        var steps = $(".steps");
+        steps.find("li:eq(0)").find(".title").text(row.createtime);
+        if(row.status===1){
+            steps.find("li:eq(1)").removeClass("active");
+            steps.find("li:eq(1)").find(".title").text("")
+        }else if(row.status===2){
+            steps.find("li:eq(1)").addClass("active");
+            steps.find("li:eq(1)").find(".title").text(row.acceptime);
+        }
+        return dayadjustdetail.html();
+    }
+    //月调帐
+    monthadjustable.bootstrapTable("destroy").bootstrapTable({
+        url: "json/monthadjust.json",
+        striped: true,
+        pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
+        uniqueId: "id",
+        showRefresh: true,
+        toolbar: '#monthtoolbar',
+        toolbarAlign: "right",
+        detailView:true,
+        detailFormatter:monthadjustdetail,
+        iconsPrefix: 'fa',
+        icons:{
+            detailOpen: 'fa-plus-square-o',
+            detailClose: 'fa-minus-square-o'
+        },
+        columns: [{
+            field: "createtime",
+            title: "创建时间",
+            width:"160px"
+        }, {
+            field: "createuser",
+            title: "调帐人",
+            width:"15%"
+        }, {
+            field: "adjustmonth",
+            title: "调帐月"
+        }, {
+            field: "afterdayamount",
+            title: "调帐后总金额"
+        }, {
+            field: "adjustcontent",
+            title: "调帐理由"
+        }, {
+            field: "status",
+            title: "调帐状态",
+            formatter:function (value,row,index) {
+                var label,status;
+                if(value===1){
+                    label = "label-warning";
+                    status = "调帐审核中"
+                }else if(value===2){
+                    label = "label-success";
+                    status = "调帐成功"
+                }
+                return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
+            }
+        }],
+        onClickRow:function (row,$element) {
+            if($element.find("i").hasClass("fa-plus-square-o")){
+                monthadjustable.bootstrapTable("collapseAllRows");
+                monthadjustable.bootstrapTable("expandRow",$element.attr("data-index"))
+            }else{
+                monthadjustable.bootstrapTable("collapseRow",$element.attr("data-index"))
+            }
+        },
+        onLoadSuccess:function () {
+            $("#monthadjust").find(".fixed-table-toolbar").append($("#monthtabletitle"));
+            $("#monthadjust").find(".columns-right").remove();
+        }
+    });
+    function monthadjustdetail(index,row){
+//        console.log(index);
+        /**
+         * @param row.adjustdetail        调帐详情
+         * @param row.createtime
+         * @param row.beforeamount        调帐前金额
+         */
+        var monthadjustdetail = $("#monthadjustdetail");
         $("#detailtable").bootstrapTable("destroy").bootstrapTable({
             data:row.adjustdetail,
             columns: [{
@@ -233,22 +438,17 @@
                 formatter:function (value,row,index){
                     return "<i class=\"fa fa-jpy\"></i><span>"+(row.afteramount-row.beforeamount)+"</span>"
                 }
-            }, {
-                field: "status",
-                title: "调帐状态",
-                formatter:function (value) {
-                    var label,status;
-                    if(value===1){
-                        label = "label-warning";
-                        status = "调帐审核中"
-                    }else if(value===2){
-                        label = "label-success";
-                        status = "调帐成功"
-                    }
-                    return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
-                }
             }]
         });
-        return adjustdetail.html();
+        var steps = $(".steps");
+        steps.find("li:eq(0)").find(".title").text(row.createtime);
+        if(row.status===1){
+            steps.find("li:eq(1)").removeClass("active");
+            steps.find("li:eq(1)").find(".title").text("")
+        }else if(row.status===2){
+            steps.find("li:eq(1)").addClass("active");
+            steps.find("li:eq(1)").find(".title").text(row.acceptime);
+        }
+        return dayadjustdetail.html();
     }
 </script>

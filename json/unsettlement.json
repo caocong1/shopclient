@@ -1,0 +1,16 @@
+[
+  {
+    "remindercode":"2017081F010140101",
+    "title":"8月ddd结算催缴单",
+    "createtime":"2017-09-31 00:00:00",
+    "type":"催缴单",
+    "status":1
+  },
+  {
+    "remindercode":"2017081F010140101",
+    "title":"8月eee结算滞纳金单",
+    "createtime":"2017-09-31 00:00:00",
+    "type":"滞纳金单",
+    "status":1
+  }
+]

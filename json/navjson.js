@@ -10,7 +10,7 @@ nav =
         },
         {
             "id": 2,
-            "navname": "通知单",
+            "navname": "财务通知单",
             "status": 1,
             "icon": "fa-newspaper-o",
             "page": "settlement",
@@ -89,7 +89,7 @@ var navright =
     },
     {
         "id":2,
-        "text":"通知单",
+        "text":"财务通知单",
         "status":1,
         "icon":"fa fa-newspaper-o",
         "page":"settlement",

@@ -1,0 +1,32 @@
+[
+  {
+    "type": "aaa结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101001",
+    "status": 1
+  },
+  {
+    "type": "bbb结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101201",
+    "status": 1
+  },
+  {
+    "type": "ccc结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101301",
+    "status": 2
+  },
+  {
+    "type": "ddd结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101401",
+    "status": 3
+  },
+  {
+    "type": "eee结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101501",
+    "status": 4
+  }
+]

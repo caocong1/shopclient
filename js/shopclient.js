@@ -88,3 +88,32 @@ $(".dropdown-modal").on("mouseover",function () {
 // }).mouseout(function () {
 //     $(this).removeClass("open");
 // });
+
+function tableclickexpand($table,$element) {
+    if($element.find("i").hasClass("fa-plus-square-o")){
+        $table.bootstrapTable("collapseAllRows");
+        $table.bootstrapTable("expandRow",$element.attr("data-index"))
+    }else{
+        $table.bootstrapTable("collapseRow",$element.attr("data-index"))
+    }
+}
+
+//表格toolbar
+// function tabletoolbar(id,title,addhref){
+//     var toolbarhtml = "<div id=\"toolbar\">\n" +
+//         "    <span id=\"tabletitle\" class=\"bootstraptable-title bigger-120\">\n" +
+//         "        <i class=\"fa fa-table\"></i>\n" +
+//         "    </span>\n" +
+//         "    <a class=\"btn btn-primary btn-xs\" data-toggle=\"tab\" href=\"#newdayadjust\">\n" +
+//         "        <i class=\"ace-icon fa fa-plus-square icon-only\"></i>新增\n" +
+//         "    </a>\n" +
+//         "    <button class=\"btn btn-primary btn-xs\" type=\"button\" name=\"refresh\" title=\"刷新\">\n" +
+//         "        <i class=\"ace-icon fa fa-refresh icon-only\"></i>刷新\n" +
+//         "    </button>\n" +
+//         "</div>";
+//     var titleid = id+"title";
+//     $("body").append(toolbarhtml);
+//     $("#toolbar").attr("id",id);
+//     $("#tabletitle").attr("id",titleid);
+//     $("#"+titleid).append(title);
+// }

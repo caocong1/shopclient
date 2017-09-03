@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "adjustmonth": "2017-07",
+    "adjustcontent": "非POS商户例行月调",
+    "afterdayamount":"99510",
+    "createdate": "2017-09-12",
+    "createuser": "管理员",
+    "acceptuser": "杨煎饼",
+    "acceptaccept": "2017-09-12",
+    "status": 2,
+    "adjustdetail": [
+      {
+        "adjustdate": "2017-7-1",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-2",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-3",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-4",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-5",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-6",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-7",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-7",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-9",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-10",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-11",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-12",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-13",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-14",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-15",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-16",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-17",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-17",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-19",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-20",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-21",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-22",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-23",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-24",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-25",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-26",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-27",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-27",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-29",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-30",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-7-31",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "adjustmonth": "2017-08",
+    "afterdayamount":"99510",
+    "adjustcontent": "非POS商户例行月调",
+    "createdate": "2017-09-12",
+    "createuser": "管理员",
+    "acceptuser": "",
+    "acceptaccept": "",
+    "status": 1,
+    "adjustdetail": [
+      {
+        "adjustdate": "2017-8-1",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-2",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-3",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-4",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-5",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-6",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-7",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-8",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-9",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-10",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-11",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-12",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-13",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-14",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-15",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-16",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-17",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-18",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-19",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-20",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-21",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-22",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-23",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-24",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-25",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-26",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-27",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-28",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-29",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-30",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      },
+      {
+        "adjustdate": "2017-8-31",
+        "beforeamount": "2333",
+        "afteramount": "3210"
+      }
+    ]
+  }
+]
