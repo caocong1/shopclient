@@ -70,11 +70,11 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-10">
-                        <div class="widget-main docpreview">
+                        <div class="docpreview">
                         </div>
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-primary btn-xs" type="button">
+                        <button id="savepdf" class="btn btn-primary btn-xs" type="button">
                             <i class="ace-icon fa fa-download icon-only"></i>下载
                         </button>
                     </div>
@@ -86,11 +86,23 @@
 <button id="modalbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
     Large modal
 </button>
+
+<!--<script src="../js/jspdf.min.js"></script>
+<script src="../js/html2canvas.js"></script>-->
 <script type="text/javascript">
+	$("#savepdf").click(function(){
+		var pdf = new jsPDF('p', 'pt', 'a4');
+		$("body").append("<div id='temp' style='position:absolute;left:1600px;'>test</div>");
+		$("#temp").append($(".docpreview").clone());
+		pdf.addHTML($(".docpreview:eq(1)"),26,30,function(){
+			pdf.save();
+			$(".docpreview:eq(1)").remove();
+		});
+	});
     $("#modalbutton").click(function () {
         var html;
         $.ajax({
-           url:"attachment/settlement/1.html",
+           url:"attachment/settlement/2.html",
             success:function(data){
                 $(".docpreview").html(data)
             }

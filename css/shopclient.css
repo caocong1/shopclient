@@ -1,4 +1,4 @@
-.navbar {
+/*.navbar {
     background: #2E8965;
 }
 
@@ -30,7 +30,7 @@
 
 .nav-list > li > .submenu > li:hover > a {
     color: #8BC34A;;
-}
+}*/
 
 .message-item .time {
     width: 150px;
@@ -91,13 +91,13 @@
     color: #666;
 }
 
-.widget-main>a {
+/*.widget-main>a {
     text-align:center
 }
 
 div>span>h2{
     text-align:center
-}
+}*/
 
 /*.bootstrap-table .btn.btn-app.btn-xs {*/
     /*width: 31px;*/
