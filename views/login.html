@@ -184,9 +184,11 @@
 	<script type="text/javascript">
 		if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 	</script>
-
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+        if (sessionStorage.getItem("loginstatus")==="1") {
+            location.href="nav.html"
+        }
 		$("#storecode").val("1F0101");
 		$("#username").val("admin");
 		$("#passwords").val("admin");
@@ -215,7 +217,7 @@
 							sessionStorage.setItem("password",passwords);
 							sessionStorage.setItem("rights",data[i].rights);
 							sessionStorage.setItem("loginstatus",1);
-							window.location.href="../index.html"
+							window.location.href="nav.html"
 						}
 					}
 				},

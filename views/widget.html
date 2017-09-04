@@ -78,7 +78,7 @@
     navnotice.find(".menu-text").append(unreadhtml);
     //加载未读通知
     $.ajax({
-        url: "json/notice.json",
+        url: "../json/notice.json",
         anync: false,
         success: function (data) {
             widgetloadnotice(data);

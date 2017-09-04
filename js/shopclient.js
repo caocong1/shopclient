@@ -5,20 +5,16 @@ var body = $("body");
 //判断是否登录
 $(function () {
     if (sessionStorage.getItem("loginstatus")==="1") {
-    // if (true) {
-    //     location.href="../views/nav.html";
         loadwidget();
     } else {
-        // body.load("views/login.html");
-        // body.addClass("login-layout");
-        location.href="views/login.html";
+        location.href="login.html"
     }
 });
 
 //登出
 function loginout() {
     sessionStorage.setItem("loginstatus", 0);
-    window.location.href="views/login.html";
+    window.location.href="login.html";
 }
 
 //加载首页
@@ -32,7 +28,7 @@ function loadwidget() {
 }
 //导航跳转
 function navjump(page, navname) {
-    $("#main").load("views/" + page + ".html");
+    $("#main").load(page + ".html");
     $("#sidebar").find("li").removeClass("active");
     $("#sidebar").removeClass("display");
     $("#" + page).addClass("active");
@@ -112,6 +108,7 @@ function tableclickexpand(a,$element) {
         showAdd:false,
         showEdit:false,
         showDel:false,
+        showSearch:false,
         // showNewrefresh:false,
         Addattr:"",
         onAddbtn: function () {
@@ -122,13 +119,17 @@ function tableclickexpand(a,$element) {
         },
         onDelbtn: function () {
             return false;
+        },
+        onSearchbtn: function () {
+            return false;
         }
     });
 
     $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
         'addbutton.bs.table': 'onAddbtn',
         'editbutton.bs.table': 'onEditbtn',
-        'delbutton.bs.table': 'onDelbtn'
+        'delbutton.bs.table': 'onDelbtn',
+        'searchbutton.bs.table': 'onSearchbtn'
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
@@ -155,6 +156,10 @@ function tableclickexpand(a,$element) {
             barhtml.push('<a class="btn btn-danger btn-xs btn-round" type="button" name="del" title="删除"><i class="fa fa-trash"></i>删除</a>'),
             this.$toolbar.on('click', 'a[name="del"]', function () {that.trigger('delbutton')});
         }
+        if (this.options.showSearch) {
+            barhtml.push('<a class="btn btn-inverse btn-xs btn-round" type="button" name="search" title="查找"><i class="fa fa-search"></i>查找</a>'),
+                this.$toolbar.on('click', 'a[name="search"]', function () {that.trigger('searchbutton')});
+        }
         if (this.options.showRefresh) {
             // console.log(this.find('button[name="refresh"]'));
             this.$toolbar.closest(".fixed-table-toolbar").find('button[name="refresh"]').remove();
@@ -166,3 +171,17 @@ function tableclickexpand(a,$element) {
 
     }
 }(jQuery);
+
+function singledatepicker(picker) {
+    $('#' + picker).daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "locale": pickercn,
+        // "alwaysShowCalendars": true,
+        "opens": "center"
+    }, function (start, end, label) {
+        console.log(start + "," + end + "," + label);
+
+    })
+}
+

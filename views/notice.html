@@ -108,7 +108,7 @@
     var notice = $("#notice");
     //加载通知内容
     $.ajax({
-        url: "json/notice.json",
+        url: "../json/notice.json",
         success: function (data) {
             loadmessage(data);
             updateunread();
@@ -182,7 +182,7 @@
          */
         var messagecontent = messagelist.find(".message-content");
         $.ajax({
-            url: "json/notice.json",
+            url: "../json/notice.json",
             success: function (data) {
                 var l = data.length;
                 for (var i = 0; i < l; i++) {
