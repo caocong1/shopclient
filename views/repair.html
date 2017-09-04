@@ -2,16 +2,6 @@
     <table id="repairtable"></table>
 </div>
 <div id="toolbar">
-    <span id="tabletitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-        报修列表
-    </span>
-    <button id="new" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#newrepair" title="新增">
-        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
-    </button>
-    <button class="btn btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
 </div>
 <div id="repairtimeline" class="hide">
     <div class="row">
@@ -139,7 +129,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="addperson()">确定</button>
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal">确定</button>
                 <button class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
@@ -156,16 +146,15 @@
         pageSize:"12",
         pageList:[15,25,50],
         uniqueId: "id",
-        showRefresh: true,
+        showRefresh:true,
+        showAdd:true,
+        onAddbtn:function(){
+            $('#newrepair').modal('show')
+        },
         toolbar: '#toolbar',
-        toolbarAlign: "right",
+        toolbartitle:"报修列表",
         detailView:true,
         detailFormatter:repairdetail,
-        iconsPrefix: 'fa',
-        icons:{
-            detailOpen: 'fa-plus-square-o',
-            detailClose: 'fa-minus-square-o'
-        },
         columns: [{
             field: "startime",
             title: "报修时间",
@@ -196,16 +185,10 @@
                 return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
             }
         }],
-        onClickRow:function (row,$element) {
-            if($element.find("i").hasClass("fa-plus-square-o")){
-                repairtable.bootstrapTable("expandRow",$element.attr("data-index"))
-            }else{
-                repairtable.bootstrapTable("collapseRow",$element.attr("data-index"))
-            }
-        }
+        onClickRow:tableclickexpand
     });
-    $(".fixed-table-toolbar").append($("#tabletitle"));
-    $(".columns-right").remove();
+//    $(".fixed-table-toolbar").append($("#tabletitle"));
+//    $(".columns-right").remove();
     function repairdetail(index,row){
         console.log(index);
         /**

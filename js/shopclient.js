@@ -83,13 +83,9 @@ $(".dropdown-modal").on("mouseover",function () {
     $(this).addClass("open")}).on("mouseout",function () {
         $(this).removeClass("open")
     });
-// $(".dropdown-modal").mouseover(function () {
-//     $(this).addClass("open");
-// }).mouseout(function () {
-//     $(this).removeClass("open");
-// });
 
-function tableclickexpand($table,$element) {
+function tableclickexpand(a,$element) {
+    var $table = $element.closest("table");
     if($element.find("i").hasClass("fa-plus-square-o")){
         $table.bootstrapTable("collapseAllRows");
         $table.bootstrapTable("expandRow",$element.attr("data-index"))
@@ -98,22 +94,74 @@ function tableclickexpand($table,$element) {
     }
 }
 
-//表格toolbar
-// function tabletoolbar(id,title,addhref){
-//     var toolbarhtml = "<div id=\"toolbar\">\n" +
-//         "    <span id=\"tabletitle\" class=\"bootstraptable-title bigger-120\">\n" +
-//         "        <i class=\"fa fa-table\"></i>\n" +
-//         "    </span>\n" +
-//         "    <a class=\"btn btn-primary btn-xs\" data-toggle=\"tab\" href=\"#newdayadjust\">\n" +
-//         "        <i class=\"ace-icon fa fa-plus-square icon-only\"></i>新增\n" +
-//         "    </a>\n" +
-//         "    <button class=\"btn btn-primary btn-xs\" type=\"button\" name=\"refresh\" title=\"刷新\">\n" +
-//         "        <i class=\"ace-icon fa fa-refresh icon-only\"></i>刷新\n" +
-//         "    </button>\n" +
-//         "</div>";
-//     var titleid = id+"title";
-//     $("body").append(toolbarhtml);
-//     $("#toolbar").attr("id",id);
-//     $("#tabletitle").attr("id",titleid);
-//     $("#"+titleid).append(title);
-// }
+//表格toolbar插件
+!function($) {
+    'use strict';
+
+    var sprintf = $.fn.bootstrapTable.utils.sprintf;
+
+    $.extend($.fn.bootstrapTable.defaults, {
+        toolbartitle:"",
+        iconsPrefix: 'fa',
+        icons:{
+            detailOpen: 'fa-plus-square-o',
+            detailClose: 'fa-minus-square-o'
+        },
+        toolbarAlign: "right",
+        showAdd:false,
+        showEdit:false,
+        showDel:false,
+        showNewrefresh:false,
+        Addattr:"",
+        onAddbtn: function () {
+            return false;
+        },
+        onEditbtn: function () {
+            return false;
+        },
+        onDelbtn: function () {
+            return false;
+        }
+    });
+
+    $.extend($.fn.bootstrapTable.Constructor.EVENTS, {
+        'addbutton.bs.table': 'onAddbtn',
+        'editbutton.bs.table': 'onEditbtn',
+        'delbutton.bs.table': 'onDelbtn'
+    });
+
+    var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initToolbar = BootstrapTable.prototype.initToolbar;
+
+    BootstrapTable.prototype.initToolbar = function() {
+        _initToolbar.apply(this, Array.prototype.slice.apply(arguments));
+        var that = this,
+             html = [],
+             barhtml = [];
+
+        html.push(sprintf('<span class="bootstraptable-title bigger-120"><i class="fa fa-table"></i>%s</span>',this.options.toolbartitle));
+        that.$toolbar.prepend(html);
+
+        if (this.options.showAdd) {
+            barhtml.push(sprintf('<a class="btn btn-primary btn-xs btn-round" type="button" name="add" title="添加" %s><i class="fa fa-plus-square"></i>添加</a>',this.options.Addattr)),
+            this.$toolbar.on('click', 'button[name="add"]', function () {that.trigger('addbutton')});
+        }
+        if (this.options.showEdit) {
+            barhtml.push('<a class="btn btn-warning btn-xs btn-round" type="button" name="edit" title="修改"><i class="fa fa-pencil-square-o"></i>修改</a>'),
+                this.$toolbar.find().on('click', 'button[name="edit"]', function () {that.trigger('editbutton')});
+        }
+        if (this.options.showDel) {
+            barhtml.push('<a class="btn btn-danger btn-xs btn-round" type="button" name="del" title="删除"><i class="fa fa-trash"></i>删除</a>'),
+                this.$toolbar.on('click','button[name="del"]', function () {that.trigger('delbutton')});
+        }
+        if (this.options.showRefresh) {
+            // console.log(this.find('button[name="refresh"]'));
+            $(".fixed-table-toolbar").find('button[name="refresh"]').remove();
+            barhtml.push('<button class="btn btn-success btn-xs btn-round" type="button" name="refresh" title="刷新"><i class="fa fa-refresh"></i>刷新</button>')
+            this.$toolbar.on('click', 'button[name="refresh"]', $.proxy(this.refresh, this));
+        }
+
+        $(this.options.toolbar).append(barhtml.join(""));
+
+    }
+}(jQuery);

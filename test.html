@@ -289,10 +289,8 @@
     <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse"><i
             class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i></a></div>
 
-<div class="loadcontainer">
-    <!-- load加载容器 -->
-</div>
-
+<div id="test"></div>
+<table id="testable"></table>
 <script src="js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
     if ('ontouchstart' in document.documentElement) document.write("<script src='js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
@@ -309,6 +307,41 @@
 <script src="js/ace-extra.min.js"></script>
 <!-- my js -->
 <script src="js/shopclient.js"></script>
-
-<span id="sbmarwusw"></span></body>
+<script>
+    $("#testable").bootstrapTable("destroy").bootstrapTable({
+        url: "json/unsettlement.json",
+        striped: true,
+        pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
+        uniqueId: "id",
+        showRefresh: true,
+        toolbar: '#unsettletoolbar',
+        toolbarAlign: "right",
+        iconsPrefix: 'fa',
+        icons:{
+            detailOpen: 'fa-plus-square-o',
+            detailClose: 'fa-minus-square-o'
+        },
+        columns: [{
+            field: "remindercode",
+            title: "单号",
+//            width:"160px"
+        }, {
+            field: "type",
+            title: "异常类型",
+//            width:"15%"
+        }, {
+            field: "createtime",
+            title: "生成时间"
+        }],
+        onLoadSuccess:function () {
+            unsettlementdoc.find(".fixed-table-toolbar").append($("#unsettletoolbartitle"));
+            unsettlementdoc.find(".columns-right").remove();
+        }
+    });
+</script>
+</body>
 </html>

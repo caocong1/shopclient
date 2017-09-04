@@ -159,16 +159,16 @@
 </div>
 <!--日调帐表格抬头-->
 <div id="daytoolbar">
-    <span id="daytabletitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-            日调帐列表
-    </span>
-    <a class="btn btn-primary btn-xs" data-toggle="tab" href="#newdayadjust">
-        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
-    </a>
-    <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
+    <!--<span id="daytabletitle" class="bootstraptable-title bigger-120">-->
+        <!--<i class="fa fa-table"></i>-->
+            <!--日调帐列表-->
+    <!--</span>-->
+    <!--<a class="btn btn-primary btn-xs" data-toggle="tab" href="#newdayadjust">-->
+        <!--<i class="ace-icon fa fa-plus-square icon-only"></i>新增-->
+    <!--</a>-->
+    <!--<button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">-->
+        <!--<i class="ace-icon fa fa-refresh icon-only"></i>刷新-->
+    <!--</button>-->
 </div>
 <!--日调帐表格抬头-->
 <div id="monthtoolbar">
@@ -240,15 +240,13 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
+        showAdd:true,
+        Addattr:"data-toggle=\"tab\" href=\"#newdayadjust\"",
         toolbar: '#daytoolbar',
+        toolbartitle:"日调帐列表",
         toolbarAlign: "right",
         detailView:true,
         detailFormatter:dayadjustdetail,
-        iconsPrefix: 'fa',
-        icons:{
-            detailOpen: 'fa-plus-square-o',
-            detailClose: 'fa-minus-square-o'
-        },
         columns: [{
             field: "createtime",
             title: "创建时间",
@@ -284,19 +282,11 @@
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
-        onClickRow:function (row,$element) {
-            if($element.find("i").hasClass("fa-plus-square-o")){
-                dayadjustable.bootstrapTable("collapseAllRows");
-                dayadjustable.bootstrapTable("expandRow",$element.attr("data-index"))
-            }else{
-                dayadjustable.bootstrapTable("collapseRow",$element.attr("data-index"))
-            }
-        },
-//        onPreBody:tabletoolbar("daytoolbar","日调帐列表"),
-        onLoadSuccess:function () {
-            $("#dayadjust").find(".fixed-table-toolbar").append($("#daytabletitle"));
-            $("#dayadjust").find(".columns-right").remove();
-        }
+        onClickRow:tableclickexpand,
+//        onLoadSuccess:function () {
+//            $("#dayadjust").find(".fixed-table-toolbar").append($("#daytabletitle"));
+//            $("#dayadjust").find(".columns-right").remove();
+//        }
     });
     function dayadjustdetail(index,row){
 //        console.log(index);

@@ -131,7 +131,9 @@ div>span>h2{
     background: rgba(249, 249, 249, 0.57);
     -webkit-border-radius: 4px 4px 0 0;
 }
-
+.bootstrap-table .fixed-table-toolbar .btn{
+    margin: 2px;
+}
 .bootstrap-table .bootstraptable-title{
     position: absolute;
     left: 30px;

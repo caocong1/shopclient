@@ -29,36 +29,20 @@
 </div>
 <!--toolbar-->
 <div id="unsettletoolbar">
-    <span id="unsettletoolbartitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-            异常结算单列表
-    </span>
-    <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
 </div>
 <div id="settletoolbar">
-    <span id="settletoolbartitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-            结算单列表
-    </span>
-    <div class="col-sm-3 col-sm-offset-8">
-                        <!--<span class="">-->
-                    <!--选择日期：-->
-                <!--</span>-->
-        <div class="input-group date">
-            <input class="form-control monthpicker" type="text" value="2017-06" readonly/>
-            <span class="input-group-addon">
+
+</div>
+<div class="">
+    <div class="input-group date">
+        <input class="form-control monthpicker" type="text" value="2017-06" readonly/>
+        <span class="input-group-addon">
                 <i class="fa fa-calendar"></i>
             </span>
-        </div>
     </div>
-    <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
 </div>
 <!--预览模态框-->
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+<div id="previewmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -87,8 +71,6 @@
     Large modal
 </button>
 
-<!--<script src="../js/jspdf.min.js"></script>
-<script src="../js/html2canvas.js"></script>-->
 <script type="text/javascript">
 	$("#savepdf").click(function(){
 		var pdf = new jsPDF('p', 'pt', 'a4');
@@ -129,15 +111,9 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
+//        showAdd:true,
         toolbar: '#unsettletoolbar',
-        toolbarAlign: "right",
-//        detailView:true,
-//        detailFormatter:unsettlementdetail,
-        iconsPrefix: 'fa',
-        icons:{
-            detailOpen: 'fa-plus-square-o',
-            detailClose: 'fa-minus-square-o'
-        },
+        toolbartitle:"异常结算单列表",
         columns: [{
             field: "remindercode",
             title: "单号",
@@ -155,11 +131,7 @@
             formatter:function (value,row,index) {
                 return "<i class=\"fa fa-file-text-o\"></i>"
             }
-        }],
-        onLoadSuccess:function () {
-            unsettlementdoc.find(".fixed-table-toolbar").append($("#unsettletoolbartitle"));
-            unsettlementdoc.find(".columns-right").remove();
-        }
+        }]
     });
     settlementable.bootstrapTable("destroy").bootstrapTable({
         url: "json/settlement201708.json",
@@ -172,14 +144,7 @@
         uniqueId: "id",
         showRefresh: true,
         toolbar: '#settletoolbar',
-        toolbarAlign: "right",
-//        detailView:true,
-//        detailFormatter:settlementdetail,
-        iconsPrefix: 'fa',
-        icons:{
-            detailOpen: 'fa-plus-square-o',
-            detailClose: 'fa-minus-square-o'
-        },
+        toolbartitle:"结算单列表",
         columns: [{
             field: "settlementcode",
             title: "结算单号"
@@ -212,12 +177,15 @@
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
-        onClickRow:function (row,$element) {
-            tableclickexpand(settlementable,$element)
-        },
-        onLoadSuccess:function () {
-            settlementdoc.find(".fixed-table-toolbar").append($("#settletoolbartitle"));
-            settlementdoc.find(".columns-right").remove();
+        onClickRow:function () {
+            $("#previewmodal").modal("show");
+            var html;
+            $.ajax({
+                url:"attachment/settlement/2.html",
+                success:function(data){
+                    $(".docpreview").html(data)
+                }
+            });
         }
     });
     function settlementdetail() {
