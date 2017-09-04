@@ -6,6 +6,7 @@ var body = $("body");
 $(function () {
     if (sessionStorage.getItem("loginstatus")==="1") {
     // if (true) {
+    //     location.href="../views/nav.html";
         loadwidget();
     } else {
         // body.load("views/login.html");
@@ -111,7 +112,7 @@ function tableclickexpand(a,$element) {
         showAdd:false,
         showEdit:false,
         showDel:false,
-        showNewrefresh:false,
+        // showNewrefresh:false,
         Addattr:"",
         onAddbtn: function () {
             return false;
@@ -144,19 +145,19 @@ function tableclickexpand(a,$element) {
 
         if (this.options.showAdd) {
             barhtml.push(sprintf('<a class="btn btn-primary btn-xs btn-round" type="button" name="add" title="添加" %s><i class="fa fa-plus-square"></i>添加</a>',this.options.Addattr)),
-            this.$toolbar.on('click', 'button[name="add"]', function () {that.trigger('addbutton')});
+            this.$toolbar.on('click', 'a[name="add"]', function () {that.trigger('addbutton')});
         }
         if (this.options.showEdit) {
             barhtml.push('<a class="btn btn-warning btn-xs btn-round" type="button" name="edit" title="修改"><i class="fa fa-pencil-square-o"></i>修改</a>'),
-                this.$toolbar.find().on('click', 'button[name="edit"]', function () {that.trigger('editbutton')});
+            this.$toolbar.on('click', 'a[name="edit"]', function () {that.trigger('editbutton')});
         }
         if (this.options.showDel) {
             barhtml.push('<a class="btn btn-danger btn-xs btn-round" type="button" name="del" title="删除"><i class="fa fa-trash"></i>删除</a>'),
-                this.$toolbar.on('click','button[name="del"]', function () {that.trigger('delbutton')});
+            this.$toolbar.on('click', 'a[name="del"]', function () {that.trigger('delbutton')});
         }
         if (this.options.showRefresh) {
             // console.log(this.find('button[name="refresh"]'));
-            $(".fixed-table-toolbar").find('button[name="refresh"]').remove();
+            this.$toolbar.closest(".fixed-table-toolbar").find('button[name="refresh"]').remove();
             barhtml.push('<button class="btn btn-success btn-xs btn-round" type="button" name="refresh" title="刷新"><i class="fa fa-refresh"></i>刷新</button>')
             this.$toolbar.on('click', 'button[name="refresh"]', $.proxy(this.refresh, this));
         }

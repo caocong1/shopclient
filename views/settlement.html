@@ -1,18 +1,44 @@
 <div class="row">
-    <div class="col-md-offset-2 col-md-8 mdcol-sm-offset-1 col-sm-10 col-xs-12">
+    <div class="col-md-10">
+        <div class="widget-box">
+            <div class="widget-header widget-header-small">
+                <h5 class="widget-title smaller">查询</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main padding-6 clearfix">
+                    <div class="col-sm-4">
+                        <label for="accountperiod">选择账期：</label>
+                        <div class="input-group date monthpicker">
+                                <input id="accountperiod" class="form-control" type="text" value="2017-06" readonly/>
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-sm-12">
         <div class="tabbable">
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a data-toggle="tab" href="#unsettlementdoc">
                         <i class="blue ace-icon fa fa-calendar-check-o bigger-120"></i>
                         异常结算单
-                        <span class="badge badge-warning">2</span>
+                        <span class="badge badge-danger">2</span>
                     </a>
                 </li>
                 <li>
                     <a data-toggle="tab" href="#settlementdoc">
                         <i class="blue ace-icon fa fa-calendar bigger-120"></i>
                         结算单
+                        <span class="badge badge-warning">2</span>
                     </a>
                 </li>
             </ul>
@@ -28,19 +54,9 @@
     </div>
 </div>
 <!--toolbar-->
-<div id="unsettletoolbar">
-</div>
-<div id="settletoolbar">
+<div id="unsettletoolbar"></div>
+<div id="settletoolbar"></div>
 
-</div>
-<div class="">
-    <div class="input-group date">
-        <input class="form-control monthpicker" type="text" value="2017-06" readonly/>
-        <span class="input-group-addon">
-                <i class="fa fa-calendar"></i>
-            </span>
-    </div>
-</div>
 <!--预览模态框-->
 <div id="previewmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -67,29 +83,49 @@
         </div>
     </div>
 </div>
-<button id="modalbutton" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
-    Large modal
-</button>
 
 <script type="text/javascript">
+    $(function(){
+        updateunread();
+    });
+
 	$("#savepdf").click(function(){
-		var pdf = new jsPDF('p', 'pt', 'a4');
-		$("body").append("<div id='temp' style='position:absolute;left:1600px;'>test</div>");
-		$("#temp").append($(".docpreview").clone());
-		pdf.addHTML($(".docpreview:eq(1)"),26,30,function(){
-			pdf.save();
-			$(".docpreview:eq(1)").remove();
-		});
+//		var pdf = new jsPDF('p', 'pt', 'a4');
+//		$("body").append("<div id='temp' style='position:absolute;left:1600px;'>test</div>");
+//		$("#temp").append($(".docpreview").clone());
+//		pdf.addHTML($(".docpreview:eq(1)"),26,30,function(){
+//			pdf.save();
+//			$(".docpreview:eq(1)").remove();
+//		});
+        window.location.href="attachment/settlement/2.pdf"
 	});
-    $("#modalbutton").click(function () {
-        var html;
+    function preview() {
+        $("#previewmodal").modal("show");
         $.ajax({
            url:"attachment/settlement/2.html",
             success:function(data){
                 $(".docpreview").html(data)
             }
         });
-    });
+    }
+    function preview3() {
+        $("#previewmodal").modal("show");
+        $.ajax({
+            url:"attachment/settlement/3.html",
+            success:function(data){
+                $(".docpreview").html(data)
+            }
+        });
+    }
+    function preview4() {
+        $("#previewmodal").modal("show");
+        $.ajax({
+            url:"attachment/settlement/4.html",
+            success:function(data){
+                $(".docpreview").html(data)
+            }
+        });
+    }
     $(".monthpicker").datetimepicker({
         language:"zh-CN",
         format:"yyyy-mm",
@@ -97,9 +133,7 @@
         minView:"year",
         autoclose:true
     });
-    var settlementdoc = $("#settlementdoc");
     var settlementable = $("#settlementable");
-    var unsettlementdoc = $("#unsettlementdoc");
     var unsettlementable = $("#unsettlementable");
     unsettlementable.bootstrapTable("destroy").bootstrapTable({
         url: "json/unsettlement.json",
@@ -111,27 +145,62 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
-//        showAdd:true,
         toolbar: '#unsettletoolbar',
         toolbartitle:"异常结算单列表",
         columns: [{
+            field: "read",
+            title: "是否查看",
+            formatter:function(value,row,index){
+                var icon="",color="",text="";
+                if(value){
+                    icon="fa-envelope-o";
+                    color="grey";
+                    text="已读"
+                }else {
+                    icon="fa-envelope-open-o";
+                    color="red";
+                    text="未读"
+                }
+                return "<i class=\"bigger-120 text-center fa " + icon + " " + color + "\">"+text+"</i>"
+            }
+        },{
             field: "remindercode",
-            title: "单号",
-//            width:"160px"
+            title: "单号"
+        }, {
+            field: "accountperiod",
+            title: "账期"
         }, {
             field: "type",
-            title: "异常类型",
-//            width:"15%"
-        }, {
+            title: "单据类型"
+        },{
             field: "createtime",
             title: "生成时间"
         }, {
             field: "ssettlement",
             title: "关联结算单",
             formatter:function (value,row,index) {
-                return "<i class=\"fa fa-file-text-o\"></i>"
+                var color = "";
+                if(row.type==="催缴单"){
+                    color = "light-orange"
+                }else if(row.type==="滞纳金单"){
+                    color = "red"
+                }
+                return "<a href='javascript:preview()'><i class=\"fa fa-file-text-o bigger-140" + color + "\"></i></a>"
             }
-        }]
+        }],
+        onClickRow:function(row,$element){
+            if(!row.read){
+                $element.find(".bigger-120").removeClass("fa-envelope-open-o red");
+                $element.find(".bigger-120").addClass("fa-envelope-o grey");
+                $element.find(".bigger-120").text("已读")
+            }
+            if(row.type==="催缴单"){
+                preview3()
+            }else if(row.type==="滞纳金单"){
+                preview4()
+            }
+            updateunread()
+        }
     });
     settlementable.bootstrapTable("destroy").bootstrapTable({
         url: "json/settlement201708.json",
@@ -146,13 +215,30 @@
         toolbar: '#settletoolbar',
         toolbartitle:"结算单列表",
         columns: [{
+            field: "read",
+            title: "是否查看",
+            formatter:function(value,row,index){
+                var icon="",color="",text="";
+                if(value){
+                    icon="fa-envelope-o";
+                    color="grey";
+                    text="已读"
+                }else {
+                    icon="fa-envelope-open-o";
+                    color="red";
+                    text="未读"
+                }
+                return "<i class=\"bigger-120 text-center fa " + icon + " " + color + "\">"+text+"</i>"
+            }
+        },{
             field: "settlementcode",
             title: "结算单号"
-//            width:"160px"
         }, {
             field: "type",
             title: "结算类型"
-//            width:"15%"
+        }, {
+            field: "accountperiod",
+            title: "账期"
         }, {
             field: "createtime",
             title: "结算单生成时间"
@@ -177,23 +263,19 @@
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
-        onClickRow:function () {
-            $("#previewmodal").modal("show");
-            var html;
-            $.ajax({
-                url:"attachment/settlement/2.html",
-                success:function(data){
-                    $(".docpreview").html(data)
-                }
-            });
+        onClickRow:function(row,$element){
+            if(!row.read){
+                $element.find(".bigger-120").removeClass("fa-envelope-open-o red");
+                $element.find(".bigger-120").addClass("fa-envelope-o grey");
+                $element.find(".bigger-120").text("已读")
+            }
+            preview();
+            updateunread()
         }
     });
-    function settlementdetail() {
-
-    }
     function updateunread() {
-        var unread = messagelist.find(".message-unread").length;
-        $("#id-message-infobar").find(".unread").text(unread);
+        var unread = settlementable.find(".fa-envelope-open-o").length;
+        $("#settlementdoc").find(".badge").text(unread);
     }
 
 </script>

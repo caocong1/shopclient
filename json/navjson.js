@@ -10,7 +10,7 @@ nav =
         },
         {
             "id": 2,
-            "navname": "财务通知单",
+            "navname": "财务单据",
             "status": 1,
             "icon": "fa-newspaper-o",
             "page": "settlement",
@@ -19,6 +19,14 @@ nav =
         {
             "id": 9,
             "navname": "工程报修",
+            "status": 1,
+            "icon": "fa-wrench",
+            "page": "repair",
+            "subnav": []
+        },
+        {
+            "id": 10,
+            "navname": "客户投诉",
             "status": 1,
             "icon": "fa-wrench",
             "page": "repair",

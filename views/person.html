@@ -1,22 +1,22 @@
 <div id="toolbar">
-	<span id="tabletitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-        人员列表
-    </span>
-	<button id="new" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="新增">
-        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
-    </button>
-	<button id="edit" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#personinfoedit" title="编辑">
-        <i class="ace-icon fa fa-pencil-square-o icon-only"></i>编辑
-    </button>
-	<button id="delete" class="btn btn-danger btn-xs" title="删除">
-        <i class="ace-icon fa fa-trash icon-only"></i>删除
-    </button>
-	<button class="btn btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
+	<!--<span id="tabletitle" class="bootstraptable-title bigger-120">-->
+        <!--<i class="fa fa-table"></i>-->
+        <!--人员列表-->
+    <!--</span>-->
+	<!--<button id="new" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#personinfoedit" title="新增">-->
+        <!--<i class="ace-icon fa fa-plus-square icon-only"></i>新增-->
+    <!--</button>-->
+	<!--<button id="edit" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#personinfoedit" title="编辑">-->
+        <!--<i class="ace-icon fa fa-pencil-square-o icon-only"></i>编辑-->
+    <!--</button>-->
+	<!--<button id="delete" class="btn btn-danger btn-xs" title="删除">-->
+        <!--<i class="ace-icon fa fa-trash icon-only"></i>删除-->
+    <!--</button>-->
+	<!--<button class="btn btn-primary btn-xs" type="button" name="refresh" aria-label="refresh" title="刷新">-->
+        <!--<i class="ace-icon fa fa-refresh icon-only"></i>刷新-->
+    <!--</button>-->
 </div>
-<div class="col-md-offset-2 col-md-8 mdcol-sm-offset-1 col-sm-10 col-xs-12">
+<div class="col-md-10 col-sm-12">
 	<table id="persontable"></table>
 </div>
 <!-- 编辑模态框 -->
@@ -108,9 +108,17 @@
 		pagination: true,
 		uniqueId: "id",
 		showRefresh: true,
+        showAdd: true,
+        onAddbtn:function () {
+            $("#personinfoedit").modal("show")
+        },
+        showEdit: true,
+		onEditbtn:edit,
+        showDel: true,
+		onDelbtn:del,
 		toolbar: '#toolbar',
+		toolbartitle:"人员列表",
 		searchAlign: "right",
-		toolbarAlign: "right",
 		clickToSelect: true,
 		columns: [{
 			field: 'checkbox',
@@ -129,8 +137,8 @@
 			title: "证件号码"
 		}]
 	});
-    $(".fixed-table-toolbar").append($("#tabletitle"));
-	$(".columns-right").remove();
+//    $(".fixed-table-toolbar").append($("#tabletitle"));
+//	$(".columns-right").remove();
 	$("#checkboxrights").click(function() {
 		var ischecked = $("#checkboxrights").prop("checked");
 		if(ischecked) {
@@ -154,8 +162,7 @@
 		newp = 1;
 
 	});
-	$("#edit").on("click", function() {
-		$(".modal-title").text("编辑人物");
+	function edit() {
 		/**
 		 * @param select.byname         姓名
 		 * @param select.username       用户名
@@ -164,6 +171,12 @@
 		 * @param select.rights         人员权限
 		 */
 		var select = persontable.bootstrapTable("getSelections");
+		if (select.length===0){
+		    alert("请选择人员");
+		    return
+		}
+        $(".modal-title").text("编辑人物");
+        $("#personinfoedit").modal("show");
 		if(select.length !== 0) {
 			$("#byname").val(select[0].byname);
 			$("#username").val(select[0].username);
@@ -181,16 +194,18 @@
 				$("#tree1").jstree("check_node", right[i]);
 			}
 		}
-	});
-	$("#delete").on("click", function() {
+	}
+	function del() {
 		var select = persontable.bootstrapTable("getSelections");
-		console.log(select);
+        if (select.length===0){
+            alert("请选择人员");
+            return
+        }
 		for(var i = 0; i < select.length; i++) {
-			console.log(select[i].id);
 			persontable.bootstrapTable("removeByUniqueId", select[i].id)
 		}
 
-	});
+	}
 
 	$("#tree1").jstree({
 		"core": {
