@@ -373,16 +373,52 @@
       <created>1504532526550</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< Updated upstream
       <updated>1504532526550</updated>
       <workItem from="1504532530537" duration="15855000" />
+=======
+      <updated>1502945833600</updated>
+      <workItem from="1502945837204" duration="1457000" />
+      <workItem from="1503487605734" duration="2018000" />
+      <workItem from="1503538013908" duration="13121000" />
+      <workItem from="1503624787257" duration="20290000" />
+      <workItem from="1503657377767" duration="623000" />
+      <workItem from="1503902274757" duration="17415000" />
+      <workItem from="1503970284754" duration="18169000" />
+      <workItem from="1504056520382" duration="15630000" />
+      <workItem from="1504075204043" duration="17258000" />
+      <workItem from="1504142876708" duration="36384000" />
+      <workItem from="1504229460238" duration="26592000" />
+      <workItem from="1504317842189" duration="27845000" />
+      <workItem from="1504350360075" duration="407000" />
+      <workItem from="1504403861347" duration="6413000" />
+      <workItem from="1504410714111" duration="16645000" />
+      <workItem from="1504487829677" duration="29211000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="15855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+=======
+    <option name="totallyTimeSpent" value="249478000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+>>>>>>> Stashed changes
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
