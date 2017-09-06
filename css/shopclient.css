@@ -32,9 +32,7 @@
     color: #8BC34A;;
 }*/
 
-body{
 
-}
 
 .message-item .time {
     width: 150px;
@@ -136,6 +134,8 @@ div>span>h2{
     /*text-align:left;*/
 /*}*/
 
+
+
 .bootstrap-table .table>tbody> ,
 .bootstrap-table .table>thead>{
     text-align: center
@@ -204,7 +204,7 @@ div>span>h2{
     padding: 5px;
 }
 .row>.login-layout{
-    background-color: #FFFFFF;
+    background-color: #FFFFFF!important;
 }
 
 .row>.login-layout .widget-box .widget-main{

@@ -77,10 +77,10 @@ function attachmentsuffix(filename) {
 }
 
 //鼠标悬停下拉菜单
-$(".dropdown-modal").on("mouseover",function () {
-    $(this).addClass("open")}).on("mouseout",function () {
-        $(this).removeClass("open")
-    });
+// $(".dropdown-modal").on("mouseover",function () {
+//     $(this).addClass("open")}).on("mouseout",function () {
+//         $(this).removeClass("open")
+//     });
 
 //表格点击展开关闭
 function tableclickexpand($table,$element) {

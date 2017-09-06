@@ -207,23 +207,23 @@
                 <h4 class="modal-title">新增月调帐</h4>
             </div>
             <div class="modal-body clearfix">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <label for="dayadjustdate" class="col-sm-4">调帐时间:</label>
-                        <div class="col-sm-8 input-group date">
-                            <input class="form-control rangepicker" type="text" />
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 btn-group">
-                        <button class="btn btn-white btn-round" onclick="monthadjustadd()">
-                            确定添加
-                        </button>
-                    </div>
-                </div>
-                <div class="hr"></div>
+                <!--<div class="row">-->
+                    <!--<div class="col-sm-6">-->
+                        <!--<label for="dayadjustdate" class="col-sm-4">调帐时间:</label>-->
+                        <!--<div class="col-sm-8 input-group date">-->
+                            <!--<input class="form-control rangepicker" type="text" />-->
+                            <!--<span class="input-group-addon">-->
+                                <!--<i class="fa fa-calendar"></i>-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-4 btn-group">-->
+                        <!--<button class="btn btn-white btn-round" onclick="monthadjustadd()">-->
+                            <!--确定添加-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="hr"></div>-->
                 <!--<div class="row">-->
                     <!--<div class="col-sm-2">-->
                         <!--<input class="form-control daypicker" type="text" readonly/>-->
@@ -294,20 +294,22 @@
     var monthstart= moment().subtract(1, 'month').startOf('month');
     var monthend= moment().subtract(1, 'month').endOf('month');
     var monthmodalbody =$("#monthadjustmodal").find(".modal-body");
+    monthmodalbody.append(monthadjustinit);
+    for(var i=0;i<31;i++){
+        monthmodalbody.append(monthadjustpayhtml);
+    }
+    monthmodalbody.append(monthsumhtml);
+    $(".rangepicker").daterangepicker({
+        minDate: moment().subtract(1, 'month').startOf('month'),
+        maxDate: moment().subtract(1, 'month').endOf('month'),
+        startDate: moment().subtract(1, 'month').startOf('month'),
+        endDate: moment().subtract(1, 'month').endOf('month'),
+        locale: pickercn
+    }, function (start, end, label) {
+        monthstart=start;
+        monthend=end;
+    });
     singledatepicker('.daypicker');
-//    $(".rangepicker").daterangepicker({
-//        minDate: moment().subtract(1, 'month').startOf('month'),
-//        maxDate: moment().subtract(1, 'month').endOf('month'),
-//        startDate: moment().subtract(1, 'month').startOf('month'),
-//        endDate: moment().subtract(1, 'month').endOf('month'),
-//        locale: pickercn
-//    }, function (start, end, label) {
-//        monthstart=start;
-//        monthend=end;
-//        console.log(monthstart);
-//        console.log(monthend);
-//
-//    });
     var dayadjustable = $("#dayadjustable");
     var monthadjustable = $("#monthadjustable");
     //日调帐
@@ -437,18 +439,19 @@
         },
         showAdd:true,
         onAddbtn:function () {
-            monthmodalbody.html(monthadjustinit);
+//            monthmodalbody.html(monthadjustinit);
+            clearmonthmodal();
             $("#monthadjustmodal").modal("show");
-            $(".rangepicker").daterangepicker({
-                minDate: moment().subtract(1, 'month').startOf('month'),
-                maxDate: moment().subtract(1, 'month').endOf('month'),
-                startDate: moment().subtract(1, 'month').startOf('month'),
-                endDate: moment().subtract(1, 'month').endOf('month'),
-                locale: pickercn
-            }, function (start, end, label) {
-                monthstart=start;
-                monthend=end;
-            });
+//            $(".rangepicker").daterangepicker({
+//                minDate: moment().subtract(1, 'month').startOf('month'),
+//                maxDate: moment().subtract(1, 'month').endOf('month'),
+//                startDate: moment().subtract(1, 'month').startOf('month'),
+//                endDate: moment().subtract(1, 'month').endOf('month'),
+//                locale: pickercn
+//            }, function (start, end, label) {
+//                monthstart=start;
+//                monthend=end;
+//            });
         },
         toolbartitle:"月调帐列表",
         detailView:true,
@@ -564,34 +567,40 @@
         console.log(picker.startDate.format('YYYY-MM-DD'));
         console.log(picker.endDate.format('YYYY-MM-DD'));
     });
+    //月调账点击确认添加按钮
     function monthadjustadd() {
-        console.log(monthstart.format('LL'));
-        console.log(monthend.format('LL'));
         var days = ((monthend-monthstart)+1)/86400000;
         var day = monthstart;
-        clearmonthmodal();
         day.subtract(1, 'days');
         for(var i=0;i<days;i++){
             monthadjustpay(day)
         }
-        monthmodalbody.append('<div class="hr"></div>');
-        monthmodalbody.append(monthadjustpayhtml);
-        monthmodalbody.find("button:last").remove();
+        monthmodalbody.find(".row:eq(32)").removeClass("hidden")
+//        monthmodalbody.append('<div class="hr"></div>');
+//        monthmodalbody.append(monthsumhtml);
     }
     function monthadjustpay(day) {
         var tday = day.add(1,'days');
         var id=tday.format('YYYYMMDD');
-        monthmodalbody.append(monthadjustpayhtml);
-        monthmodalbody.find(".row:last").attr("id",id);
-        $("#"+id).find("input:first").val(tday.format('LL'));
-        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
+        var dayofmonth = tday.format("D");
+        var monthadjustrow = monthmodalbody.find(".row:eq("+dayofmonth+")");
+        console.log(dayofmonth);
+        monthmodalbody.find(".row:eq("+dayofmonth+")").removeClass("hidden").attr("id",id);
+        monthadjustrow.find("input:first").val(tday.format('LL'));
+        monthadjustrow.find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
+//        var id=tday.format('YYYYMMDD');
+//        monthmodalbody.append(monthadjustpayhtml);
+//        monthmodalbody.find(".row:last").attr("id",id);
+//        $("#"+id).find("input:first").val(tday.format('LL'));
+//        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
     }
     function clearmonthmodal(){
-        var l=monthmodalbody.find(".row").length;
-        for(var i=1;i<l;i++){
-            monthmodalbody.find(".row:eq("+i+")").remove();
+//        var l=monthmodalbody.find(".row").length;
+
+        for(var i=1;i<33;i++){
+            monthmodalbody.find(".row:eq("+i+")").addClass("hidden").find("input").val("");
         }
-        monthmodalbody.find(".hr:eq(1)").remove()
+//        monthmodalbody.find(".hr:eq(1)").remove()
     }
 </script>
 

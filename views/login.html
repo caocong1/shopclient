@@ -7,16 +7,91 @@
 	<link rel="icon" href="../img/logo.ico" type="image/x-icon">
 	<meta name="description" content="User login page" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
 	<!-- bootstrap & fontawesome -->
 	<link rel="stylesheet" href="../css/bootstrap.min.css" />
 	<link rel="stylesheet" href="../css/font-awesome.min.css" />
-
 	<!-- ace styles -->
 	<link rel="stylesheet" href="../css/ace.min.css" />
+	<style>
+		.carousel { z-index: -99; } /* keeps this behind all content */
+		.carousel .item {
+			position: fixed;
+			width: 100%; height: 100%;
+			-webkit-transition: opacity 2s;
+			-moz-transition: opacity 2s;
+			-ms-transition: opacity 2s;
+			-o-transition: opacity 2s;
+			transition: opacity 2s;
+		}
+		.carousel .one {
+			background: url(../img/bg/1.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .two {
+			background: url(../img/bg/2.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .three {
+			background: url(../img/bg/3.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .four {
+			background: url(../img/bg/4.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .five {
+			background: url(../img/bg/5.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .six {
+			background: url(../img/bg/6.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+		.carousel .seven {
+			background: url(../img/bg/7.jpg);
+			background-size: cover;
+			-moz-background-size: cover;
+		}
+
+		h1 {
+			background-color: rgba(221, 221, 221, 0.5);
+			margin-left: 55px;
+			margin-right: 55px;
+		}
+		.login-box .toolbar {
+			background: rgba(80, 144, 193, 0.5);
+		}
+		.login-layout .widget-box .widget-main {
+			padding: 16px 36px 36px;
+			background: rgba(247, 247, 247, 0.5);
+		}
+		.widget-body {
+			background-color: rgba(255, 255, 255, 0.5);
+		}
+		.login-layout .widget-box {
+			background-color: rgba(57, 69, 87, 0.5);
+		}
+	</style>
 </head>
 
 <body class="login-layout">
+<div id="myCarousel" class="carousel container slide">
+	<div class="carousel-inner">
+		<div class="active item one"></div>
+		<div class="item two"></div>
+		<div class="item three"></div>
+		<div class="item four"></div>
+		<div class="item five"></div>
+		<div class="item six"></div>
+		<div class="item seven"></div>
+	</div>
+</div>
 	<div class="main-container">
 		<div class="main-content">
 			<div class="row">
@@ -25,8 +100,8 @@
 						<div class="center">
 							<h1>
 								<i class="ace-icon fa fa-leaf green"></i>
-								<span class="red">Noah</span>
-								<span class="white" id="id-text2">商户系统</span>
+								<span class="light-blue">Noah</span>
+								<span class="red bolder">商户系统</span>
 							</h1>
 						</div>
 
@@ -72,27 +147,17 @@
 														<input type="checkbox" class="ace" />
 														<span class="lbl"> Remember Me</span>
 													</label>-->
-
 													<button type="button" onclick="login()" class="width-35 pull-right btn btn-sm btn-primary">
 														<i class="ace-icon fa fa-key"></i>
 														<span class="bigger-110">登录</span>
 													</button>
 												</div>
-
 												<div class="space-4"></div>
 											</fieldset>
 										</form>
-
-										<div class="social-or-login center">
-											<span class="bigger-110">
-												<!-- alertcontent -->
-											</span>
-										</div>
-
+										<div class="social-or-login center"></div>
 										<div class="space-6"></div>
-
 									</div><!-- /.widget-main -->
-
 									<div class="toolbar clearfix">
 										<div>
 											<a href="#" data-target="#forgot-box" class="forgot-password-link">
@@ -181,11 +246,16 @@
 	</div><!-- /.main-container -->
 
 	<script src="../js/jquery-2.1.4.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap-notify.min.js"></script>
 	<script type="text/javascript">
 		if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 	</script>
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
+        $(document).ready(function() {
+            $('.carousel').carousel({interval: 5000});
+        });
         if (sessionStorage.getItem("loginstatus")==="1") {
             location.href="main.html"
         }
@@ -218,6 +288,8 @@
 							sessionStorage.setItem("rights",data[i].rights);
 							sessionStorage.setItem("loginstatus",1);
 							window.location.href="main.html"
+						}else{
+                            alertincomplete("店铺号或用户名密码错误！")
 						}
 					}
 				},
@@ -237,7 +309,24 @@
 			return status
 		}
 		function alertcontent(value) {
-			alert(value);
+            $.notify({
+                message: value
+            },{
+                type: 'warning',
+                element:'.login-container',
+                offset:{
+                    x:-20,
+					y:70
+				},
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                placement: {
+                    from: "top",
+                    align: "right"
+                }
+            });
 		}
 	</script>
 </body>

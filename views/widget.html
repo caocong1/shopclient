@@ -4,10 +4,10 @@
             <h5 class="widget-title">通知公告提醒</h5>
             <div class="widget-toolbar">
                 <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up"></i>
+                    <i class="ace-icon fa fa-chevron-up bigger-130"></i>
                 </a>
                 <a href="javascript:hiddenbyid('widget-notice')">
-                    <i class="ace-icon fa fa-times"></i>
+                    <i class="ace-icon fa fa-times bigger-130"></i>
                 </a>
             </div>
         </div>
@@ -16,16 +16,17 @@
         </div>
     </div>
 </div>
+<!--
 <div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-settlement">
     <div class="widget-box widget-color-dark">
         <div class="widget-header">
             <h5 class="widget-title">财务单据提醒</h5>
             <div class="widget-toolbar">
                 <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up"></i>
+                    <i class="ace-icon fa fa-chevron-up bigger-130"></i>
                 </a>
                 <a href="javascript:hiddenbyid('widget-settlement')">
-                    <i class="ace-icon fa fa-times"></i>
+                    <i class="ace-icon fa fa-times bigger-130"></i>
                 </a>
             </div>
         </div>
@@ -88,10 +89,11 @@
         </div>
     </div>
 </div>
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-blank"></div>
+-->
+<div id="widgetcontain"></div>
+<script src="../json/widgetjson.js"></script>
 <script>
-    var unreadhtml = "<span class=\"hide badge badge-primary\"></span>";
-    var widgetnoticehtml = "<div class=\"widget-main\"><a href=\"#\"><p class=\"alert alert-warning\"></p></a></div>";
+    var $widgetcontain = $("#widgetcontain");
     var widgetnotice = $("#widget-notice");
     var navnotice = $("#notice");
     navnotice.find(".menu-text").append(unreadhtml);
@@ -113,6 +115,26 @@
                 widgetnotice.find("p:last").text(data[i].title)
             }
         }
+    }
+    $(function () {
+//        $widgetcontain.append(widgetableshtml);
+//        $widgetcontain.find(".widget-container-col:last").attr("id","widget-settlement");
+//        var $widgetsettlement = $("#widget-settlement");
+//        $widgetsettlement.find(".widget-title").text("财务单据提醒");
+//        $widgetsettlement.find("a:last").attr("href","javascript:hiddenbyid('widget-settlement')");
+//        $widgetsettlement.find("table").attr("id","widgetsettletable");
+        addwidget("widget-settlement","财务单据提醒","widgetsettletable");
+        addwidget("widget-adjust","调帐提醒","widgetadjustable");
+        addwidget("widget-repair","报修提醒","widgetrepairable");
+        addwidget("widget-complain","投诉提醒","widgetcomplainable");
+    });
+    function addwidget(id,title,tableid){
+        $widgetcontain.append(widgetableshtml);
+        $widgetcontain.find(".widget-container-col:last").attr("id",id);
+        var $id = $("#"+id);
+        $id.find(".widget-title").text(title);
+        $id.find("a:last").attr("href","javascript:hiddenbyid('"+id+"')");
+        $id.find("table").attr("id",tableid);
     }
     $("#widgetsettletable").bootstrapTable("destroy").bootstrapTable({
         url: "../json/settlementwidget.json",
