@@ -1,0 +1,22 @@
+[
+  {
+    "type": "ccc结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101301",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 1,
+    "status": 2
+  },
+  {
+    "type": "ddd结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101401",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 1,
+    "status": 3
+  }
+]

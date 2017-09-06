@@ -1,0 +1,116 @@
+[
+  {
+    "id": 1,
+    "adjustdate": "2017-08-20",
+    "afterdayamount": 1836,
+    "adjustcontent":"收银员录入失误",
+    "createtime": "2017-09-10 20:20:20",
+    "createuser": "管理员",
+    "acceptuser": "",
+    "acceptime": "",
+    "status": 1,
+    "adjustdetail": [
+      {
+        "paytype": "cash",
+        "beforeamount": 222,
+        "afteramount": 234
+      },
+      {
+        "paytype": "bank",
+        "beforeamount": 333,
+        "afteramount": 345
+      },
+      {
+        "paytype": "alipay",
+        "beforeamount": 444,
+        "afteramount": 456
+      },
+      {
+        "paytype": "weixin",
+        "beforeamount": 555,
+        "afteramount": 567
+      },
+      {
+        "paytype": "other",
+        "beforeamount": 222,
+        "afteramount": 234
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "adjustdate": "2017-08-21",
+    "afterdayamount": 1836,
+    "adjustcontent":"收银员录入失误",
+    "createtime": "2017-09-10 20:20:20",
+    "createuser": "管理员",
+    "acceptuser": "",
+    "acceptime": "",
+    "status": 1,
+    "adjustdetail": [
+      {
+        "paytype": "cash",
+        "beforeamount": 222,
+        "afteramount": 234
+      },
+      {
+        "paytype": "bank",
+        "beforeamount": 333,
+        "afteramount": 345
+      },
+      {
+        "paytype": "alipay",
+        "beforeamount": 444,
+        "afteramount": 456
+      },
+      {
+        "paytype": "weixin",
+        "beforeamount": 555,
+        "afteramount": 567
+      },
+      {
+        "paytype": "other",
+        "beforeamount": 222,
+        "afteramount": 234
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "adjustdate": "2017-08-24",
+    "afterdayamount": 1836,
+    "adjustcontent":"收银员录入失误",
+    "createtime": "2017-09-10 20:20:20",
+    "createuser": "管理员",
+    "acceptuser": "",
+    "acceptime": "",
+    "status": 3,
+    "adjustdetail": [
+      {
+        "paytype": "cash",
+        "beforeamount": 222,
+        "afteramount": 234
+      },
+      {
+        "paytype": "bank",
+        "beforeamount": 333,
+        "afteramount": 345
+      },
+      {
+        "paytype": "alipay",
+        "beforeamount": 444,
+        "afteramount": 456
+      },
+      {
+        "paytype": "weixin",
+        "beforeamount": 555,
+        "afteramount": 567
+      },
+      {
+        "paytype": "other",
+        "beforeamount": 222,
+        "afteramount": 234
+      }
+    ]
+  }
+]

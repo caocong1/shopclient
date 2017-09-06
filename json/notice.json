@@ -8,7 +8,7 @@
         "attachment":"attachment/doc1.docx,attachment/table1.xlsx",
         "endtime":"",
         "lv":"1",
-        "status": 0
+        "read": 0
     },
     {
         "id": 2,
@@ -18,8 +18,8 @@
         "sendusr": "dongli",
         "attachment":"attachment/table2.xlsx,attachment/doc2.docx",
         "endtime":"",
-        "lv":"2",
-        "status": 0
+        "lv":"1",
+        "read": 0
 },
     {
         "id": 3,
@@ -29,7 +29,18 @@
         "sendusr": "dongli",
         "attachment":"",
         "endtime":"",
-        "lv":"1",
-        "status": 1
+        "lv":"2",
+        "read": 1
+    },
+    {
+        "id": 4,
+        "title": "开饭了",
+        "content": "今天去哪里吃呢",
+        "sendtime": "2017/9/2 09:08:07",
+        "sendusr": "dongli",
+        "attachment":"",
+        "endtime":"",
+        "lv":"3",
+        "read": 1
     }
 ]

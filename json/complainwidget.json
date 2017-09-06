@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "complaintype": "商品",
+    "complaincontent": "这东西质量太差，用两天就坏了",
+    "startime": "2017-9-10 12:12:12",
+    "acceptime": "",
+    "acceptcontent": "",
+    "endtime": "",
+    "endcontent": "",
+    "attachment": "",
+    "status": "1"
+  },
+  {
+    "id": 2,
+    "complaintype": "店员",
+    "complaincontent": "服务态度极度恶劣",
+    "startime": "2017-9-11 12:12:12",
+    "acceptime": "2017-9-11 12:34:56",
+    "acceptcontent": "工程师正前往处理",
+    "endtime": "",
+    "endcontent": "",
+    "attachment": "/attachment/complain/2.jpg",
+    "status": "2"
+  }
+]

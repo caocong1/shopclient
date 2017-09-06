@@ -1,4 +1,41 @@
-<div class="col-md-10 col-sm-12">
+<div class="row">
+<div class="col-md-3 col-md-push-9 col-sm-12 login-layout">
+    <div id="searchbox" class="widget-box no-padding">
+        <div class="widget-header widget-header-small">
+            <h5 class="widget-title smaller">查询条件</h5>
+            <span class="widget-toolbar">
+				    <a href="javascript:closesearch()">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</span>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="请点击选择日期"  readonly/>
+                            <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <input id="byname" type="text" class="form-control" placeholder="请填入查找内容">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-grey btn-xs btn-round" type="button" name="search" title="确定查找"><i class="fa fa-search"></i>确定查找</a>
+                    </div>
+                    <div class="form-group">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-9 col-md-pull-3 col-sm-12">
     <div class="tabbable">
         <ul class="nav nav-tabs">
             <li class="active">
@@ -22,54 +59,7 @@
             <div id="monthadjust" class="tab-pane fade">
                 <table id="monthadjustable"></table>
             </div>
-            <!--新增日调帐-->
-            <div id="newdayadjust" class="tab-pane fade">
-                <div class="widget-box">
-                    <div class="widget-header">
-                        <h5 class="widget-title">新增调帐</h5>
-                    </div>
-                    <div id="adjustbody" class="widget-body">
-                        <div class="widget-main">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <label>调帐时间:</label>
-                                    <div class="input-group date">
-                                        <input class="form-control daypicker" type="text" />
-                                        <span class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>调帐前金额：</label>
-                                    <input class="form-control" value="2333" readonly>
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>调帐后金额：</label>
-                                    <input class="form-control" placeholder="请填入调帐后金额">
-                                </div>
-                                <div class="col-sm-3">
-                                    <label>调帐原因：</label>
-                                    <input class="form-control" placeholder="请填入调帐原因">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="widget-toolbox transparent clearfix">
-                            <a class="btn btn-success pull-right" data-toggle="tab" href="#dayadjust">
-                                <span class="bigger-120">
-                                    <i class="fa fa-thumbs-o-up"></i>&nbsp;确定
-                                </span>
-                            </a>
-                            <a class="btn btn-grey pull-left" data-toggle="tab" href="#dayadjust">
-                                <span class="bigger-120">
-                                    <i class="fa fa-hand-o-left"></i>&nbsp;返回
-                                </span>
-                            </a>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
             <!--新增月调帐-->
             <div id="newmonthadjust" class="tab-pane fade">
                 <div class="widget-box">
@@ -157,31 +147,118 @@
         </div>
     </div>
 </div>
-<!--日调帐表格抬头-->
-<div id="daytoolbar">
-    <!--<span id="daytabletitle" class="bootstraptable-title bigger-120">-->
-        <!--<i class="fa fa-table"></i>-->
-            <!--日调帐列表-->
-    <!--</span>-->
-    <!--<a class="btn btn-primary btn-xs" data-toggle="tab" href="#newdayadjust">-->
-        <!--<i class="ace-icon fa fa-plus-square icon-only"></i>新增-->
-    <!--</a>-->
-    <!--<button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">-->
-        <!--<i class="ace-icon fa fa-refresh icon-only"></i>刷新-->
-    <!--</button>-->
 </div>
-<!--日调帐表格抬头-->
-<div id="monthtoolbar">
-    <span id="monthtabletitle" class="bootstraptable-title bigger-120">
-        <i class="fa fa-table"></i>
-            月调帐列表
-    </span>
-    <a class="btn btn-primary btn-xs" data-toggle="tab" href="#newmonthadjust">
-        <i class="ace-icon fa fa-plus-square icon-only"></i>新增
-    </a>
-    <button class="btn btn-primary btn-xs" type="button" name="refresh" title="刷新">
-        <i class="ace-icon fa fa-refresh icon-only"></i>刷新
-    </button>
+<!--添加日调帐模态框-->
+<div class="modal fade" id="dayadjustmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">新增日调帐</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="dayadjustdate" class="col-sm-4">调帐时间:</label>
+                        <div class="col-sm-8 input-group date">
+                            <input id="dayadjustdate" class="form-control daypicker" type="text" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                        <div class="col-sm-4 btn-group">
+                            <button data-toggle="dropdown" class="btn btn-white btn-round dropdown-toggle">
+                                选择支付方式
+                                <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-success dropdown-menu-right">
+                                <li>
+                                    <a href="javascript:{$('#cash').removeClass('hidden')}">现金</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{$('#bank').removeClass('hidden')}">银行卡</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{$('#alipay').removeClass('hidden')}">支付宝</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{$('#weixin').removeClass('hidden')}">微信</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:{$('#other').removeClass('hidden')}">其他</a>
+                                </li>
+                            </ul>
+                        </div>
+                </div>
+                <div class="hr"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="addperson()">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加月调帐模态框-->
+<div class="modal fade" id="monthadjustmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">新增月调帐</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="dayadjustdate" class="col-sm-4">调帐时间:</label>
+                        <div class="col-sm-8 input-group date">
+                            <input class="form-control rangepicker" type="text" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 btn-group">
+                        <button class="btn btn-white btn-round" onclick="monthadjustadd()">
+                            确定添加
+                        </button>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <!--<div class="row">-->
+                    <!--<div class="col-sm-2">-->
+                        <!--<input class="form-control daypicker" type="text" readonly/>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-3">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon">调帐前</span>-->
+                            <!--<input class="form-control" type="text" readonly="" title="before">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-3">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon">调帐金额</span>-->
+                            <!--<input class="form-control" type="text" title="adjust">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-3">-->
+                        <!--<div class="input-group">-->
+                            <!--<span class="input-group-addon">调帐后</span>-->
+                            <!--<input class="form-control" type="text" title="after">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-sm-1">-->
+                        <!--<button class="btn btn-white btn-round">-->
+                            <!--<i class="ace-icon fa fa-times"></i>-->
+                        <!--</button>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
 </div>
 <!--日调帐详情-->
 <div id="dayadjustdetail" class="hide">
@@ -212,23 +289,27 @@
     </div>
 </div>
 
+<script src="../json/adjustjson.js"></script>
 <script>
+    var monthstart= moment().subtract(1, 'month').startOf('month');
+    var monthend= moment().subtract(1, 'month').endOf('month');
+    var monthmodalbody =$("#monthadjustmodal").find(".modal-body");
+    singledatepicker('.daypicker');
+//    $(".rangepicker").daterangepicker({
+//        minDate: moment().subtract(1, 'month').startOf('month'),
+//        maxDate: moment().subtract(1, 'month').endOf('month'),
+//        startDate: moment().subtract(1, 'month').startOf('month'),
+//        endDate: moment().subtract(1, 'month').endOf('month'),
+//        locale: pickercn
+//    }, function (start, end, label) {
+//        monthstart=start;
+//        monthend=end;
+//        console.log(monthstart);
+//        console.log(monthend);
+//
+//    });
     var dayadjustable = $("#dayadjustable");
     var monthadjustable = $("#monthadjustable");
-    $(".daypicker").datetimepicker({
-        language:"zh-CN",
-        format:"yyyy-mm-dd",
-        startView: "month",
-        minView:"month",
-        autoclose:true
-    });
-    $(".monthpicker").datetimepicker({
-        language:"zh-CN",
-        format:"yyyy-mm",
-        startView: "year",
-        minView:"year",
-        autoclose:true
-    });
     //日调帐
     dayadjustable.bootstrapTable("destroy").bootstrapTable({
         url: "../json/dayadjust.json",
@@ -240,11 +321,15 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
+        showSearch:true,
+        onSearchbtn:function(){
+            ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
+        },
         showAdd:true,
-        Addattr:"data-toggle=\"tab\" href=\"#newdayadjust\"",
-        toolbar: '#daytoolbar',
+        onAddbtn:function () {
+            $("#dayadjustmodal").modal("show")
+        },
         toolbartitle:"日调帐列表",
-        toolbarAlign: "right",
         detailView:true,
         detailFormatter:dayadjustdetail,
         columns: [{
@@ -278,6 +363,9 @@
                 }else if(value===2){
                     label = "label-success";
                     status = "调帐成功"
+                }else if(value===3){
+                    label = "label-grey";
+                    status = "申请驳回"
                 }
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
@@ -343,8 +431,26 @@
         pageList:[15,25,50],
         uniqueId: "id",
         showRefresh: true,
-        toolbar: '#monthtoolbar',
-        toolbarAlign: "right",
+        showSearch:true,
+        onSearchbtn:function(){
+            ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
+        },
+        showAdd:true,
+        onAddbtn:function () {
+            monthmodalbody.html(monthadjustinit);
+            $("#monthadjustmodal").modal("show");
+            $(".rangepicker").daterangepicker({
+                minDate: moment().subtract(1, 'month').startOf('month'),
+                maxDate: moment().subtract(1, 'month').endOf('month'),
+                startDate: moment().subtract(1, 'month').startOf('month'),
+                endDate: moment().subtract(1, 'month').endOf('month'),
+                locale: pickercn
+            }, function (start, end, label) {
+                monthstart=start;
+                monthend=end;
+            });
+        },
+        toolbartitle:"月调帐列表",
         detailView:true,
         detailFormatter:monthadjustdetail,
         iconsPrefix: 'fa',
@@ -384,18 +490,7 @@
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
-        onClickRow:function (row,$element) {
-            if($element.find("i").hasClass("fa-plus-square-o")){
-                monthadjustable.bootstrapTable("collapseAllRows");
-                monthadjustable.bootstrapTable("expandRow",$element.attr("data-index"))
-            }else{
-                monthadjustable.bootstrapTable("collapseRow",$element.attr("data-index"))
-            }
-        },
-        onLoadSuccess:function () {
-            $("#monthadjust").find(".fixed-table-toolbar").append($("#monthtabletitle"));
-            $("#monthadjust").find(".columns-right").remove();
-        }
+        onClickRow:tableclickexpand
     });
     function monthadjustdetail(index,row){
 //        console.log(index);
@@ -439,6 +534,64 @@
             steps.find("li:eq(1)").addClass("active");
             steps.find("li:eq(1)").find(".title").text(row.acceptime);
         }
-        return dayadjustdetail.html();
+        return monthadjustdetail.html();
+    }
+
+    $(function (){
+        var mb =$("#dayadjustmodal").find(".modal-body");
+        dayadjustpay("cash","现金：");
+        dayadjustpay("bank","银行卡：");
+        dayadjustpay("alipay","支付宝：");
+        dayadjustpay("weixin","微信支付：");
+        dayadjustpay("other","其他：");
+        mb.append('<div class="hr"></div>');
+        mb.append(dayadjustpayhtml);
+        mb.find(".row:last").attr("id","total");
+        mb.find("label:last").text("总计：");
+        var total = $("#total");
+        total.removeClass("hidden");
+        total.find("input").prop("readonly", true);
+        total.find("button").addClass("hidden")
+    });
+    function dayadjustpay(id,text) {
+        var mb =$("#dayadjustmodal").find(".modal-body");
+        mb.append(dayadjustpayhtml);
+        mb.find(".row:last").attr("id",id);
+        mb.find("label:last").text(text);
+        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
+    }
+    $('.monthpicker').on('apply.daterangepicker', function(ev, picker) {
+        console.log(picker.startDate.format('YYYY-MM-DD'));
+        console.log(picker.endDate.format('YYYY-MM-DD'));
+    });
+    function monthadjustadd() {
+        console.log(monthstart.format('LL'));
+        console.log(monthend.format('LL'));
+        var days = ((monthend-monthstart)+1)/86400000;
+        var day = monthstart;
+        clearmonthmodal();
+        day.subtract(1, 'days');
+        for(var i=0;i<days;i++){
+            monthadjustpay(day)
+        }
+        monthmodalbody.append('<div class="hr"></div>');
+        monthmodalbody.append(monthadjustpayhtml);
+        monthmodalbody.find("button:last").remove();
+    }
+    function monthadjustpay(day) {
+        var tday = day.add(1,'days');
+        var id=tday.format('YYYYMMDD');
+        monthmodalbody.append(monthadjustpayhtml);
+        monthmodalbody.find(".row:last").attr("id",id);
+        $("#"+id).find("input:first").val(tday.format('LL'));
+        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
+    }
+    function clearmonthmodal(){
+        var l=monthmodalbody.find(".row").length;
+        for(var i=1;i<l;i++){
+            monthmodalbody.find(".row:eq("+i+")").remove();
+        }
+        monthmodalbody.find(".hr:eq(1)").remove()
     }
 </script>
+

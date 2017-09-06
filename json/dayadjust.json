@@ -11,27 +11,27 @@
     "status": 1,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -49,27 +49,27 @@
     "status": 1,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -84,30 +84,30 @@
     "createuser": "管理员",
     "acceptuser": "",
     "acceptime": "",
-    "status": 1,
+    "status": 3,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -125,27 +125,27 @@
     "status": 2,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -163,27 +163,27 @@
     "status": 2,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -201,27 +201,27 @@
     "status": 2,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }
@@ -239,27 +239,27 @@
     "status": 2,
     "adjustdetail": [
       {
-        "paytype": "cash",
+        "paytype": "现金",
         "beforeamount": 222,
         "afteramount": 234
       },
       {
-        "paytype": "bank",
+        "paytype": "银行卡",
         "beforeamount": 333,
         "afteramount": 345
       },
       {
-        "paytype": "alipay",
+        "paytype": "支付宝",
         "beforeamount": 444,
         "afteramount": 456
       },
       {
-        "paytype": "weixin",
+        "paytype": "微信支付",
         "beforeamount": 555,
         "afteramount": 567
       },
       {
-        "paytype": "other",
+        "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
       }

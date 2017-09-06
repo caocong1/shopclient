@@ -2,6 +2,7 @@
  * 商户端js
  */
 var body = $("body");
+var sprintf = $.fn.bootstrapTable.utils.sprintf;
 //判断是否登录
 $(function () {
     if (sessionStorage.getItem("loginstatus")==="1") {
@@ -81,8 +82,8 @@ $(".dropdown-modal").on("mouseover",function () {
         $(this).removeClass("open")
     });
 
-function tableclickexpand(a,$element) {
-    var $table = $element.closest("table");
+//表格点击展开关闭
+function tableclickexpand($table,$element) {
     if($element.find("i").hasClass("fa-plus-square-o")){
         $table.bootstrapTable("collapseAllRows");
         $table.bootstrapTable("expandRow",$element.attr("data-index"))
@@ -90,12 +91,27 @@ function tableclickexpand(a,$element) {
         $table.bootstrapTable("collapseRow",$element.attr("data-index"))
     }
 }
+//展开更新已读
+function tableclickexpandread ($table, row, $element) {
+    if(!row.read){
+        $table.bootstrapTable('updateRow', {
+            index: $element.attr("data-index"),
+            row: {
+                read: 1
+            }
+        });
+    }
+    tableclickexpand($table,$element);
+}
+
+//关闭查询框
+function closesearch(){$("#searchbox").removeClass("visible")}
+//关闭widget框
+function hiddenbyid(id){$("#"+id).addClass("hidden")}
 
 //表格toolbar插件
 !function($) {
     'use strict';
-
-    var sprintf = $.fn.bootstrapTable.utils.sprintf;
 
     $.extend($.fn.bootstrapTable.defaults, {
         toolbartitle:"",
@@ -105,6 +121,7 @@ function tableclickexpand(a,$element) {
             detailClose: 'fa-minus-square-o'
         },
         toolbarAlign: "right",
+        toolbarauto:true,
         showAdd:false,
         showEdit:false,
         showDel:false,
@@ -133,7 +150,17 @@ function tableclickexpand(a,$element) {
     });
 
     var BootstrapTable = $.fn.bootstrapTable.Constructor,
+        _initContainer = BootstrapTable.prototype.initContainer,
         _initToolbar = BootstrapTable.prototype.initToolbar;
+
+    BootstrapTable.prototype.initContainer = function () {
+        _initContainer.apply(this, Array.prototype.slice.apply(arguments));
+        var toolbarid = this.$el.attr("id")+"toolbar";
+        if(this.options.toolbarauto){
+            this.options.toolbar= "#"+toolbarid;
+            $("body").append('<div id="'+toolbarid+'"></div>')
+        }
+    };
 
     BootstrapTable.prototype.initToolbar = function() {
         _initToolbar.apply(this, Array.prototype.slice.apply(arguments));
@@ -172,16 +199,26 @@ function tableclickexpand(a,$element) {
     }
 }(jQuery);
 
-function singledatepicker(picker) {
-    $('#' + picker).daterangepicker({
+function singledatepicker(pickerid) {
+    $(pickerid).daterangepicker({
         "singleDatePicker": true,
         "showDropdowns": true,
         "locale": pickercn,
-        // "alwaysShowCalendars": true,
         "opens": "center"
     }, function (start, end, label) {
-        console.log(start + "," + end + "," + label);
+    })
+}
 
+function monthrangepicker(pickerel,startdate,enddate){
+    $(pickerel).daterangepicker({
+        minDate: moment().subtract(1, 'month').startOf('month'),
+        maxDate: moment().subtract(1, 'month').endOf('month'),
+        startDate: moment().subtract(1, 'month').startOf('month'),
+        endDate: moment().subtract(1, 'month').endOf('month'),
+        locale: pickercn
+    }, function (start, end, label) {
+        startdate=start;
+        enddate=end;
     })
 }
 

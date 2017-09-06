@@ -187,7 +187,7 @@
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
         if (sessionStorage.getItem("loginstatus")==="1") {
-            location.href="nav.html"
+            location.href="main.html"
         }
 		$("#storecode").val("1F0101");
 		$("#username").val("admin");
@@ -217,7 +217,7 @@
 							sessionStorage.setItem("password",passwords);
 							sessionStorage.setItem("rights",data[i].rights);
 							sessionStorage.setItem("loginstatus",1);
-							window.location.href="nav.html"
+							window.location.href="main.html"
 						}
 					}
 				},

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "repairtype": "空调",
+    "repaircontent": "完全不制冷，热死啦",
+    "startime": "2017-9-10 12:12:12",
+    "acceptime": "",
+    "acceptcontent": "",
+    "endtime": "",
+    "endcontent": "",
+    "attachment": "",
+    "status": "1"
+  },
+  {
+    "id": 2,
+    "repairtype": "强电",
+    "repaircontent": "有一边灯泡都没亮",
+    "startime": "2017-9-11 12:12:12",
+    "acceptime": "2017-9-11 12:34:56",
+    "acceptcontent": "工程师正前往处理",
+    "endtime": "",
+    "endcontent": "",
+    "attachment": "/attachment/repair/2.jpg",
+    "status": "2"
+  }
+]

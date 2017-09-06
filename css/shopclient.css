@@ -127,8 +127,18 @@ div>span>h2{
     /*line-height: 0;*/
 /*}*/
 
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-    text-align: center;
+
+/*.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th :not(.detail-view){*/
+    /*text-align: center;*/
+/*}*/
+
+/*.table>tbody> .detail-view{*/
+    /*text-align:left;*/
+/*}*/
+
+.bootstrap-table .table>tbody> ,
+.bootstrap-table .table>thead>{
+    text-align: center
 }
 
 .bootstrap-table .fixed-table-toolbar{
@@ -175,8 +185,37 @@ div>span>h2{
 #searchbox{
     background-color: #FFFFFF;
     border-bottom: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    margin: 0;
 }
-
+#searchbox .widget-header{
+    border-top-right-radius:5px;
+    border-top-left-radius: 5px
+}
+#searchbox .widget-main{
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius: 5px
+}
+#searchbox .widget-body{
+    border-bottom-right-radius:5px;
+    border-bottom-left-radius: 5px
+}
+#searchbox .form-group{
+    padding: 5px;
+}
 .row>.login-layout{
     background-color: #FFFFFF;
+}
+
+.row>.login-layout .widget-box .widget-main{
+    padding: 12px;
+}
+
+.modal>.modal-dialog label{
+    margin-top: 6px;
+    text-align:center
+}
+
+.modal>.modal-dialog .btn>.ace-icon {
+    margin-right: 0;
 }

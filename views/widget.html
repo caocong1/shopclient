@@ -1,12 +1,12 @@
-<div class="col-xs-12 col-sm-4 widget-container-col" id="widget-container-notice">
-    <div class="widget-box widget-color-dark" id="widget-box-notice">
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-notice">
+    <div class="widget-box widget-color-dark">
         <div class="widget-header">
-            <h5 class="widget-title">通知公告</h5>
+            <h5 class="widget-title">通知公告提醒</h5>
             <div class="widget-toolbar">
                 <a href="#" data-action="collapse">
                     <i class="ace-icon fa fa-chevron-up"></i>
                 </a>
-                <a href="#" data-action="close">
+                <a href="javascript:hiddenbyid('widget-notice')">
                     <i class="ace-icon fa fa-times"></i>
                 </a>
             </div>
@@ -16,64 +16,83 @@
         </div>
     </div>
 </div>
-
-<div class="col-xs-12 col-sm-4 widget-container-col">
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-settlement">
     <div class="widget-box widget-color-dark">
         <div class="widget-header">
-            <h5 class="widget-title">调帐申请</h5>
+            <h5 class="widget-title">财务单据提醒</h5>
             <div class="widget-toolbar">
                 <a href="#" data-action="collapse">
                     <i class="ace-icon fa fa-chevron-up"></i>
                 </a>
-                <a href="#" data-action="close">
+                <a href="javascript:hiddenbyid('widget-settlement')">
                     <i class="ace-icon fa fa-times"></i>
                 </a>
             </div>
         </div>
         <div class="widget-body">
-            <div class="widget-main no-padding">
-                <table class="table table-striped table-bordered table-hover">
-                    <thead class="thin-border-bottom">
-                    <tr>
-                        <th>申请时间</th>
-                        <th>调帐时间</th>
-                        <th>调帐金额</th>
-                        <th>申请人</th>
-                        <th>状态</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr>
-                        <td>2017年9月7日</td>
-                        <td>2017年9月7日</td>
-                        <td>200元</td>
-                        <td>管理员</td>
-                        <td>
-                            <span class="label label-warning arrowed">审核中</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2017年9月6日</td>
-                        <td>2017年9月6日</td>
-                        <td>150元</td>
-                        <td>管理员</td>
-                        <td>
-                            <span class="label label-success arrowed">审核通过</span>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table id="widgetsettletable"></table>
         </div>
     </div>
 </div>
-
-<span class="badge badge-primary"></span>
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-adjust">
+    <div class="widget-box widget-color-dark">
+        <div class="widget-header">
+            <h5 class="widget-title">调帐提醒</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+                <a href="javascript:hiddenbyid('widget-adjust')">
+                    <i class="ace-icon fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <table id="widgetadjustable"></table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-repair">
+    <div class="widget-box widget-color-dark">
+        <div class="widget-header">
+            <h5 class="widget-title">报修提醒</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+                <a href="javascript:hiddenbyid('widget-repair')">
+                    <i class="ace-icon fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <table id="widgetrepairable"></table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-complain">
+    <div class="widget-box widget-color-dark">
+        <div class="widget-header">
+            <h5 class="widget-title">投诉提醒</h5>
+            <div class="widget-toolbar">
+                <a href="#" data-action="collapse">
+                    <i class="ace-icon fa fa-chevron-up"></i>
+                </a>
+                <a href="javascript:hiddenbyid('widget-complain')">
+                    <i class="ace-icon fa fa-times"></i>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <table id="widgetcomplainable"></table>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-blank"></div>
 <script>
     var unreadhtml = "<span class=\"hide badge badge-primary\"></span>";
-    var widgetnoticehtml = "<div class=\"widget-main\"><a href=\"#\"><p class=\"alert alert-info\"></p></a></div>";
-    var widgetnotice = $("#widget-box-notice");
+    var widgetnoticehtml = "<div class=\"widget-main\"><a href=\"#\"><p class=\"alert alert-warning\"></p></a></div>";
+    var widgetnotice = $("#widget-notice");
     var navnotice = $("#notice");
     navnotice.find(".menu-text").append(unreadhtml);
     //加载未读通知
@@ -88,13 +107,147 @@
     function widgetloadnotice(data){
         var l = data.length;
         for(var i=0;i<l;i++){
-            if(!data[i].status){
+            if(!data[i].read){
                 widgetnotice.find(".widget-body").append(widgetnoticehtml);
                 widgetnotice.find(".widget-main:last").attr("id","notice-"+data[i].id);
                 widgetnotice.find("p:last").text(data[i].title)
             }
         }
     }
+    $("#widgetsettletable").bootstrapTable("destroy").bootstrapTable({
+        url: "../json/settlementwidget.json",
+        toolbarauto:false,
+        columns: [
+            {
+                field: "settlementcode",
+                title: "结算单号"
+            },
+            {
+                field: "type",
+                title: "结算类型"
+            },
+            {
+                field: "status",
+                title: "状态",
+                align:"center",
+                formatter:function (value,row,index) {
+                    var label, status;
+                    if (value === 1) {
+                        label = "label-info";
+                        status = "结算"
+                    } else if (value === 2) {
+                        label = "label-warning";
+                        status = "催缴"
+                    } else if (value === 3) {
+                        label = "label-danger";
+                        status = "滞纳"
+                    } else if (value === 4) {
+                        label = "label-success";
+                        status = "核销"
+                    }
+                    return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
+                }
+            }
+        ]
+    });
+    $("#widgetadjustable").bootstrapTable("destroy").bootstrapTable({
+        url: "../json/adjustwidget.json",
+        toolbarauto:false,
+        columns: [
+            {
+                field: "adjustdate",
+                title: "调帐日期"
+            },
+            {
+                field: "afterdayamount",
+                title: "调帐后金额"
+            },
+            {
+                field: "status",
+                title: "调帐状态",
+                formatter: function (value, row, index) {
+                    var label, status;
+                    if (value === 1) {
+                        label = "label-warning";
+                        status = "调帐审核中"
+                    } else if (value === 2) {
+                        label = "label-success";
+                        status = "调帐成功"
+                    } else if (value === 3) {
+                        label = "label-grey";
+                        status = "申请驳回"
+                    }
+                    return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
+                }
+            }
+        ]
+    });
+
+    $("#widgetrepairable").bootstrapTable("destroy").bootstrapTable({
+        url: "../json/repairwidget.json",
+        toolbarauto:false,
+        columns: [
+            {
+                field: "startime",
+                title: "报修时间"
+            },
+            {
+                field: "repairtype",
+                title: "报修类型"
+            },
+            {
+                field: "status",
+                title: "报修状态",
+                formatter:function (value) {
+                    var label,status;
+                    if(value==="1"){
+                        label = "label-danger";
+                        status = "发起报修"
+                    }else if(value==="2"){
+                        label = "label-warning";
+                        status = "接受处理"
+                    }else if(value==="3"){
+                        label = "label-success";
+                        status = "处理完成"
+                    }
+                    return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
+                }
+            }
+        ]
+    });
+
+    $("#widgetcomplainable").bootstrapTable("destroy").bootstrapTable({
+        url: "../json/complainwidget.json",
+        toolbarauto:false,
+        columns: [
+            {
+                field: "startime",
+                title: "客诉时间"
+            },
+            {
+                field: "complaintype",
+                title: "客诉类型"
+            },
+            {
+                field: "status",
+                title: "客诉状态",
+                formatter:function (value) {
+                    var label,status;
+                    if(value==="1"){
+                        label = "label-danger";
+                        status = "发起客诉"
+                    }else if(value==="2"){
+                        label = "label-warning";
+                        status = "接受处理"
+                    }else if(value==="3"){
+                        label = "label-success";
+                        status = "处理完成"
+                    }
+                    return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
+                }
+            }
+        ]
+    });
     //更新未读提示
     function updatenavnoticeunread(){
         var unread = widgetnotice.find(".widget-main").length;
@@ -105,12 +258,30 @@
             navnotice.find(".badge").addClass("hide");
         }
     }
-    widgetnotice.on("click","a",function () {
-        var unreadnotice = $(this).closest(".widget-main");
-        var id = unreadnotice.attr("id");
+    widgetnotice.find(".widget-body").on("click","a",function () {
         navjump("notice","通知公告");
-        var i = id.substr(id.lastIndexOf('-')+1);
-        sessionStorage.setItem("noticeid",i);
-    })
+    });
 
+    $('.widget-container-col').sortable({
+        connectWith: '.widget-container-col',
+        items:'> .widget-box',
+        handle: ace.vars['touch'] ? '.widget-title' : false,
+        cancel: '.fullscreen',
+        opacity:0.8,
+        revert:true,
+        forceHelperSize:true,
+        placeholder: 'widget-placeholder',
+        forcePlaceholderSize:true,
+        tolerance:'pointer',
+        start: function(event, ui) {
+            //when an element is moved, it's parent becomes empty with almost zero height.
+            //we set a min-height for it to be large enough so that later we can easily drop elements back onto it
+            ui.item.parent().css({'min-height':ui.item.height()})
+            //ui.sender.css({'min-height':ui.item.height() , 'background-color' : '#F5F5F5'})
+        },
+        update: function(event, ui) {
+            ui.item.parent({'min-height':''})
+            //p.style.removeProperty('background-color');
+        }
+    });
 </script>

@@ -1,0 +1,227 @@
+<div class="col-md-10 col-sm-12 col-xs-12">
+    <div class="tabbable">
+        <div class="tab-content no-border no-padding">
+            <div id="inbox" class="tab-pane in active">
+                <div class="message-container">
+                    <div id="" class="message-navbar clearfix">
+                        <div class="message-bar">
+                            <div class="message-infobar" id="id-message-infobar">
+                                <span class="blue bigger-150">通知公告</span>
+                                <span class="grey bigger-110">(</span>
+                                <span class="grey bigger-110 unread"></span>
+                                <span class="grey bigger-110"> 件未读 )</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-list-container">
+                        <div class="message-list">
+                            <div class="message-head">
+                                <span class="sender" title="">发送人</span>
+                                <span class="time">时间</span>
+                                <span class="summary"><span class="text">标题</span></span></div>
+                        </div>
+                        <div class="hr-double"></div>
+                        <div class="message-list" id="id-message-list">
+                            <!-- 自动生成通知内容 -->
+                        </div>
+                    </div>
+
+                    <div class="message-footer clearfix">
+                        <div class="pull-left"></div>
+                        <div class="pull-right">
+                            <div class="inline middle">1 / 1</div>
+
+                            &nbsp; &nbsp;
+                            <ul class="pagination middle">
+                                <li class="disabled">
+                                <span>
+                                    <i class="ace-icon fa fa-step-backward middle"></i>
+                                </span>
+                                </li>
+                                <li class="disabled">
+                                <span>
+                                    <i class="ace-icon fa fa-caret-left bigger-140 middle"></i>
+                                </span>
+                                </li>
+                                <li>
+                                <span>
+                                    <input value="1" maxlength="3" title="页码"/>
+                                </span>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-caret-right bigger-140 middle"></i>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="ace-icon fa fa-step-forward middle"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!-- /.tab-content -->
+    </div><!-- /.tabbable -->
+</div>
+
+<div class="hide message-content" id="id-message-content">
+    <div class="message-header clearfix">
+        <div class="pull-left">
+            <span class="blue bigger-125 summary"></span>
+            <div class="space-4"></div>
+            <i class="ace-icon fa fa-star orange2"></i>
+            &nbsp;
+            <a href="#" class="sender"></a>
+            &nbsp;
+            <i class="ace-icon fa fa-clock-o bigger-110 orange middle"></i>
+            <span class="time grey"></span>
+        </div>
+    </div>
+    <div class="hr hr-double"></div>
+    <div class="message-body"></div>
+    <div class="hr hr-double"></div>
+<!--信息附件-->
+    <div class="message-attachment clearfix">
+        <div class="attachment-title">
+            <span class="blue bolder bigger-110">附件</span>
+            &nbsp;
+            <span class="grey attachment-desc"></span>
+        </div>
+        &nbsp;
+        <ul class="attachment-list pull-left list-unstyled">
+            <!-- 附件加载 -->
+        </ul>
+    </div>
+</div><!-- /.message-content -->
+
+<script>
+    var messageitemhtml = "<div class=\"message-item message-unread\"><span class=\"sender\" title=\"\"></span><span class=\"time\"></span><span class=\"hide attachment\"><i class=\"ace-icon fa fa-paperclip\"></i></span><span class=\"summary\"><span class=\"text\"></span></span></div>";
+    var attachmenthtml = "<li><a href=\"#\" class=\"attached-file\"><i class=\"ace-icon attached-icon bigger-110\"></i><span class=\"attached-name\"></span></a><span class=\"action-buttons\"><a href=\"#\"><i class=\"ace-icon fa fa-download bigger-125 blue\"></i></a></span></li>";
+    var messagelist = $("#id-message-list");
+    var notice = $("#notice");
+    //加载通知内容
+    $.ajax({
+        url: "../json/notice.json",
+        success: function (data) {
+            loadmessage(data);
+            updateunread();
+            fromwidget();
+        }
+    });
+
+    function loadmessage(data) {
+        /**
+         * @param data.sendusr        发送人
+         * @param data.sendtime       发送时间
+         * @param data.title          标题
+         */
+        var l = data.length;
+        for (var i = 0; i < l; i++) {
+            messagelist.append(messageitemhtml);
+            messagelist.find(".message-item:last").attr("id", data[i].id);
+            var messageitem = $("#" + data[i].id);
+            messageitem.find(".sender").text(data[i].sendusr);
+            messageitem.find(".time").text(data[i].sendtime);
+            messageitem.find(".text").text(data[i].title);
+            if (!jQuery.isEmptyObject(data[i].attachment)) {
+                messageitem.find(".attachment").removeClass("hide")
+            }
+            if (data[i].status) {
+                messageitem.removeClass("message-unread")
+            }
+        }
+    }
+
+    function fromwidget() {
+        var id = sessionStorage.getItem("noticeid");
+        if (id !== null) {
+            togglecontent($("#" + id));
+            sessionStorage.removeItem("noticeid");
+        }
+    }
+
+    //点击标题出现内容
+    messagelist.on('click', '.text', function () {
+        var message = $(this).closest('.message-item');
+        togglecontent(message);
+    });
+
+    //打开通知详细信息
+    function togglecontent(message) {
+        var id = message.attr("id");
+        //如果消息处于打开状态就关闭，
+        if (message.hasClass('message-inline-open')) {
+            message.removeClass('message-inline-open').find('.message-content').remove();
+            return;
+        }
+
+        message.removeClass("message-unread");
+        updateunread();
+        $('.message-item').removeClass('message-inline-open').find('.message-content').remove();
+        message
+            .addClass('message-inline-open')
+            .append('<div class="message-content" />');
+        message.find('.message-content:last').html($('#id-message-content').html());
+        loadcontent(id);
+    }
+
+    //从json加载详细内容
+    function loadcontent(id) {
+        /**
+         * @param data.sendusr        发送人
+         * @param data.sendtime       发送时间
+         * @param data.title          标题
+         * @param data.attachment     附件
+         */
+        var messagecontent = messagelist.find(".message-content");
+        $.ajax({
+            url: "../json/notice.json",
+            success: function (data) {
+                var l = data.length;
+                for (var i = 0; i < l; i++) {
+                    if (JSON.stringify(data[i].id) === id) {
+                        messagecontent.find(".sender").text(data[i].sendusr);
+                        messagecontent.find(".time").text(data[i].sendtime);
+                        messagecontent.find(".summary").text(data[i].title);
+                        messagecontent.find(".message-body").text(data[i].content);
+                        if (jQuery.isEmptyObject(data[i].attachment)) {
+                            messagecontent.find(".message-attachment").addClass("hide")
+                        } else {
+                            var att = data[i].attachment.split(",");
+                            var m = att.length;
+                            messagecontent.find(".attachment-desc").text("(" + m + " 文件)");
+                            for (var j = 0; j < m; j++) {
+                                messagecontent.find(".attachment-list").append(attachmenthtml);
+                                var filename = att[j].substr(att[j].lastIndexOf('/') + 1);
+                                messagecontent.find(".attached-name:last").text(filename);
+                                messagecontent.find(".attached-name:last").closest("li").find("a").attr("href", att[j]).attr("download",filename);
+                                messagecontent.find(".attached-icon:last").addClass(attachmentsuffix(filename));
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    //更新未读通知
+    function updateunread() {
+        var unread = messagelist.find(".message-unread").length;
+        if (unread) {
+            $("#id-message-infobar").find(".unread").text(unread);
+            notice.find(".badge").removeClass("hide");
+            notice.find(".badge").removeClass("hide");
+            notice.find(".badge").text(unread);
+        } else {
+            notice.find(".badge").addClass("hide");
+        }
+    }
+</script>

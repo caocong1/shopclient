@@ -1,36 +1,52 @@
 <div class="row">
     <div class="col-md-3 col-md-push-9 col-sm-12 login-layout">
-        <div id="searchbox" class="widget-box visible">
+        <div id="searchbox" class="widget-box no-padding">
             <div class="widget-header widget-header-small">
-                <h5 class="widget-title smaller">查询</h5>
+                <h5 class="widget-title smaller">查询条件</h5>
+                <span class="widget-toolbar">
+				    <a href="javascript:closesearch()">
+						<i class="ace-icon fa fa-times"></i>
+					</a>
+				</span>
             </div>
             <div class="widget-body">
-                <div class="widget-main padding-6 clearfix">
-                    <div class="col-sm-12">
-                        <label for="accountperiod">选择账期：</label>
-                        <div class="input-group">
-                            <input id="accountperiod" class="form-control" type="text" readonly/>
-                            <span class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </span>
+                <div class="widget-main">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="monthpicker" type="text" class="form-control" placeholder="请点击选择日期"  readonly/>
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                    </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-1"></div>
+                        <div class="form-group">
+                            <select class="form-control">
+                                <option value="">请选择类型</option>
+                                <option value="1">aaa结算单</option>
+                                <option value="2">bbb结算单</option>
+                                <option value="3">ccc结算单</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <input id="byname" type="text" class="form-control" placeholder="请填入查找内容">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-grey btn-xs btn-round" type="button" name="search" title="确定查找"><i class="fa fa-search"></i>确定查找</a>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
-        <div id="b" class="widget-box no-border no white">
         </div>
     </div>
     <div class="col-md-9 col-md-pull-3 col-sm-12">
         <table id="settlementable"></table>
     </div>
 </div>
-<!--toolbar-->
-<div id="unsettletoolbar"></div>
-<div id="settletoolbar"></div>
 
 <!--预览模态框-->
 <div id="previewmodal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
@@ -59,32 +75,129 @@
     </div>
 </div>
 
+<div id="unsettlement" class="hidden">
+<div class="tabbable tabs-below">
+    <div class="tab-content">
+        <div id="cui" class="tab-pane in active">
+            <span class="bolder">
+                <table id="unsettlementable"></table>
+            </span>
+        </div>
+        <div id="zhi" class="tab-pane">
+            <span class="bolder">
+                <table id="zhitable"></table>
+            </span>
+        </div>
+    </div>
+    <ul class="nav nav-tabs" id="myTab2">
+        <li>
+            <a data-toggle="tab" href="javascript:preview()">结算单</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#cui">催缴单</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#zhi">滞纳金单</a>
+        </li>
+    </ul>
+</div>
+</div>
+
+
 <script>
+    $("#monthpicker").datetimepicker({
+        language:"zh-CN",
+        format:"yyyy-mm",
+        startView: "year",
+        minView:"year",
+        autoclose:true
+    });
     var settlementable = $("#settlementable");
     var unsettlementable = $("#unsettlementable");
-    $(function(){
-        singledatepicker("accountperiod");
-        settlementable.bootstrapTable("destroy").bootstrapTable({
-            url: "../json/settlement201708.json",
+    singledatepicker("accountperiod");
+    settlementable.bootstrapTable("destroy").bootstrapTable({
+        url: "../json/settlement201708.json",
+        striped: true,
+        pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
+        uniqueId: "id",
+        showRefresh: true,
+        showSearch:true,
+        onSearchbtn:function(){
+            ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
+        },
+        toolbar: '#settletoolbar',
+        toolbartitle:"结算单列表",
+        detailView:true,
+        detailFormatter:settledetail,
+        columns: [{
+            field: "read",
+            title: "阅读状态",
+            align:"center",
+            formatter:function(value,row,index){
+                var icon="",color="",text="";
+                if(value){
+                    icon="fa-envelope-o";
+                    color="grey";
+                    text="已读"
+                }else {
+                    icon="fa-envelope-open-o";
+                    color="red";
+                    text="未读"
+                }
+                return "<i class=\"bigger-120 text-center fa " + icon + " " + color + "\">"+text+"</i>"
+            }
+        },{
+            field: "settlementcode",
+            title: "结算单号"
+        }, {
+            field: "type",
+            title: "结算类型"
+        }, {
+            field: "startdate",
+            title: "起始时间"
+        }, {
+            field: "enddate",
+            title: "结束时间"
+        }, {
+            field: "status",
+            title: "结算单状态",
+            align:"center",
+            formatter:function (value,row,index) {
+                var label,status;
+                if(value===1){
+                    label = "label-info";
+                    status = "结算"
+                }else if(value===2){
+                    label = "label-warning";
+                    status = "催缴"
+                }else if(value===3){
+                    label = "label-danger";
+                    status = "滞纳"
+                }else if(value===4){
+                    label = "label-success";
+                    status = "核销"
+                }
+                return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
+            }
+        }],
+        onClickRow:tableclickexpand
+    });
+    function settledetail(index,row) {
+        var status = row.status;
+        unsettlementable.bootstrapTable("destroy").bootstrapTable({
+            data:row.detail,
             striped: true,
-            pagination: true,
-            paginationLoop: true,
             sidePagination:	'client',
-            pageSize:"12",
-            pageList:[15,25,50],
             uniqueId: "id",
-            showRefresh: true,
-            showSearch:true,
-            onSearchbtn:function(){
-                ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
-            },
-            toolbar: '#settletoolbar',
-            toolbartitle:"结算单列表",
-            detailView:true,
-            detailFormatter:settledetail,
+            toolbarauto:false,
             columns: [{
                 field: "read",
                 title: "阅读状态",
+                align:"center",
                 formatter:function(value,row,index){
                     var icon="",color="",text="";
                     if(value){
@@ -99,54 +212,72 @@
                     return "<i class=\"bigger-120 text-center fa " + icon + " " + color + "\">"+text+"</i>"
                 }
             },{
-                field: "settlementcode",
-                title: "结算单号",
-                formatter:function(value,row,index){
-                    return "<a href='javascript:preview("+value+","+row.read+","+index+")'>"+value+"</a>"
-                }
+                field: "code",
+                title: "单号"
             }, {
-                field: "type",
-                title: "结算类型"
+                field: "title",
+                title: "标题"
             }, {
-                field: "startdate",
-                title: "起始时间"
-            }, {
-                field: "enddate",
-                title: "结束时间"
-            }, {
-                field: "status",
-                title: "结算单状态",
-                formatter:function (value,row,index) {
-                    var label,status;
-                    if(value===1){
-                        label = "label-info";
-                        status = "结算"
-                    }else if(value===2){
-                        label = "label-warning";
-                        status = "催缴"
-                    }else if(value===3){
-                        label = "label-danger";
-                        status = "滞纳"
-                    }else if(value===4){
-                        label = "label-success";
-                        status = "核销"
-                    }
-                    return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
-                }
-            }],
-//            onClickRow:function(row,$element){
-//                if(!row.read){
-//                    $element.find(".bigger-120").removeClass("fa-envelope-open-o red");
-//                    $element.find(".bigger-120").addClass("fa-envelope-o grey");
-//                    $element.find(".bigger-120").text("已读")
-//                }
-//                updateunread()
-//            }
+                field: "createtime",
+                title: "创建时间"
+            }]
         });
-        function settledetail(index,row) {
-
+        $("#zhitable").bootstrapTable("destroy").bootstrapTable({
+            data:row.detail,
+            striped: true,
+            sidePagination:	'client',
+            uniqueId: "id",
+            toolbarauto:false,
+            columns: [{
+                field: "read",
+                title: "阅读状态",
+                align:"center",
+                formatter:function(value,row,index){
+                    var icon="",color="",text="";
+                    if(value){
+                        icon="fa-envelope-o";
+                        color="grey";
+                        text="已读"
+                    }else {
+                        icon="fa-envelope-open-o";
+                        color="red";
+                        text="未读"
+                    }
+                    return "<i class=\"bigger-120 text-center fa " + icon + " " + color + "\">"+text+"</i>"
+                }
+            },{
+                field: "code",
+                title: "单号"
+            }, {
+                field: "title",
+                title: "标题"
+            }, {
+                field: "createtime",
+                title: "创建时间"
+            }]
+        });
+        if(status===1){
+            settlementable.bootstrapTable("collapseAllRows");
+            preview()
+        }else if(status===2){
+            $("#myTab2").find("li").removeClass("active");
+            $("#myTab2").find("li").removeClass("hidden");
+            $("#myTab2").find("li:eq(1)").addClass("active");
+            $("#myTab2").find("li:eq(2)").addClass("hidden");
+            return $("#unsettlement").clone().removeClass("hidden")
+        }else if(status===3){
+            $("#myTab2").find("li").removeClass("active");
+            $("#myTab2").find("li").removeClass("hidden");
+            $("#myTab2").find("li:eq(2)").addClass("active");
+            return $("#unsettlement").clone().removeClass("hidden")
+        }else if(status===4){
+            $("#myTab2").find("li").removeClass("active");
+            $("#myTab2").find("li").removeClass("hidden");
+            $("#myTab2").find("li:eq(2)").addClass("active");
+            return $("#unsettlement").clone().removeClass("hidden")
         }
-    });
+    }
+
 
 	$("#savepdf").click(function(){
 //		var pdf = new jsPDF('p', 'pt', 'a4');
@@ -159,7 +290,7 @@
         window.location.href="attachment/settlement/2.pdf"
 	});
     function preview(scode,read,index) {
-        if(!read){
+        if(read==="0"){
             settlementable.bootstrapTable("updateCell",index,read,1)
         }
         $("#previewmodal").modal("show");

@@ -28,8 +28,8 @@ nav =
             "id": 10,
             "navname": "客户投诉",
             "status": 1,
-            "icon": "fa-wrench",
-            "page": "repair",
+            "icon": "fa-headphones",
+            "page": "complain",
             "subnav": []
         },
         {
@@ -48,7 +48,7 @@ nav =
                 },
                 {
                     "id": 5,
-                    "navname": "销售补录",
+                    "navname": "销售调帐",
                     "status": 1,
                     "icon": "fa-jpy",
                     "page": "adjust",
@@ -179,36 +179,40 @@ var navright =
 ;
 
 pickercn = {
-    "format": "YYYY-MM-DD",
-    "separator": "-",
-    "applyLabel": "确认",
-    "cancelLabel": "取消",
-    "fromLabel": "From",
-    "toLabel": "To",
-    "customRangeLabel": "Custom",
-    "weekLabel": "W",
-    "daysOfWeek": [
-        "日",
-        "一",
-        "二",
-        "三",
-        "四",
-        "五",
-        "六"
-    ],
-    "monthNames": [
-        "1月",
-        "2月",
-        "3月",
-        "4月",
-        "5月",
-        "6月",
-        "7月",
-        "8月",
-        "9月",
-        "10月",
-        "11月",
-        "12月"
-    ],
-    "firstDay": 1
+    // "format": "YYYY-MM-DD",
+    // "separator": "-",
+    applyLabel: '确认',
+    cancelLabel: '取消',
+    fromLabel : '起始时间',
+    toLabel : '结束时间',
+    customRangeLabel : '自定义',
+    firstDay : 1
+    // "fromLabel": "From",
+    // "toLabel": "To",
+    // "customRangeLabel": "Custom",
+    // "weekLabel": "W",
+    // "daysOfWeek": [
+    //     "日",
+    //     "一",
+    //     "二",
+    //     "三",
+    //     "四",
+    //     "五",
+    //     "六"
+    // ],
+    // "monthNames": [
+    //     "1月",
+    //     "2月",
+    //     "3月",
+    //     "4月",
+    //     "5月",
+    //     "6月",
+    //     "7月",
+    //     "8月",
+    //     "9月",
+    //     "10月",
+    //     "11月",
+    //     "12月"
+    // ],
+    // "firstDay": 1
 };

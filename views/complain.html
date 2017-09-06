@@ -43,11 +43,10 @@
         </div>
     </div>
     <div class="col-md-9 col-md-pull-3 col-sm-12">
-        <table id="repairtable"></table>
+        <table id="complaintable"></table>
     </div>
 </div>
-<div id="toolbar">
-</div>
+<div id="toolbar"></div>
 <div id="repairtimeline" class="hide">
     <div class="row">
         <div class="col-sm-2">
@@ -65,7 +64,7 @@
                             <div class="widget-body">
                                 <div class="widget-main no-padding">
                                     <span class="red bolder">
-                                        发起报修
+                                        发起客诉
                                     </span>
                                 </div>
                             </div>
@@ -73,7 +72,7 @@
                         <div class="widget-box">
                             <div class="widget-body">
                                 <div class="widget-main">
-                                    报修内容：
+                                    客诉内容：
                                     <span id="repaircontent" class="text-warning"></span>
                                 </div>
                             </div>
@@ -96,7 +95,7 @@
                         <div class="widget-box">
                             <div class="widget-body">
                                 <div class="widget-main">
-                                    接受处理内容：
+                                    接受处理备注：
                                     <span id="acceptcontent" class="text-warning"></span>
                                 </div>
                             </div>
@@ -130,46 +129,46 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="newrepair" tabindex="-1" role="dialog">
+<div class="modal fade" id="newcomplain" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">添加报修记录</h4>
+                <h4 class="modal-title">添加客诉记录</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
                         <div class="form-group">
-                            <label class="col-sm-2 col-sm-offset-1">报修类型:</label>
+                            <label class="col-sm-2 col-sm-offset-1">客诉类型:</label>
                             <div class="col-sm-4">
                                 <select class="form-control" id="cardtype1" title="报修类型">
-                                    <option value="水电气">水电气</option>
-                                    <option value="设备设施">设备设施</option>
-                                    <option value="网络">网络</option>
-                                    <option value="POS">POS</option>
+                                    <option value="商品">商品</option>
+                                    <option value="店铺">店铺</option>
+                                    <option value="店员">店员</option>
+                                    <option value="商城">商城</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                        <label class="col-sm-2 col-sm-offset-1">报修内容：</label>
-                        <div class="col-sm-4">
-                            <input id="byname" class="form-control" placeholder="请填入报修内容">
-                        </div>
+                            <label class="col-sm-2 col-sm-offset-1">客诉内容：</label>
+                            <div class="col-sm-4">
+                                <input id="byname" class="form-control" placeholder="请填入客诉内容">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
-                    <label class="col-sm-6 col-sm-offset-1 ace-file-input">
-                        <input type="file" id="id-input-file-2">
-                        <span class="ace-file-container" data-title="Choose">
+                        <label class="col-sm-6 col-sm-offset-1 ace-file-input">
+                            <input type="file" id="id-input-file-2">
+                            <span class="ace-file-container" data-title="Choose">
                             <span class="ace-file-name" data-title="点击上传文件">
                                 <i class=" ace-icon fa fa-upload"></i>
                             </span>
                         </span>
-                        <a class="remove" href="#">
-                            <i class=" ace-icon fa fa-times">
-                            </i>
-                        </a>
-                    </label>
+                            <a class="remove" href="#">
+                                <i class=" ace-icon fa fa-times">
+                                </i>
+                            </a>
+                        </label>
                     </div>
                 </form>
             </div>
@@ -181,9 +180,9 @@
     </div>
 </div>
 <script>
-    var repairtable = $("#repairtable");
-    repairtable.bootstrapTable("destroy").bootstrapTable({
-        url: "../json/repair.json",
+    var complaintable = $("#complaintable");
+    complaintable.bootstrapTable("destroy").bootstrapTable({
+        url: "../json/complain.json",
         striped: true,
         pagination: true,
         paginationLoop: true,
@@ -198,23 +197,23 @@
         },
         showAdd:true,
         onAddbtn:function(){
-            $('#newrepair').modal('show')
+            $('#newcomplain').modal('show')
         },
         toolbar: '#toolbar',
-        toolbartitle:"报修列表",
+        toolbartitle:"客诉列表",
         detailView:true,
-        detailFormatter:repairdetail,
+        detailFormatter:complaindetail,
         columns: [{
             field: "startime",
-            title: "报修时间",
+            title: "创建时间",
             width:"160px"
         }, {
-            field: "repairtype",
-            title: "报修类型",
+            field: "complaintype",
+            title: "客诉类型",
             width:"15%"
         }, {
-            field: "repaircontent",
-            title: "报修内容"
+            field: "complaincontent",
+            title: "客诉内容"
         }, {
             field: "status",
             title: "状态",
@@ -224,7 +223,7 @@
                 var label,status;
                 if(value==="1"){
                     label = "label-danger";
-                    status = "发起报修"
+                    status = "发起客诉"
                 }else if(value==="2"){
                     label = "label-warning";
                     status = "接受处理"
@@ -237,7 +236,7 @@
         }],
         onClickRow:tableclickexpand
     });
-    function repairdetail(index,row){
+    function complaindetail(index,row){
         console.log(index);
         /**
          * @param row.startime        报修时间
