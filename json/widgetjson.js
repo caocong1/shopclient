@@ -1,4 +1,4 @@
-var widgetableshtml = '<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col">\n' +
+var widgetableshtml = '<div class="col-xs-12 col-sm-6 col-md-4">\n' +
     '    <div class="widget-box widget-color-dark">\n' +
     '        <div class="widget-header">\n' +
     '            <h5 class="widget-title"></h5>\n' +

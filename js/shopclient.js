@@ -2,6 +2,7 @@
  * 商户端js
  */
 var body = $("body");
+var $sidebar = $("#sidebar");
 var sprintf = $.fn.bootstrapTable.utils.sprintf;
 //判断是否登录
 $(function () {
@@ -25,40 +26,60 @@ function loadwidget() {
     var storecode = sessionStorage.getItem("storecode");
     $(".user-info").append(storecode + "店铺<small>" + username + "</small>");
     loadnav();
-    navjump("widget", "首页");
+    navjump(0);
 }
 //导航跳转
-function navjump(page, navname) {
-    $("#main").load(page + ".html");
-    $("#sidebar").find("li").removeClass("active");
-    $("#sidebar").removeClass("display");
-    $("#" + page).addClass("active");
-    $(".page-header").find("h1").text(navname);
+function navjump(id) {
+    for(var i=0;i<nav.length;i++){
+        // debugger;
+        if(nav[i].children.length===0){
+            if(nav[i].id===id){
+                activenav(nav[i]);
+                return
+            }
+        }else{
+            for(var j=0;j<nav[i].children.length;j++){
+                var c = nav[i].children;
+                if(c[j].id===id){
+                    activenav(c[j]);
+                    return
+                }
+            }
+        }
+    }
 }
+function activenav(nav){
+    $("#main").load(nav.page+".html");
+    $sidebar.find("li").removeClass("active");
+    $sidebar.removeClass("display");
+    $("#" + nav.page).addClass("active");
+    $(".page-header").find("h1").text(nav.text);
+}
+
 //加载导航菜单
 function loadnav() {
     var navbar = $("#sidebar");
     var navlength = nav.length;
-    navbar.append("<ul class=\"nav nav-list\"><li id =\"widget\" class=\"active\"><a href=\"javascript:navjump('widget','首页');\"><i class=\"menu-icon fa fa-tachometer\"></i><span class=\"menu-text\">首页</span></a><b class=\"arrow\"></b></li></ul>");
+    navbar.append("<ul class=\"nav nav-list\"></ul>");
     var navlist = $(".nav-list");
     for (var i = 0; i < navlength; i++) {
-        navlist.append("<li><a><i class=\"menu-icon fa " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].navname + "</span><b class=\"arrow\"></b></a></li>");
-        if (jQuery.isEmptyObject(nav[i].subnav)) {
+        navlist.append("<li><a><i class=\"menu-icon " + nav[i].icon + "\"></i><span class=\"menu-text\">" + nav[i].text + "</span><b class=\"arrow\"></b></a></li>");
+        if (jQuery.isEmptyObject(nav[i].children)) {
             navbar.find("li:last").attr("id", nav[i].page);
-            navbar.find("a:last").attr("href", "javascript:navjump('" + nav[i].page + "','" + nav[i].navname + "');");
+            navbar.find("a:last").attr("href", "javascript:navjump(" + nav[i].id + ");");
         } else {
             navbar.find("a:last").addClass("dropdown-toggle");
             $(".nav-list b:last").addClass("fa fa-angle-down");
-            createsubnav(nav[i].subnav);
+            createsubnav(nav[i].children);
         }
     }
 }
-function createsubnav(subnav) {
+function createsubnav(children) {
     $("#sidebar").find("li:last").append("<ul class=\"submenu\"></ul>");
-    var sublength = subnav.length;
+    var sublength = children.length;
     var ul = $(".submenu:last");
     for (var i = 0; i < sublength; i++) {
-        ul.append("<li id = \"" + subnav[i].page + "\"><a href =\"javascript:void(0);\" onclick=\"navjump('" + subnav[i].page + "','" + subnav[i].navname + "')\"><i class=\"menu-icon fa " + subnav[i].icon + "\"></i>" + subnav[i].navname + "<b class=\"arrow\"></b></a></li>");
+        ul.append("<li id = \"" + children[i].page + "\"><a href =\"javascript:navjump(" + children[i].id + ");\"><i class=\"menu-icon " + children[i].icon + "\"></i>" + children[i].text + "<b class=\"arrow\"></b></a></li>");
     }
 }
 
@@ -75,12 +96,6 @@ function attachmentsuffix(filename) {
         return "fa fa-file-pdf-o"
     }
 }
-
-//鼠标悬停下拉菜单
-// $(".dropdown-modal").on("mouseover",function () {
-//     $(this).addClass("open")}).on("mouseout",function () {
-//         $(this).removeClass("open")
-//     });
 
 //表格点击展开关闭
 function tableclickexpand($table,$element) {
@@ -168,7 +183,7 @@ function hiddenbyid(id){$("#"+id).addClass("hidden")}
              html = [],
              barhtml = [];
 
-        html.push(sprintf('<span class="bootstraptable-title bigger-120"><i class="fa fa-table"></i>%s</span>',this.options.toolbartitle));
+        html.push(sprintf('<span class="bootstraptable-title bigger-120"><i class="fa fa-table"></i>&nbsp;%s</span>',this.options.toolbartitle));
         that.$toolbar.prepend(html);
 
         if (this.options.showAdd) {

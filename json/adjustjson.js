@@ -9,13 +9,13 @@ var dayadjustpayhtml = '<div class="row hidden">\n' +
     '                    <div class="col-sm-3">\n' +
     '                        <div class="input-group">\n' +
     '                            <span class="input-group-addon">调帐金额</span>\n' +
-    '                            <input class="form-control" type="text" title="adjust"/>\n' +
+    '                            <input class="form-control amount" type="text" title="adjust"/>\n' +
     '                        </div>\n' +
     '                    </div>\n' +
     '                    <div class="col-sm-3">\n' +
     '                        <div class="input-group">\n' +
     '                            <span class="input-group-addon">调帐后</span>\n' +
-    '                            <input class="form-control" type="text" title="after"/>\n' +
+    '                            <input class="form-control amount" type="text" title="after"/>\n' +
     '                        </div>\n' +
     '                    </div>\n' +
     '                    <div class="col-sm-1">\n' +
@@ -24,6 +24,41 @@ var dayadjustpayhtml = '<div class="row hidden">\n' +
     '                        </button>\n' +
     '                    </div>\n' +
     '                </div>';
+
+var dayadjustsumhtml = '<div class="hr"></div>\n' +
+    '<div class="row" id="total">\n' +
+    '    <label class="col-sm-2">总计：</label>\n' +
+    '    <div class="col-sm-3">\n' +
+    '        <div class="input-group">\n' +
+    '            <span class="input-group-addon">调帐前</span>\n' +
+    '            <input class="form-control" type="text" title="before" readonly>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="col-sm-3">\n' +
+    '        <div class="input-group">\n' +
+    '            <span class="input-group-addon">调帐金额</span>\n' +
+    '            <input class="form-control" type="text" title="adjust" readonly>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="col-sm-3">\n' +
+    '        <div class="input-group">\n' +
+    '            <span class="input-group-addon">调帐后</span>\n' +
+    '            <input class="form-control" type="text" title="after" readonly>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '    <div class="col-sm-1">\n' +
+    '        <button class="btn btn-white btn-round hidden">\n' +
+    '            <i class="ace-icon fa fa-times"></i>\n' +
+    '        </button>\n' +
+    '    </div>\n' +
+    '</div>\n' +
+    '<div class="space-6"></div>\n' +
+    '<div id="remark" class="row">\n' +
+    '    <label class="col-sm-2">备注:</label>\n' +
+    '    <div class="col-sm-10">\n' +
+    '        <input class="form-control" type="text">\n' +
+    '    </div>\n' +
+    '</div>';
 
 var monthadjustinit = '<div class="row">\n' +
     '    <div class="col-sm-6">\n' +
@@ -45,7 +80,7 @@ var monthadjustinit = '<div class="row">\n' +
 
 var monthadjustpayhtml ='<div class="row hidden">\n' +
     '                    <div class="col-sm-2">\n' +
-    '                        <input class="form-control daypicker" type="text" readonly/>\n' +
+    '                        <input class="form-control" type="text" readonly/>\n' +
     '                    </div>\n' +
     '                    <div class="col-sm-3">\n' +
     '                        <div class="input-group">\n' +
@@ -56,13 +91,13 @@ var monthadjustpayhtml ='<div class="row hidden">\n' +
     '                    <div class="col-sm-3">\n' +
     '                        <div class="input-group">\n' +
     '                            <span class="input-group-addon">调帐金额</span>\n' +
-    '                            <input class="form-control" type="text" title="adjust">\n' +
+    '                            <input class="form-control amount" type="text" title="adjust">\n' +
     '                        </div>\n' +
     '                    </div>\n' +
     '                    <div class="col-sm-3">\n' +
     '                        <div class="input-group">\n' +
     '                            <span class="input-group-addon">调帐后</span>\n' +
-    '                            <input class="form-control" type="text" title="after">\n' +
+    '                            <input class="form-control amount" type="text" title="after">\n' +
     '                        </div>\n' +
     '                    </div>\n' +
     '                    <div class="col-sm-1">\n' +
@@ -95,4 +130,11 @@ var monthsumhtml ='<div class="hr"></div><div class="row hidden">\n' +
     '                    <div class="col-sm-1">\n' +
     '                        \n' +
     '                    </div>\n' +
+    '                </div>' +
+    '                <div class="space-6"></div>\n' +
+    '                <div id="remark" class="row hidden">\n' +
+    '                        <label class="col-sm-2">备注:</label>\n' +
+    '                        <div class="col-sm-10">\n' +
+    '                        <input class="form-control" type="text" />\n' +
+    '                        </div>\n' +
     '                </div>';

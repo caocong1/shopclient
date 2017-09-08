@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <input id="byname" type="text" class="form-control" placeholder="请填入查找内容">
+                                <input id="byname" type="text" class="form-control" placeholder="请填入结算单号">
                             </div>
                         </div>
                         <div class="form-group">
@@ -83,21 +83,21 @@
                 <table id="unsettlementable"></table>
             </span>
         </div>
-        <div id="zhi" class="tab-pane">
+        <div id="overdue" class="tab-pane">
             <span class="bolder">
-                <table id="zhitable"></table>
+                <table id="overduetable"></table>
             </span>
         </div>
     </div>
     <ul class="nav nav-tabs" id="myTab2">
         <li>
-            <a data-toggle="tab" href="javascript:preview()">结算单</a>
+            <a href="javascript:preview();">结算单</a>
         </li>
         <li>
             <a data-toggle="tab" href="#cui">催缴单</a>
         </li>
         <li>
-            <a data-toggle="tab" href="#zhi">滞纳金单</a>
+            <a data-toggle="tab" href="#overdue">滞纳金单</a>
         </li>
     </ul>
 </div>
@@ -184,7 +184,10 @@
                 return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
             }
         }],
-        onClickRow:tableclickexpand
+        onClickRow:function(row, $element){
+            tableclickexpandread(settlementable,row,$element);
+//            updatenoticeunread()
+        }
     });
     function settledetail(index,row) {
         var status = row.status;
@@ -222,7 +225,7 @@
                 title: "创建时间"
             }]
         });
-        $("#zhitable").bootstrapTable("destroy").bootstrapTable({
+        $("#overduetable").bootstrapTable("destroy").bootstrapTable({
             data:row.detail,
             striped: true,
             sidePagination:	'client',
@@ -319,10 +322,6 @@
             }
         });
     }
-//    singledatepicker("accountperiod");
-    $(function() {
-
-    });
     function updateunread() {
         var unread = settlementable.find(".fa-envelope-open-o").length;
         $("#settlementdoc").find(".badge").text(unread);

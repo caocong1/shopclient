@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="row">
+    <div class="col-sm-12">
+        <div id="yearchart" style="width:100%;height:500px;"></div>
+    </div>
+</div>
+<div id="monthdetail" class="row hidden">
+    <div class="col-sm-12">
+        <table id="monthtable"></table>
+    </div>
+</div>
 
-</body>
-</html>
+<script>
+    $(function () {
+        var myChart = echarts.init(document.getElementById('yearchart'));
+//        myChart = echarts.getInstanceByDom(document.getElementById('yearchart'));
+//            echarts.init(document.getElementById('yearchart'));
+        $.ajax({
+            url: '../json/chart.json',
+            dataType: "json",
+            success: function (data) {
+                myChart.setOption({
+                    title: {
+                        text: '2017年月销售柱状图'
+                    },
+                    xAxis: {
+                        data: data.month,
+                        axisLabel: {interval: 0}
+                    },
+                    yAxis: {},
+                    series: [{
+                        name: '销量',
+                        type: 'bar',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        data: data.amount
+                    }]
+                })
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+                debugger
+            }
+        });
+        myChart.on('click', function (params) {
+            $("#monthdetail").removeClass("hidden");
+            var title=params.name;
+            var month = moment(title, "YYYY年MMM");
+            var daynum = month.daysInMonth();
+            var startday = month.subtract(1, 'days');
+            var col = [];
+            var data = "[{\"0\":\"销售\",";
+            var t0 = {field: "0", title: "日期", align: "center"};
+            col.push(t0);
+            for (var i = 0; i < daynum; i++){
+                var formatdate = startday.add(1,'days').format("YYYY年MMMD日");
+                data+="\""+formatdate+"\":\""+(Math.round(Math.random()*5000000+500000)/100)+"\"";
+                if(i<(daynum-1)){data+=","}
+                var temp = {field: formatdate, title: formatdate, align: "center"};
+                col.push(temp);
+            }
+            data+="}]";
+            var datajson = JSON.parse(data);
+            $('#monthtable').bootstrapTable('destroy').bootstrapTable({
+                data: datajson,
+                toolbartitle: title+"销售详细",
+                showRefresh: true,
+                columns: col
+            });
+        });
+        var c = echarts.getInstanceByDom(document.getElementById('yearchart'));
+        window.onresize = function(){
+            c.resize();
+        }
+    })
+
+</script>

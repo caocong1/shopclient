@@ -1,105 +1,217 @@
 <div class="row">
-    <div class="col-sm-2 col-sm-offset-1">
-        <div id="index" class="panel-body" style="position:fixed;">
-            <ul>
-                <li>
-                    <h4><a href="#1">店铺信息</a></h4>
-                </li>
-                <li>
-                    <h4><a href="#2">个人参数</a></h4>
-                </li>
-                <li>
-                    <h4><a href="#2">系统参数</a></h4>
-                </li>
-            </ul>
+    <div class="col-sm-10">
+        <div id="accordion" class="accordion-style1 accordion-style2 panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <i class="ace-icon fa fa-angle-down bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;<span class="bigger-130">店铺信息</span>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse in" id="collapseOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-3">店铺图标：</label>
+                            <div class="col-sm-7">
+                                <label class="ace-file-input">
+                                    <input type="file" id="id-input-file-2">
+                                    <span class="ace-file-container" data-title="选择">
+                                        <span class="ace-file-name" data-title="点击上传">
+                                            <i class="ace-icon fa fa-upload"></i>
+                                        </span>
+                                    </span>
+                                    <a class="remove" href="#">
+                                        <i class="ace-icon fa fa-times"></i>
+                                    </a>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">店长姓名：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">店长联系方式：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">开票公司全称：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">开票地址：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">开票电话：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">开票银行基本户账号：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">开票税务登记号：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;<span class="bigger-130">用户信息</span>
+                        </a>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapseTwo">
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-sm-3">姓名：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">联系方式：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">证件类型：</label>
+                            <div class="col-sm-7">
+                                <select class="form-control" title="证件类型">
+                                    <option value="身份证">身份证</option>
+                                    <option value="护照">护照</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">证件号码：</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            <i class="ace-icon fa fa-angle-right bigger-110" data-icon-hide="ace-icon fa fa-angle-down" data-icon-show="ace-icon fa fa-angle-right"></i>
+                            &nbsp;<span class="bigger-130">系统参数</span>
+                        </a>
+                    </h4>
+                </div>
+
+                <div class="panel-collapse collapse" id="collapseThree">
+                    <div class="panel-body">
+                        <div class="row">
+                            <label for="skin-colorpicker" class="col-sm-3">系统皮肤：</label>
+                            <div class="col-sm-7">
+                                <select id="skin-colorpicker" onchange="changeskin(this.options[this.options.selectedIndex].value)">
+                                    <option value="no-skin">皮肤1</option>
+                                    <option value="skin-1" selected>皮肤2</option>
+                                    <option value="skin-2">皮肤3</option>
+                                    <option value="skin-3">皮肤4</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">首页提醒插件：</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox">
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" checked>
+                                        <span class="lbl bigger-120">通知公告提醒</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" checked>
+                                        <span class="lbl bigger-120">财务单据提醒</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" checked>
+                                        <span class="lbl bigger-120">报修提醒</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" checked>
+                                        <span class="lbl bigger-120">客诉提醒</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" checked>
+                                        <span class="lbl bigger-120">调帐提醒</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-6"></div>
+                        <div class="row">
+                            <label class="col-sm-3">首页快捷方式入口：</label>
+                            <div class="col-sm-7">
+                                <div class="checkbox">
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" >
+                                        <span class="lbl bigger-120">新增报修</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" >
+                                        <span class="lbl bigger-120">新增客诉</span>
+                                    </label>
+                                    <label class="block">
+                                        <input name="form-field-checkbox" type="checkbox" class="ace input-lg" >
+                                        <span class="lbl bigger-120">新增调帐</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="content" class="col-sm-6">
-        <h2>
-            <a name="1">
-                店铺信息
-            </a>
-        </h2>
-        <p>店铺介绍：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-bank"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="ServerIp" value="127.0.0.1"></div>
-        <p></p>
-        <p>店长姓名：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-bolt"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="Port" value="8080"></div>
-        <p></p>
-        <p>店长联系方式：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-database"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="DataServer" value="10.10.10.209"></div>
-        <p></p>
-        <p>开票公司全称：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-user"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="UserName" value="root"></div>
-        <p></p>
-        <p>开票地址：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="password" value="3.14159265"></div>
-        <p></p>
-        <p>开票电话：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="password" value="3.14159265"></div>
-        <p></p>
-        <p>开票银行基本户账号：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="password" value="3.14159265"></div>
-        <p></p>
-        <p>开票税务登记号：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-key"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="password" value="3.14159265"></div>
-        <p></p>
-        <h2>
-            <a name="2">
-                个人参数
-            </a>
-        </h2>
-        <p>姓名：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-calculator"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AutoSettlmentDay" value="15"></div>
-        <p></p>
-        <p>联系方式：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-calculator"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AutoSettlmentDay" value="15"></div>
-        <p></p>
-        <p>证件类型：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-calculator"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AutoSettlmentDay" value="15"></div>
-        <p></p>
-        <p>证件号码：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-calculator"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AutoSettlmentDay" value="15"></div>
-        <p></p>
-        <h2>
-            <a name="2">
-                系统参数
-            </a>
-        </h2>
-        <p>皮肤：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-ban"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AdjustFinalDay" value="12"></div>
-        <p></p>
-        <p>首页通知插件：</p>
-        <div class="input-group"><span class="input-group-addon"><i class="fa fa-ban"
-                                                                    style="color:green;width:15px"></i></span><input
-                type="text" class="form-control" placeholder="AdjustFinalDay" value="12"></div>
-        <p></p>
-    </div>
 </div>
+
+<script>
+    for(var i=0;i<4;i++){
+        var skin =$("#skin-colorpicker").find("option:eq("+i+")").val();
+        if($("body").hasClass(skin)){
+            $("#skin-colorpicker").val(skin);
+        }
+    }
+function changeskin(skin) {
+    $("body").removeClass().addClass(skin)
+}
+</script>

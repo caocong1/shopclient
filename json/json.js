@@ -1,186 +1,96 @@
 nav =
-    [
+    [{
+        "id": 0,
+        "text": "首页",
+        "status": 1,
+        "icon": "fa fa-tachometer",
+        "page": "widget",
+        "children": []
+    },
         {
             "id": 1,
-            "navname": "通知公告",
+            "text": "通知公告",
             "status": 1,
-            "icon": "fa-envelope-open",
+            "icon": "fa fa-envelope-open",
             "page": "notice",
-			"subnav": []
+			"children": []
         },
         {
             "id": 2,
-            "navname": "财务单据",
+            "text": "财务单据",
             "status": 1,
-            "icon": "fa-newspaper-o",
+            "icon": "fa fa-newspaper-o",
             "page": "settlement",
-			"subnav": []
+			"children": []
         },
         {
             "id": 9,
-            "navname": "工程报修",
+            "text": "工程报修",
             "status": 1,
-            "icon": "fa-wrench",
+            "icon": "fa fa-wrench",
             "page": "repair",
-            "subnav": []
+            "children": []
         },
         {
             "id": 10,
-            "navname": "客户投诉",
+            "text": "客户投诉",
             "status": 1,
-            "icon": "fa-headphones",
+            "icon": "fa fa-headphones",
             "page": "complain",
-            "subnav": []
+            "children": []
         },
         {
             "id": 3,
-            "navname": "店铺销售",
+            "text": "店铺销售",
             "status": 1,
-            "icon": "fa-shopping-bag",
-            "subnav": [
+            "icon": "fa fa-shopping-bag",
+            "children": [
                 {
                     "id": 4,
-                    "navname": "销售报表",
+                    "text": "销售报表",
                     "status": 1,
-                    "icon": "fa-bar-chart",
+                    "icon": "fa fa-bar-chart",
                     "page": "chart",
-					"subnav": []
+					"children": []
                 },
                 {
                     "id": 5,
-                    "navname": "销售调帐",
+                    "text": "销售调帐",
                     "status": 1,
-                    "icon": "fa-jpy",
+                    "icon": "fa fa-jpy",
                     "page": "adjust",
-					"subnav": []
+					"children": []
                 }
             ]
         },
         {
             "id": 6,
-            "navname": "系统管理",
+            "text": "系统管理",
             "status": 1,
-            "icon": "fa-android",
-            "subnav": [
+            "icon": "fa fa-android",
+            "children": [
                 {
                     "id": 7,
-                    "navname": "店铺人员管理",
+                    "text": "店铺人员管理",
                     "status": 1,
-                    "icon": "fa-users",
+                    "icon": "fa fa-users",
                     "page": "person",
-					"subnav": []
+					"children": []
                 },
                 {
                     "id": 8,
-                    "navname": "系统设置",
+                    "text": "系统设置",
                     "status": 1,
-                    "icon": "fa-cog",
+                    "icon": "fa fa-cog",
                     "page": "system",
-					"subnav": []
+					"children": []
                 }
             ]
         }
     ]
 ;
 
-var navright =
-[
-    {
-        "id":1,
-        "text":"通知公告",
-        "status":1,
-        "icon":"fa fa-envelope-open",
-        "page":"notice",
-        "children":[
-
-        ]
-    },
-    {
-        "id":2,
-        "text":"财务通知单",
-        "status":1,
-        "icon":"fa fa-newspaper-o",
-        "page":"settlement",
-        "children":[
-
-        ]
-    },
-    {
-        "id": 9,
-        "text": "工程报修",
-        "status": 1,
-        "icon": "fa-newspaper-o",
-        "page": "repair",
-        "children": []
-    },
-    {
-        "id":3,
-        "text":"店铺销售",
-        "status":1,
-        "icon":"fa fa-shopping-bag",
-        "state":{
-            "opened":"true"
-        },
-        "children":[
-            {
-                "id":4,
-                "text":"销售报表",
-                "status":1,
-                "icon":"fa fa-bar-chart",
-                "page":"chart",
-                "children":[
-
-                ]
-            },
-            {
-                "id":5,
-                "text":"销售补录",
-                "status":1,
-                "icon":"fa fa-jpy",
-                "page":"adjust",
-                "children":[
-
-                ]
-            }
-        ]
-    },
-    {
-        "id":6,
-        "text":"系统管理",
-        "status":1,
-        "icon":"fa fa-android",
-        "state":{
-            "opened":"true"
-        },
-        "children":[
-            {
-                "id":7,
-                "text":"店铺人员管理",
-                "status":1,
-                "icon":"fa fa-users",
-                "page":"person",
-                "children":[
-
-                ]
-            },
-            {
-                "id":8,
-                "text":"系统设置",
-                "status":1,
-                "icon":"fa fa-cog",
-                "page":"system",
-                "children":[
-
-                ]
-            }
-        ]
-    }
-]
-;
-
 pickercn = {
-    // "format": "YYYY-MM-DD",
-    // "separator": "-",
     applyLabel: '确认',
     cancelLabel: '取消',
     fromLabel : '起始时间',

@@ -29,7 +29,7 @@
                         </div>
                         <div class="form-group">
                             <div class="">
-                                <input id="byname" type="text" class="form-control" placeholder="请填入查找内容">
+                                <input type="text" class="form-control" placeholder="请填入查找内容">
                             </div>
                         </div>
                         <div class="form-group">
@@ -234,7 +234,9 @@
                 return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
             }
         }],
-        onClickRow:tableclickexpand
+        onClickRow:function(row, $element){
+            tableclickexpand(complaintable,$element)
+        }
     });
     function complaindetail(index,row){
         console.log(index);

@@ -235,7 +235,9 @@
                 return "<span class=\"label " + label + " arrowed\">"+ status +"</span>"
             }
         }],
-        onClickRow:tableclickexpand
+        onClickRow:function(row, $element){
+            tableclickexpand(repairtable,$element)
+        }
     });
     function repairdetail(index,row){
         console.log(index);

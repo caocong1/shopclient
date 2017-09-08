@@ -1,4 +1,28 @@
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-notice">
+<div class="row">
+    <div class="col-sm-12">
+        <p id="welcome" class="alert alert-info">欢迎使用Noah商户系统，今天是</p>
+    </div>
+</div>
+<div class="hr hr-double"></div>
+<div class="row">
+    <div class="col-sm-2" style="text-align:center;margin-top: 20px;">
+        <h5>快捷入口:</h5>
+    </div>
+    <button class="btn btn-app btn-light btn-sm" onclick="navjump(9);">
+        <i class="ace-icon fa fa-wrench bigger-200"></i>
+        新增报修
+    </button>
+    <button class="btn btn-app btn-light btn-sm" onclick="navjump(10);">
+        <i class="ace-icon fa fa-headphones bigger-200"></i>
+        新增客诉
+    </button>
+    <button class="btn btn-app btn-light btn-sm" onclick="navjump(5);">
+        <i class="ace-icon fa fa-jpy bigger-200"></i>
+        新增调帐
+    </button>
+</div>
+<div class="hr hr-double"></div>
+<div class="col-xs-12 col-sm-6 col-md-4" id="widget-notice">
     <div class="widget-box widget-color-dark">
         <div class="widget-header">
             <h5 class="widget-title">通知公告提醒</h5>
@@ -16,83 +40,12 @@
         </div>
     </div>
 </div>
-<!--
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-settlement">
-    <div class="widget-box widget-color-dark">
-        <div class="widget-header">
-            <h5 class="widget-title">财务单据提醒</h5>
-            <div class="widget-toolbar">
-                <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up bigger-130"></i>
-                </a>
-                <a href="javascript:hiddenbyid('widget-settlement')">
-                    <i class="ace-icon fa fa-times bigger-130"></i>
-                </a>
-            </div>
-        </div>
-        <div class="widget-body">
-            <table id="widgetsettletable"></table>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-adjust">
-    <div class="widget-box widget-color-dark">
-        <div class="widget-header">
-            <h5 class="widget-title">调帐提醒</h5>
-            <div class="widget-toolbar">
-                <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up"></i>
-                </a>
-                <a href="javascript:hiddenbyid('widget-adjust')">
-                    <i class="ace-icon fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        <div class="widget-body">
-            <table id="widgetadjustable"></table>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-repair">
-    <div class="widget-box widget-color-dark">
-        <div class="widget-header">
-            <h5 class="widget-title">报修提醒</h5>
-            <div class="widget-toolbar">
-                <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up"></i>
-                </a>
-                <a href="javascript:hiddenbyid('widget-repair')">
-                    <i class="ace-icon fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        <div class="widget-body">
-            <table id="widgetrepairable"></table>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 col-sm-6 col-md-4 widget-container-col" id="widget-complain">
-    <div class="widget-box widget-color-dark">
-        <div class="widget-header">
-            <h5 class="widget-title">投诉提醒</h5>
-            <div class="widget-toolbar">
-                <a href="#" data-action="collapse">
-                    <i class="ace-icon fa fa-chevron-up"></i>
-                </a>
-                <a href="javascript:hiddenbyid('widget-complain')">
-                    <i class="ace-icon fa fa-times"></i>
-                </a>
-            </div>
-        </div>
-        <div class="widget-body">
-            <table id="widgetcomplainable"></table>
-        </div>
-    </div>
-</div>
--->
 <div id="widgetcontain"></div>
 <script src="../json/widgetjson.js"></script>
 <script>
+    var noon = moment().format('a');
+    var time=moment().format('llll');
+    $("#welcome").text(noon+"好，欢迎使用Noah商户系统，现在时间是"+time);
     var $widgetcontain = $("#widgetcontain");
     var widgetnotice = $("#widget-notice");
     var navnotice = $("#notice");
@@ -117,16 +70,10 @@
         }
     }
     $(function () {
-//        $widgetcontain.append(widgetableshtml);
-//        $widgetcontain.find(".widget-container-col:last").attr("id","widget-settlement");
-//        var $widgetsettlement = $("#widget-settlement");
-//        $widgetsettlement.find(".widget-title").text("财务单据提醒");
-//        $widgetsettlement.find("a:last").attr("href","javascript:hiddenbyid('widget-settlement')");
-//        $widgetsettlement.find("table").attr("id","widgetsettletable");
         addwidget("widget-settlement","财务单据提醒","widgetsettletable");
         addwidget("widget-adjust","调帐提醒","widgetadjustable");
         addwidget("widget-repair","报修提醒","widgetrepairable");
-        addwidget("widget-complain","投诉提醒","widgetcomplainable");
+        addwidget("widget-complain","客诉提醒","widgetcomplainable");
     });
     function addwidget(id,title,tableid){
         $widgetcontain.append(widgetableshtml);
@@ -284,26 +231,4 @@
         navjump("notice","通知公告");
     });
 
-    $('.widget-container-col').sortable({
-        connectWith: '.widget-container-col',
-        items:'> .widget-box',
-        handle: ace.vars['touch'] ? '.widget-title' : false,
-        cancel: '.fullscreen',
-        opacity:0.8,
-        revert:true,
-        forceHelperSize:true,
-        placeholder: 'widget-placeholder',
-        forcePlaceholderSize:true,
-        tolerance:'pointer',
-        start: function(event, ui) {
-            //when an element is moved, it's parent becomes empty with almost zero height.
-            //we set a min-height for it to be large enough so that later we can easily drop elements back onto it
-            ui.item.parent().css({'min-height':ui.item.height()})
-            //ui.sender.css({'min-height':ui.item.height() , 'background-color' : '#F5F5F5'})
-        },
-        update: function(event, ui) {
-            ui.item.parent({'min-height':''})
-            //p.style.removeProperty('background-color');
-        }
-    });
 </script>

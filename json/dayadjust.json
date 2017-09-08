@@ -2,6 +2,7 @@
   {
     "id": 1,
     "adjustdate": "2017-08-20",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -34,12 +35,18 @@
         "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   },
   {
     "id": 2,
     "adjustdate": "2017-08-21",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -72,12 +79,18 @@
         "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   },
   {
     "id": 3,
     "adjustdate": "2017-08-24",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -110,12 +123,18 @@
         "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   },
   {
     "id": 4,
     "adjustdate": "2017-08-25",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -148,12 +167,18 @@
         "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   },
   {
     "id": 5,
     "adjustdate": "2017-08-27",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -186,12 +211,62 @@
         "paytype": "其他",
         "beforeamount": 222,
         "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   },
   {
     "id": 6,
     "adjustdate": "2017-08-28",
+    "beforedayamount": 1776,
+    "afterdayamount": 1836,
+    "adjustcontent":"收银员录入失误",
+    "createtime": "2017-09-10 20:20:20",
+    "createuser": "管理员",
+    "acceptuser": "杨煎饼",
+    "acceptime": "2017-09-12 11:11:11",
+    "status": 2,
+    "adjustdetail": [
+      {
+        "paytype": "现金",
+        "beforeamount": 222,
+        "afteramount": 234
+      },
+      {
+        "paytype": "银行卡",
+        "beforeamount": 333,
+        "afteramount": 345
+      },
+      {
+        "paytype": "支付宝",
+        "beforeamount": 444,
+        "afteramount": 456
+      },
+      {
+        "paytype": "微信支付",
+        "beforeamount": 555,
+        "afteramount": 567
+      },
+      {
+        "paytype": "其他",
+        "beforeamount": 222,
+        "afteramount": 234
+      },
+      {
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "adjustdate": "2017-08-29",
+    "beforedayamount": 1776,
     "afterdayamount": 1836,
     "adjustcontent":"收银员录入失误",
     "createtime": "2017-09-10 20:20:20",
@@ -225,43 +300,11 @@
         "beforeamount": 222,
         "afteramount": 234
       }
-    ]
-  },
-  {
-    "id": 7,
-    "adjustdate": "2017-08-29",
-    "afterdayamount": 1836,
-    "adjustcontent":"收银员录入失误",
-    "createtime": "2017-09-10 20:20:20",
-    "createuser": "管理员",
-    "acceptuser": "杨煎饼",
-    "acceptime": "2017-09-12 11:11:11",
-    "status": 2,
-    "adjustdetail": [
+    ,
       {
-        "paytype": "现金",
-        "beforeamount": 222,
-        "afteramount": 234
-      },
-      {
-        "paytype": "银行卡",
-        "beforeamount": 333,
-        "afteramount": 345
-      },
-      {
-        "paytype": "支付宝",
-        "beforeamount": 444,
-        "afteramount": 456
-      },
-      {
-        "paytype": "微信支付",
-        "beforeamount": 555,
-        "afteramount": 567
-      },
-      {
-        "paytype": "其他",
-        "beforeamount": 222,
-        "afteramount": 234
+        "paytype": "总计",
+        "beforeamount": 1776,
+        "afteramount": 1836
       }
     ]
   }
