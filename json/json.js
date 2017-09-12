@@ -68,6 +68,14 @@ nav =
                     "icon": "fa fa-jpy",
                     "page": "adjust",
                     "children": []
+                },
+                {
+                    "id": 12,
+                    "text": "销售补录",
+                    "status": 1,
+                    "icon": "fa fa-jpy",
+                    "page": "amountadd",
+                    "children": []
                 }
             ]
         },

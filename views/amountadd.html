@@ -1,0 +1,551 @@
+<div class="row">
+    <div class="col-md-3 col-md-push-9 col-sm-12 login-layout">
+        <div id="searchbox" class="widget-box no-padding">
+            <div class="widget-header widget-header-small">
+                <h5 class="widget-title smaller">查询条件</h5>
+                <span class="widget-toolbar">
+                        <a href="javascript:closesearch()">
+                            <i class="ace-icon fa fa-times"></i>
+                        </a>
+                    </span>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="请点击选择日期"  readonly/>
+                                <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                        </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="">
+                                <input id="byname" type="text" class="form-control" placeholder="请填入查找内容">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <a class="btn btn-grey btn-xs btn-round" type="button" name="search" title="确定查找"><i class="fa fa-search"></i>确定查找</a>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 col-md-pull-3 col-sm-12">
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#dayadjust">
+                        <i class="blue ace-icon fa fa-calendar-check-o bigger-120"></i>
+                        日补录
+                        <span class="badge badge-warning">3</span>
+                    </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#monthadjust">
+                        <i class="blue ace-icon fa fa-calendar bigger-120"></i>
+                        月补录
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content no-padding no-border">
+                <div id="dayadjust" class="tab-pane fade active in">
+                    <table id="dayadjustable"></table>
+                </div>
+                <div id="monthadjust" class="tab-pane fade">
+                    <table id="monthadjustable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加日补录模态框-->
+<div class="modal fade" id="dayadjustmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">新增日补录</h4>
+            </div>
+            <div class="modal-body clearfix">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label for="dayadjustdate" class="col-sm-4">补录时间:</label>
+                        <div class="col-sm-8 input-group date">
+                            <input id="dayadjustdate" class="form-control daypicker" type="text" />
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 btn-group">
+                        <button data-toggle="dropdown" class="btn btn-white btn-round dropdown-toggle">
+                            选择支付方式
+                            <i class="ace-icon fa fa-angle-down icon-on-right"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-success dropdown-menu-right">
+                            <li>
+                                <a href="javascript:dayadjustadd('cash')">现金</a>
+                            </li>
+                            <li>
+                                <a href="javascript:dayadjustadd('bank')">银行卡</a>
+                            </li>
+                            <li>
+                                <a href="javascript:dayadjustadd('alipay')">支付宝</a>
+                            </li>
+                            <li>
+                                <a href="javascript:dayadjustadd('weixin')">微信</a>
+                            </li>
+                            <li>
+                                <a href="javascript:dayadjustadd('other')">其他</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="hr"></div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>备注:</label>
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--添加月补录模态框-->
+<div class="modal fade" id="monthadjustmodal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">新增月补录</h4>
+            </div>
+            <div class="modal-body clearfix">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" data-toggle="modal" data-dismiss="modal" onclick="">确定</button>
+                <button class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--日补录详情-->
+<div id="dayadjustdetail" class="hide">
+    <span  class="text-primary bigger-120">
+        <i class="fa fa-bookmark-o"></i>
+        补录详情：
+    </span>
+    <div class="widget-box">
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <span class="bolder">
+                    <table id="detailtable"></table>
+                </span>
+            </div>
+            <div class="widget-main">
+                <ul class="steps" style="margin-left: 0">
+                    <li data-step="1" class="active">
+                        <span class="step">审核</span>
+                        <span class="title"></span>
+                    </li>
+                    <li data-step="2">
+                        <span class="step">成功</span>
+                        <span class="title"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--月补录详情-->
+<div id="monthadjustdetail" class="hide">
+    <span  class="text-primary bigger-120">
+        <i class="fa fa-bookmark-o"></i>
+        补录详情：
+    </span>
+    <div class="widget-box">
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <span class="bolder">
+                    <table id="monthdetailtable"></table>
+                </span>
+            </div>
+            <div class="widget-main">
+                <ul class="steps" style="margin-left: 0">
+                    <li data-step="1" class="active">
+                        <span class="step">审核</span>
+                        <span class="title"></span>
+                    </li>
+                    <li data-step="2">
+                        <span class="step">成功</span>
+                        <span class="title"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../json/adjustjson.js"></script>
+<script>
+    var monthstart= moment().subtract(1, 'month').startOf('month');
+    var monthend= moment().subtract(1, 'month').endOf('month');
+    var daymodalbody = $("#dayadjustmodal").find(".modal-body");
+    var monthmodalbody =$("#monthadjustmodal").find(".modal-body");
+    //初始化新增日月补录模态框
+    $(function (){
+        dayadjustpay("cash","现金：");
+        dayadjustpay("bank","银行卡：");
+        dayadjustpay("alipay","支付宝：");
+        dayadjustpay("weixin","微信支付：");
+        dayadjustpay("other","其他：");
+        daymodalbody.append(dayadjustsumhtml);
+        monthmodalbody.append(monthadjustinit);
+        for(var i=0;i<31;i++){
+            monthmodalbody.append(monthadjustpayhtml);
+        }
+        monthmodalbody.append(monthsumhtml);
+    });
+    $(".rangepicker").daterangepicker({
+        minDate: moment().subtract(1, 'month').startOf('month'),
+        maxDate: moment().subtract(1, 'month').endOf('month'),
+        startDate: moment().subtract(1, 'month').startOf('month'),
+        endDate: moment().subtract(1, 'month').endOf('month'),
+        locale: pickercn
+    }, function (start, end, label) {
+        monthstart=start;
+        monthend=end;
+    });
+    singledatepicker('.daypicker');
+    var dayadjustable = $("#dayadjustable");
+    var monthadjustable = $("#monthadjustable");
+    //日补录
+    dayadjustable.bootstrapTable("destroy").bootstrapTable({
+        url: "../json/dayadjust.json",
+        striped: true,
+        pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
+        uniqueId: "id",
+        showRefresh: true,
+        showSearch:true,
+        onSearchbtn:function(){
+            ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
+        },
+        showAdd:true,
+        onAddbtn:function () {
+            cleardaymodal();
+            $("#dayadjustmodal").modal({
+                backdrop: 'static',
+                keyboard: true
+            });
+        },
+        toolbartitle:"日补录列表",
+        detailView:true,
+        detailFormatter:dayadjustdetail,
+        columns: [{
+            field: "createtime",
+            title: "创建时间",
+            width:"160px"
+        },{
+            field: "adjustdate",
+            title: "补录日期",
+            width:"160px"
+        }, {
+            field: "createuser",
+            title: "补录人",
+            width:"15%"
+        }, {
+            field: "adjustdayamount",
+            title: "补录金额",
+            formatter:function (value,row) {
+                return row.afterdayamount-row.beforedayamount;
+            }
+        }, {
+            field: "status",
+            title: "补录状态",
+            formatter:function (value,row,index) {
+                var label,status;
+                if(value===1){
+                    label = "label-warning";
+                    status = "补录审核中"
+                }else if(value===2){
+                    label = "label-success";
+                    status = "补录成功"
+                }else if(value===3){
+                    label = "label-grey";
+                    status = "申请驳回"
+                }
+                return "<span class=\"label " + "label-success" + " arrowed\">" + "补录成功" + "</span>"
+            }
+        }],
+        onClickRow:function(row, $element){
+            tableclickexpand(dayadjustable,$element)
+        }
+    });
+    function dayadjustdetail(index,row){
+//        console.log(index);
+        /**
+         * @param row.adjustdetail        补录详情
+         * @param row.createtime
+         * @param row.beforeamount        补录前金额
+         */
+        var dayadjustdetail = $("#dayadjustdetail");
+        $("#detailtable").bootstrapTable("destroy").bootstrapTable({
+            data:row.adjustdetail,
+            columns: [{
+                field: "paytype",
+                title: "付款方式"
+            }, {
+                field: "adjustamount",
+                title: "补录金额",
+                formatter:function (value,row,index){
+                    return "<i class=\"fa fa-jpy\"></i><span>"+(row.afteramount-row.beforeamount)+"</span>"
+                }
+            }]
+        });
+        var steps = $(".steps");
+        steps.find("li:eq(0)").find(".title").text(row.createtime);
+        if(row.status===1){
+            steps.find("li:eq(1)").removeClass("active");
+            steps.find("li:eq(1)").find(".title").text("")
+        }else if(row.status===2){
+            steps.find("li:eq(1)").addClass("active");
+            steps.find("li:eq(1)").find(".title").text(row.acceptime);
+        }
+        return dayadjustdetail.html();
+    }
+    //月补录
+    monthadjustable.bootstrapTable("destroy").bootstrapTable({
+        url: "../json/monthadjust.json",
+        striped: true,
+        pagination: true,
+        paginationLoop: true,
+        sidePagination:	'client',
+        pageSize:"12",
+        pageList:[15,25,50],
+        uniqueId: "id",
+        showRefresh: true,
+        showSearch:true,
+        onSearchbtn:function(){
+            ($("#searchbox").hasClass("visible"))?$("#searchbox").removeClass("visible"):$("#searchbox").addClass("visible")
+        },
+        showAdd:true,
+        onAddbtn:function () {
+            clearmonthmodal();
+            $("#monthadjustmodal").modal({
+                backdrop: 'static',
+                keyboard: true
+            });
+        },
+        toolbartitle:"月补录列表",
+        detailView:true,
+        detailFormatter:monthadjustdetail,
+        iconsPrefix: 'fa',
+        icons:{
+            detailOpen: 'fa-plus-square-o',
+            detailClose: 'fa-minus-square-o'
+        },
+        columns: [{
+            field: "createtime",
+            title: "创建时间",
+            width:"150px"
+        }, {
+            field: "createuser",
+            title: "补录人",
+        }, {
+            field: "adjustmonth",
+            title: "补录月"
+        }, {
+            field: "afterdayamount",
+            title: "补录后总金额"
+        }, {
+            field: "adjustcontent",
+            title: "补录理由"
+        }, {
+            field: "status",
+            title: "补录状态",
+            formatter:function (value,row,index) {
+                var label,status;
+                if(value===1){
+                    label = "label-warning";
+                    status = "补录审核中"
+                }else if(value===2){
+                    label = "label-success";
+                    status = "补录成功"
+                }
+                return "<span class=\"label " + label + " arrowed\">" + status + "</span>"
+            }
+        }],
+        onClickRow:function (row,$element) {
+            tableclickexpand(monthadjustable,$element)
+        }
+    });
+    function monthadjustdetail(index,row){
+//        console.log(index);
+        /**
+         * @param row.adjustdetail        补录详情
+         * @param row.createtime
+         * @param row.beforeamount        补录前金额
+         */
+        var monthadjustdetail = $("#monthadjustdetail");
+        $("#monthdetailtable").bootstrapTable("destroy").bootstrapTable({
+            data:row.adjustdetail,
+            columns: [{
+                field: "adjustdate",
+                title: "补录日期"
+            }, {
+                field: "adjustamount",
+                title: "补录金额",
+                formatter:function (value,row,index){
+                    return "<i class=\"fa fa-jpy\"></i><span>"+(row.afteramount-row.beforeamount)+"</span>"
+                }
+            }]
+        });
+        return monthadjustdetail.html();
+    }
+
+    //日补录添加付款方式
+    function dayadjustpay(id,text) {
+        var mb =$("#dayadjustmodal").find(".modal-body");
+        mb.append(dayadjustpayhtml);
+        mb.find(".row:last").attr("id",id);
+        mb.find("label:last").text(text);
+        $("#"+id).find("input:eq(1)").attr("id",id+"input");
+        $("#"+id).find("input:eq(2)").attr("id",id+"inputafter");
+        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden');dayupdatesum();");
+    }
+    //日补录点击确认添加按钮
+    function dayadjustadd(id) {
+        $('#'+id).removeClass('hidden');
+        $('#'+id).find("input:first").val(Math.round(Math.random()*5000000+500000)/100);
+        $('#total').removeClass('hidden');
+        $('#remark').removeClass('hidden');
+        dayupdatesum()
+    }
+    //日补录总计
+    function dayupdatesum() {
+        var beforesum=0,aftersum=0,sum=0;
+        for(var i=1;i<7;i++){
+            if(!daymodalbody.find(".row:eq("+i+")").hasClass("hidden")){
+                beforesum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:first").val());
+                sum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(1)").val());
+                aftersum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(2)").val())
+            }
+        }
+        $('#total').find("input:first").val(beforesum.toFixed(2));
+        $('#total').find("input:eq(1)").val(sum.toFixed(2));
+        $('#total').find("input:eq(2)").val(aftersum.toFixed(2));
+    }
+    function cleardaymodal(){
+        for(var i=1;i<9;i++){
+            daymodalbody.find(".row:eq("+i+")").addClass("hidden").find("input").val("");
+            $(".amount").val(0);
+        }
+    }
+    daymodalbody.find("input").blur(function(){
+        if(!(this.value==="")){
+            if(this.id.lastIndexOf("after")===-1){
+                $("#"+this.id).closest(".row").find("input:eq(2)").val((parseFloat($("#"+this.id).closest(".row").find("input:eq(0)").val())+parseFloat(this.value)).toFixed(2));
+            }else if(this.id.lastIndexOf("input")!==-1){
+                $("#"+this.id).closest(".row").find("input:eq(1)").val((parseFloat(this.value)-parseFloat($("#"+this.id).closest(".row").find("input:eq(0)").val())).toFixed(2));
+            }
+            dayupdatesum()
+        }else{
+            $("#"+this.id).val(0)
+        }
+    });
+    //检查输入类型
+    $(".amount").change(function(){
+//        console.log(validator.isDecimal(this.value))
+        if(!validator.isDecimal(this.value)){
+            $("#"+this.id).val(0);
+            $.notify({
+                message: "输入错误"
+            },{
+                type: 'warning',
+                element:'.modal',
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutUp'
+                },
+                placement: {
+                    from: "top",
+                    align: "right"
+                }
+            });
+        }
+    });
+    $(".amount").focus(function () {
+        if(this.value==="0"){$("#"+this.id).val("")}
+    });
+    //月补录点击确认添加按钮
+    function monthadjustadd() {
+        var days = ((monthend-monthstart)+1)/86400000;
+        var day = monthstart;
+        day.subtract(1, 'days');
+        for(var i=0;i<days;i++){
+            monthadjustpay(day)
+        }
+        monthmodalbody.find(".row:eq(32)").removeClass("hidden");
+        monthmodalbody.find(".row:eq(33)").removeClass("hidden");
+        monthupdatesum()
+    }
+    function monthadjustpay(day) {
+        var tday = day.add(1,'days');
+        var id=tday.format('YYYYMMDD');
+        var dayofmonth = tday.format("D");
+        var monthadjustrow = monthmodalbody.find(".row:eq("+dayofmonth+")");
+        monthmodalbody.find(".row:eq("+dayofmonth+")").removeClass("hidden").attr("id",id);
+        monthadjustrow.find("input:first").val(tday.format('LL'));
+        monthadjustrow.find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
+        $("#"+id).find("input:eq(1)").val(Math.round(Math.random()*5000000+500000)/100);
+        $("#"+id).find("input:eq(2)").attr("id",id+"monthinput");
+        $("#"+id).find("input:eq(3)").attr("id",id+"monthinputafter");
+    }
+    //重置月补录表格
+    function clearmonthmodal(){
+        for(var i=1;i<34;i++){
+            monthmodalbody.find(".row:eq("+i+")").addClass("hidden").find("input").val("");
+            $(".amount").val(0);
+        }
+    }
+    //月补录添加金额计算
+    monthmodalbody.find("input").blur(function(){
+        if(!(this.value==="")){
+            if(this.id.lastIndexOf("after")===-1){
+                $("#"+this.id).closest(".row").find("input:eq(3)").val((parseFloat($("#"+this.id).closest(".row").find("input:eq(1)").val())+parseFloat(this.value)).toFixed(2));
+            }else if(this.id.lastIndexOf("input")!==-1){
+                $("#"+this.id).closest(".row").find("input:eq(2)").val((parseFloat(this.value)-parseFloat($("#"+this.id).closest(".row").find("input:eq(1)").val())).toFixed(2));
+            }
+            monthupdatesum()
+        }else{
+            $("#"+this.id).val(0)
+        }
+    });
+
+    //月补录总计
+    function monthupdatesum() {
+        var beforesum=0,aftersum=0,sum=0;
+        for(var i=1;i<32;i++){
+            if(!monthmodalbody.find(".row:eq("+i+")").hasClass("hidden")){
+                beforesum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(1)").val());
+                sum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(2)").val());
+                aftersum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(3)").val())
+            }
+        }
+        monthmodalbody.find(".row:eq(32)").find("input:eq(1)").val(beforesum.toFixed(2));
+        monthmodalbody.find(".row:eq(32)").find("input:eq(2)").val(sum.toFixed(2));
+        monthmodalbody.find(".row:eq(32)").find("input:eq(3)").val(aftersum.toFixed(2));
+    }
+</script>
+

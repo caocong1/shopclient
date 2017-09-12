@@ -41,7 +41,6 @@
     </div>
 </div>
 <div id="widgetcontain"></div>
-<script src="../json/widgetjson.js"></script>
 <script>
     var noon = moment().format('a');
     var time=moment().format('llll');
@@ -77,7 +76,7 @@
     });
     function addwidget(id,title,tableid){
         $widgetcontain.append(widgetableshtml);
-        $widgetcontain.find(".widget-container-col:last").attr("id",id);
+        $widgetcontain.find(".widget-box:last").attr("id",id);
         var $id = $("#"+id);
         $id.find(".widget-title").text(title);
         $id.find("a:last").attr("href","javascript:hiddenbyid('"+id+"')");
