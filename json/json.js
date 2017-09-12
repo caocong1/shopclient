@@ -13,7 +13,7 @@ nav =
             "status": 1,
             "icon": "fa fa-envelope-open",
             "page": "notice",
-			"children": []
+            "children": []
         },
         {
             "id": 2,
@@ -21,7 +21,15 @@ nav =
             "status": 1,
             "icon": "fa fa-newspaper-o",
             "page": "settlement",
-			"children": []
+            "children": []
+        },
+        {
+            "id": 11,
+            "text": "保证金催缴单",
+            "status": 1,
+            "icon": "fa fa-newspaper-o",
+            "page": "",
+            "children": []
         },
         {
             "id": 9,
@@ -51,7 +59,7 @@ nav =
                     "status": 1,
                     "icon": "fa fa-bar-chart",
                     "page": "chart",
-					"children": []
+                    "children": []
                 },
                 {
                     "id": 5,
@@ -59,7 +67,7 @@ nav =
                     "status": 1,
                     "icon": "fa fa-jpy",
                     "page": "adjust",
-					"children": []
+                    "children": []
                 }
             ]
         },
@@ -75,7 +83,7 @@ nav =
                     "status": 1,
                     "icon": "fa fa-users",
                     "page": "person",
-					"children": []
+                    "children": []
                 },
                 {
                     "id": 8,
@@ -83,7 +91,7 @@ nav =
                     "status": 1,
                     "icon": "fa fa-cog",
                     "page": "system",
-					"children": []
+                    "children": []
                 }
             ]
         }
@@ -93,8 +101,8 @@ nav =
 pickercn = {
     applyLabel: '确认',
     cancelLabel: '取消',
-    fromLabel : '起始时间',
-    toLabel : '结束时间',
-    customRangeLabel : '自定义',
-    firstDay : 1
+    fromLabel: '起始时间',
+    toLabel: '结束时间',
+    customRangeLabel: '自定义',
+    firstDay: 1
 };
