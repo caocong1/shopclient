@@ -24,14 +24,6 @@ nav =
             "children": []
         },
         {
-            "id": 11,
-            "text": "保证金催缴单",
-            "status": 1,
-            "icon": "fa fa-newspaper-o",
-            "page": "",
-            "children": []
-        },
-        {
             "id": 9,
             "text": "工程报修",
             "status": 1,

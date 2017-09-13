@@ -206,12 +206,12 @@
         dayadjustpay("alipay","支付宝：");
         dayadjustpay("weixin","微信支付：");
         dayadjustpay("other","其他：");
-        daymodalbody.append(dayadjustsumhtml);
-        monthmodalbody.append(monthadjustinit);
+        daymodalbody.append(dayaddsumhtml);
+        monthmodalbody.append(monthaddinithtml);
         for(var i=0;i<31;i++){
-            monthmodalbody.append(monthadjustpayhtml);
+            monthmodalbody.append(monthaddpayhtml);
         }
-        monthmodalbody.append(monthsumhtml);
+        monthmodalbody.append(monthaddsumhtml);
     });
     $(".rangepicker").daterangepicker({
         minDate: moment().subtract(1, 'month').startOf('month'),
@@ -293,12 +293,6 @@
         }
     });
     function dayadjustdetail(index,row){
-//        console.log(index);
-        /**
-         * @param row.adjustdetail        补录详情
-         * @param row.createtime
-         * @param row.beforeamount        补录前金额
-         */
         var dayadjustdetail = $("#dayadjustdetail");
         $("#detailtable").bootstrapTable("destroy").bootstrapTable({
             data:row.adjustdetail,
@@ -324,6 +318,50 @@
         }
         return dayadjustdetail.html();
     }
+    //日补录添加付款方式
+    function dayadjustpay(id,text) {
+//        var mb =$("#dayadjustmodal").find(".modal-body");
+        daymodalbody.append(dayaddpayhtml);
+        daymodalbody.find(".row:last").attr("id",id);
+        daymodalbody.find("label:last").text(text);
+        $("#"+id).find("input:eq(1)").attr("id",id+"input");
+        $("#"+id).find("input:eq(2)").attr("id",id+"inputafter");
+        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden');dayupdatesum();");
+    }
+    //日补录点击确认添加按钮
+    function dayadjustadd(id) {
+        $('#'+id).removeClass('hidden');
+        $('#total').removeClass('hidden');
+        $('#remark').removeClass('hidden');
+        dayupdatesum()
+    }
+    //日补录总计
+    function dayupdatesum() {
+        var beforesum=0,aftersum=0,sum=0;
+        for(var i=1;i<7;i++){
+            if(!daymodalbody.find(".row:eq("+i+")").hasClass("hidden")){
+                beforesum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:first").val());
+//                sum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(1)").val());
+//                aftersum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(2)").val())
+            }
+        }
+        $('#total').find("input:first").val(beforesum.toFixed(2));
+//        $('#total').find("input:eq(1)").val(sum.toFixed(2));
+//        $('#total').find("input:eq(2)").val(aftersum.toFixed(2));
+    }
+    function cleardaymodal(){
+        for(var i=1;i<9;i++){
+            daymodalbody.find(".row:eq("+i+")").addClass("hidden").find("input").val("");
+            $(".amount").val(0);
+        }
+    }
+    daymodalbody.find("input").blur(function(){
+        if(!(this.value==="")){
+            dayupdatesum()
+        }else{
+            this.value="0";
+        }
+    });
     //月补录
     monthadjustable.bootstrapTable("destroy").bootstrapTable({
         url: "../json/monthadjust.json",
@@ -361,7 +399,7 @@
             width:"150px"
         }, {
             field: "createuser",
-            title: "补录人",
+            title: "补录人"
         }, {
             field: "adjustmonth",
             title: "补录月"
@@ -414,61 +452,10 @@
         return monthadjustdetail.html();
     }
 
-    //日补录添加付款方式
-    function dayadjustpay(id,text) {
-        var mb =$("#dayadjustmodal").find(".modal-body");
-        mb.append(dayadjustpayhtml);
-        mb.find(".row:last").attr("id",id);
-        mb.find("label:last").text(text);
-        $("#"+id).find("input:eq(1)").attr("id",id+"input");
-        $("#"+id).find("input:eq(2)").attr("id",id+"inputafter");
-        $("#"+id).find("button").attr("onclick","$('#"+id+"').addClass('hidden');dayupdatesum();");
-    }
-    //日补录点击确认添加按钮
-    function dayadjustadd(id) {
-        $('#'+id).removeClass('hidden');
-        $('#'+id).find("input:first").val(Math.round(Math.random()*5000000+500000)/100);
-        $('#total').removeClass('hidden');
-        $('#remark').removeClass('hidden');
-        dayupdatesum()
-    }
-    //日补录总计
-    function dayupdatesum() {
-        var beforesum=0,aftersum=0,sum=0;
-        for(var i=1;i<7;i++){
-            if(!daymodalbody.find(".row:eq("+i+")").hasClass("hidden")){
-                beforesum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:first").val());
-                sum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(1)").val());
-                aftersum+=parseFloat(daymodalbody.find(".row:eq("+i+")").find("input:eq(2)").val())
-            }
-        }
-        $('#total').find("input:first").val(beforesum.toFixed(2));
-        $('#total').find("input:eq(1)").val(sum.toFixed(2));
-        $('#total').find("input:eq(2)").val(aftersum.toFixed(2));
-    }
-    function cleardaymodal(){
-        for(var i=1;i<9;i++){
-            daymodalbody.find(".row:eq("+i+")").addClass("hidden").find("input").val("");
-            $(".amount").val(0);
-        }
-    }
-    daymodalbody.find("input").blur(function(){
-        if(!(this.value==="")){
-            if(this.id.lastIndexOf("after")===-1){
-                $("#"+this.id).closest(".row").find("input:eq(2)").val((parseFloat($("#"+this.id).closest(".row").find("input:eq(0)").val())+parseFloat(this.value)).toFixed(2));
-            }else if(this.id.lastIndexOf("input")!==-1){
-                $("#"+this.id).closest(".row").find("input:eq(1)").val((parseFloat(this.value)-parseFloat($("#"+this.id).closest(".row").find("input:eq(0)").val())).toFixed(2));
-            }
-            dayupdatesum()
-        }else{
-            $("#"+this.id).val(0)
-        }
-    });
     //检查输入类型
     $(".amount").change(function(){
-//        console.log(validator.isDecimal(this.value))
         if(!validator.isDecimal(this.value)){
-            $("#"+this.id).val(0);
+            this.value="0";
             $.notify({
                 message: "输入错误"
             },{
@@ -486,7 +473,7 @@
         }
     });
     $(".amount").focus(function () {
-        if(this.value==="0"){$("#"+this.id).val("")}
+        if(this.value==="0"){this.value=""}
     });
     //月补录点击确认添加按钮
     function monthadjustadd() {
@@ -508,9 +495,9 @@
         monthmodalbody.find(".row:eq("+dayofmonth+")").removeClass("hidden").attr("id",id);
         monthadjustrow.find("input:first").val(tday.format('LL'));
         monthadjustrow.find("button").attr("onclick","$('#"+id+"').addClass('hidden')");
-        $("#"+id).find("input:eq(1)").val(Math.round(Math.random()*5000000+500000)/100);
-        $("#"+id).find("input:eq(2)").attr("id",id+"monthinput");
-        $("#"+id).find("input:eq(3)").attr("id",id+"monthinputafter");
+//        $("#"+id).find("input:eq(1)").val(Math.round(Math.random()*5000000+500000)/100);
+//        $("#"+id).find("input:eq(2)").attr("id",id+"monthinput");
+//        $("#"+id).find("input:eq(3)").attr("id",id+"monthinputafter");
     }
     //重置月补录表格
     function clearmonthmodal(){
@@ -522,14 +509,9 @@
     //月补录添加金额计算
     monthmodalbody.find("input").blur(function(){
         if(!(this.value==="")){
-            if(this.id.lastIndexOf("after")===-1){
-                $("#"+this.id).closest(".row").find("input:eq(3)").val((parseFloat($("#"+this.id).closest(".row").find("input:eq(1)").val())+parseFloat(this.value)).toFixed(2));
-            }else if(this.id.lastIndexOf("input")!==-1){
-                $("#"+this.id).closest(".row").find("input:eq(2)").val((parseFloat(this.value)-parseFloat($("#"+this.id).closest(".row").find("input:eq(1)").val())).toFixed(2));
-            }
             monthupdatesum()
         }else{
-            $("#"+this.id).val(0)
+            this.value="0"
         }
     });
 
@@ -539,13 +521,101 @@
         for(var i=1;i<32;i++){
             if(!monthmodalbody.find(".row:eq("+i+")").hasClass("hidden")){
                 beforesum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(1)").val());
-                sum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(2)").val());
-                aftersum+=parseFloat(monthmodalbody.find(".row:eq("+i+")").find("input:eq(3)").val())
             }
         }
         monthmodalbody.find(".row:eq(32)").find("input:eq(1)").val(beforesum.toFixed(2));
-        monthmodalbody.find(".row:eq(32)").find("input:eq(2)").val(sum.toFixed(2));
-        monthmodalbody.find(".row:eq(32)").find("input:eq(3)").val(aftersum.toFixed(2));
     }
+
+    var dayaddpayhtml =
+        '<div class="row hidden">\n' +
+        '<label class="col-sm-2"></label>\n' +
+        '<div class="col-sm-5">\n' +
+        '    <div class="input-group">\n' +
+        '        <span class="input-group-addon">调帐金额</span>\n' +
+        '        <input class="form-control amount" type="text" title="请输入调帐金额"/>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div class="col-sm-2">\n' +
+        '    <button class="btn btn-white btn-round">\n' +
+        '        <i class="ace-icon fa fa-times"></i>\n' +
+        '    </button>\n' +
+        '</div>\n' +
+        '                </div>';
+
+    var dayaddsumhtml =
+        '<div class="hr"></div>\n' +
+        '<div class="row" id="total">\n' +
+        '    <label class="col-sm-2">总计：</label>\n' +
+        '    <div class="col-sm-5">\n' +
+        '        <div class="input-group">\n' +
+        '            <span class="input-group-addon">调帐金额</span>\n' +
+        '            <input class="form-control" type="text" title="调帐金额总计" readonly>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div class="space-6"></div>\n' +
+        '<div id="remark" class="row">\n' +
+        '    <label class="col-sm-2">备注：</label>\n' +
+        '    <div class="col-sm-10">\n' +
+        '        <input class="form-control" type="text">\n' +
+        '    </div>\n' +
+        '</div>';
+
+    var monthaddinithtml =
+        '<div class="row">\n' +
+        '    <div class="col-sm-6">\n' +
+        '        <label for="dayadjustdate" class="col-sm-4">调帐时间:</label>\n' +
+        '        <div class="col-sm-8 input-group date">\n' +
+        '            <input class="form-control rangepicker" type="text">\n' +
+        '            <span class="input-group-addon">\n' +
+        '                <i class="fa fa-calendar"></i>\n' +
+        '            </span>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div class="col-sm-4 btn-group">\n' +
+        '        <button class="btn btn-white btn-round" onclick="monthadjustadd()">\n' +
+        '            确定添加\n' +
+        '        </button>\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div class="hr"></div>';
+
+    var monthaddpayhtml =
+        '<div class="row hidden">\n' +
+        '<div class="col-sm-3 col-sm-offset-1">\n' +
+        '    <input class="form-control" type="text" readonly/>\n' +
+        '</div>\n' +
+        '<div class="col-sm-4">\n' +
+        '    <div class="input-group">\n' +
+        '        <span class="input-group-addon">调帐金额</span>\n' +
+        '        <input class="form-control amount" type="text" title="adjust">\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div class="col-sm-2">\n' +
+        '    <button class="btn btn-white btn-round">\n' +
+        '        <i class="ace-icon fa fa-times"></i>\n' +
+        '    </button>\n' +
+        '</div>\n' +
+        '                </div>';
+
+    var monthaddsumhtml =
+        '<div class="hr"></div><div class="row hidden">\n' +
+        '<label class="col-sm-3 col-sm-offset-1">总计：</label>\n' +
+        '<div class="col-sm-4">\n' +
+        '    <div class="input-group">\n' +
+        '        <span class="input-group-addon">调帐金额</span>\n' +
+        '        <input class="form-control" type="text" title="adjust">\n' +
+        '    </div>\n' +
+        '</div>\n' +
+        '<div class="col-sm-2">\n' +
+        '</div>\n' +
+        '                </div>' +
+        '                <div class="space-6"></div>\n' +
+        '                <div id="remark" class="row hidden">\n' +
+        '    <label class="col-sm-2">备注:</label>\n' +
+        '    <div class="col-sm-10">\n' +
+        '    <input class="form-control" type="text" />\n' +
+        '    </div>\n' +
+        '</div>';
 </script>
 

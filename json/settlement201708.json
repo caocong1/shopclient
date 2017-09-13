@@ -1,0 +1,86 @@
+[
+  {
+    "type": "aaa结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101001",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 0,
+    "status": 1
+  },
+  {
+    "type": "bbb结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101201",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 0,
+    "status": 1
+  },
+  {
+    "type": "ccc结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101301",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 1,
+    "status": 2,
+    "detail": [
+      {
+        "code": "2017081F010140101",
+        "title": "8月ddd结算催缴单",
+        "createtime": "2017-09-31 00:00:00",
+        "type": "催缴单",
+        "accountperiod": "8月",
+        "read": 1,
+        "status": 1
+      },
+      {
+        "code": "2017081F010140101",
+        "title": "8月ddd结算催缴单",
+        "createtime": "2017-09-31 00:00:00",
+        "type": "催缴单",
+        "accountperiod": "8月",
+        "read": 1,
+        "status": 1
+      }
+    ]
+  },
+  {
+    "type": "ddd结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101401",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 1,
+    "status": 3,
+    "detail": [
+      {
+        "code":"2017081F010140101",
+        "title":"8月eee结算滞纳金单",
+        "createtime":"2017-09-31 00:00:00",
+        "type":"滞纳金单",
+        "accountperiod":"8月",
+        "read":1,
+        "status":1
+      }
+    ]
+  },
+  {
+    "type": "eee结算单",
+    "createtime": "2017-09-10 00:00:00",
+    "settlementcode": "2017081F0101501",
+    "accountperiod": "8月",
+    "startdate": "2017-6-1",
+    "enddate": "2017-7-1",
+    "read": 1,
+    "status": 4,
+    "detail": [
+
+    ]
+  }
+]

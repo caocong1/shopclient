@@ -14,7 +14,8 @@
                     <form class="form-horizontal">
                         <div class="form-group">
                             <div class="input-group">
-                                <input id="monthpicker" type="text" class="form-control" placeholder="请点击选择日期"  readonly/>
+                                <input id="monthpicker" type="text" class="form-control" placeholder="请点击选择日期"
+                                       readonly/>
                                 <span class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                     </span>
@@ -34,7 +35,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <a class="btn btn-grey btn-xs btn-round" type="button" name="search" title="确定查找"><i class="fa fa-search"></i>确定查找</a>
+                            <a class="btn btn-grey btn-xs btn-round" type="button" name="search" title="确定查找"><i
+                                    class="fa fa-search"></i>确定查找</a>
                         </div>
                         <div class="form-group">
                         </div>
@@ -44,7 +46,31 @@
         </div>
     </div>
     <div class="col-md-9 col-md-pull-3 col-sm-12">
-        <table id="settlementable"></table>
+        <ul class="nav nav-tabs" style="border: 0;">
+            <li class="active">
+                <a href="#settlement">
+                    结算单
+                    <span class="badge"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#bail">
+                    保证金催缴
+                    <span class="badge"></span>
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content no-padding clearfix" style="border: 0;">
+            <div id="settlement" class="col-sm-12 tab-pane no-padding table-responsive active">
+
+
+                <table id="settlementable"></table>
+
+            </div>
+            <div id="bail" class="col-sm-12 tab-pane table-responsive" style="padding: 0;">
+                <table id=""></table>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -74,33 +100,33 @@
         </div>
     </div>
 </div>
-
+<!--结算单相关单据-->
 <div id="unsettlement" class="hidden">
-<div class="tabbable tabs-below">
-    <div class="tab-content">
-        <div id="cui" class="tab-pane in active">
+    <div class="tabbable tabs-below">
+        <div class="tab-content">
+            <div id="cui" class="tab-pane in active">
             <span class="bolder">
                 <table id="unsettlementable"></table>
             </span>
-        </div>
-        <div id="overdue" class="tab-pane">
+            </div>
+            <div id="overdue" class="tab-pane">
             <span class="bolder">
                 <table id="overduetable"></table>
             </span>
+            </div>
         </div>
+        <ul class="nav nav-tabs" id="myTab2">
+            <li>
+                <a href="javascript:preview();">结算单</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#cui">催缴单</a>
+            </li>
+            <li>
+                <a data-toggle="tab" href="#overdue">滞纳金单</a>
+            </li>
+        </ul>
     </div>
-    <ul class="nav nav-tabs" id="myTab2">
-        <li>
-            <a href="javascript:preview();">结算单</a>
-        </li>
-        <li>
-            <a data-toggle="tab" href="#cui">催缴单</a>
-        </li>
-        <li>
-            <a data-toggle="tab" href="#overdue">滞纳金单</a>
-        </li>
-    </ul>
-</div>
 </div>
 
 
